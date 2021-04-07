@@ -37,7 +37,7 @@ $(BINDIR)/app : $(OBJDIR)/app.o $(OBJDIR)/main.o
 targets:
 	-@mkdir -p $(OBJDIR)
 	-@mkdir -p $(BINDIR)
-	
+
 clean:
 	-@$(RM) -r $(OBJDIR)
 	-@$(RM) -r $(BINDIR)

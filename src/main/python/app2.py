@@ -102,7 +102,7 @@ def main():
   range = 0
   if len(sys.argv) > 1:
     try:
-      range = int(sys.argv[1])  
+      range = int(sys.argv[1])
     except ValueError:
       pass
   app = App2(range)

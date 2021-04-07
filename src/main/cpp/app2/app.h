@@ -32,7 +32,7 @@ class App {
     int         range;           // range of integers in which to find primes
     bool*       integers;        // integer inputs, true => prime number
     vector<int> primes;          // outputs, list of primes in inputs
-    
+
     struct timeval
                 startTime, endTime;
 

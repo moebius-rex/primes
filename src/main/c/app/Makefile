@@ -16,7 +16,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 CC = gcc
-CCFLAGS = 
+CCFLAGS =
 LDFLAGS = -O
 
 SRCDIR = .
@@ -37,7 +37,7 @@ $(BINDIR)/app : $(OBJDIR)/app.o
 targets:
 	-@mkdir -p $(OBJDIR)
 	-@mkdir -p $(BINDIR)
-	
+
 clean:
 	-@$(RM) -r $(OBJDIR)
 	-@$(RM) -r $(BINDIR)

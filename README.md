@@ -1,6 +1,6 @@
 # Primes project
 
-**Primes** is a project that implements the **Sieve of Erastosthenes** algorithm in several popular programming languages. 
+**Primes** is a project that implements the **Sieve of Erastosthenes** algorithm in several popular programming languages.
 
 ## Purpose
 
@@ -43,8 +43,8 @@ make --no-print-directory -C app
 bin/App 1000
 Sieve of Erastosthenes: Find all prime numbers in a given range
 Prime numbers in range 0-1000 inclusive:
-2 3 5 7 11 13 17 19 23 29 31 37 .. 907 911 919 929 937 941 947 953 967 971 977 983 991 997 
-Found 168 integers(s) in 1000 integers in 4 microseconds 
+2 3 5 7 11 13 17 19 23 29 31 37 .. 907 911 919 929 937 941 947 953 967 971 977 983 991 997
+Found 168 integers(s) in 1000 integers in 4 microseconds
 ```
 
 If however you see errors, it almost certainly means that you're missing at least one of the following dependencies and will need to install additional packages:
@@ -57,14 +57,14 @@ If you installed this project on a Debian, Ubuntu, Linux Mint or any other Debia
 
 First, update the local package list and then upgrade any existing packages:
 
-```bash
+```
 sudo apt update
 sudo apt -y upgrade
 ```
 
 Install any of the packages required by this project:
 
-```bash
+```
 sudo apt install make
 sudo apt install maven
 sudo apt install gcc
@@ -79,7 +79,7 @@ You can use the **Homebrew** package manager's `brew` command to download and in
 
 To install Homebrew, enter the following commands at a command prompt:
 
-```bash
+```
 xcode-select --install
 curl -fsSL -o install.sh https://raw.githubusercontent.com/Homebrew/install/master/install.sh
 ```
@@ -92,7 +92,7 @@ brew update
 
 Install any of the packages required by this project:
 
-```bash
+```
 brew install make
 brew install maven
 brew install gcc
@@ -106,16 +106,16 @@ brew install python3
 > The commands described in this section correctly install the required packages for this project but work remains to be done to make the project work properly in a pure Windows environment. Any language implementation may be built or run successfully, but **Windows PowerShell** doesn't understand all of the commands used by `make` to recursively build, run and manage files in the project. If you still wish to install this project on a Windows system and use it in the manner for which it was intended, you should consider one of the following options:
 >
 > 1. Enable **Windows Subsystem for Linux** (WSL)  and install the project in WSL's Ubuntu VM.
-> 2. Create a Linux VM using Oracle's **VirtualBox** product and install the project in the VM. 
+> 2. Create a Linux VM using Oracle's **VirtualBox** product and install the project in the VM.
 > 3. Create a Linux VM **Docker** image and install the project in the image.
 
 ------
 
-You can use the **Chocolatey** package manager's `choco` command to download and install required packages. To install Chocolatey, follow the instructions at https://chocolatey.org/install. 
+You can use the **Chocolatey** package manager's `choco` command to download and install required packages. To install Chocolatey, follow the instructions [here](https://chocolatey.org/install).
 
 To install any of the packages required by this project, open a **PowerShell** window *as Administrator* (e.g., type `powershell` in the Windows 10 search bar and click on the `Run as Administrator` option listed in the right hand panel of the popup menu that appears) and then enter any of the following commands as necessary:
 
-```gccbash
+```bash
 choco install make
 choco install maven
 choco install openjdk11
@@ -160,7 +160,7 @@ algorithm Sieve of Eratosthenes is
 
     let A be an array of Boolean values, indexed by integers 2 to n,
     initially all set to true.
-    
+
     for i = 2, 3, 4, ..., not exceeding √n do
         if A[i] is true
             for j = i2, i2+i, i2+2i, i2+3i, ..., not exceeding n do
@@ -203,4 +203,4 @@ The project's Maven configuration file, `pom.xml`, specifies Java 11 as the vers
   </properties>
 ```
 
-At the time of writing Java 11 is the default Java version on Linux distros that include it. You may of course change this to any version of Java you wish, but do remember to reflect your version of choice in `pom.xml`. 
+At the time of writing Java 11 is the default Java version on Linux distros that include it. You may of course change this to any version of Java you wish, but do remember to reflect your version of choice in `pom.xml`.
