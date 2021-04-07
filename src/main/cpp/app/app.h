@@ -37,7 +37,7 @@ class App {
 
     void  computePrimes();
     void  printPrimes();
-  
+
     int   getRange();
     int   getCount();
     float getElapsed();
