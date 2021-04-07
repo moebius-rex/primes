@@ -1,0 +1,17 @@
+# macOS detritus
+.DS_Store
+
+# Visual Studio Code-generated files
+.settings
+.vscode
+.classpath
+.project
+
+# Makefile-generated files
+bin/
+obj/
+
+# Maven-generated files
+target
+classes/
+test-classes/

@@ -1,0 +1,102 @@
+/*
+ * Copyright 2021 Shay Gordon
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+package com.shaygordon.primes;
+
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+/**
+ * Computes prime numbers in a given range using an implementation of the
+ * Sieve of Erastosthenes algorithm.
+ */
+public class App {
+  private static DecimalFormat formatter = new DecimalFormat("#,###");
+
+  private static int getRange() {
+    int range = 0;
+    System.out.print("Enter highest integer to test for primeness: ");
+    try (Scanner scanner = new Scanner(new InputStreamReader(System.in))) {
+      range = scanner.nextInt();
+    } catch (InputMismatchException ime) {
+      System.out.println("Value entered was not an integer");
+    }
+    return range;
+  }
+
+  private static boolean[] findPrimes(int range) {
+    boolean[] prime = new boolean[range + 1];
+    Arrays.fill(prime, true);
+    for (int p = 2; p * p < range; p++) {
+      if (prime[p]) {
+        for (int i = p * p; i <= range; i += p) {
+          if (prime[i]) {
+            prime[i] = false;
+          }
+        }
+      }
+    }
+    return prime;
+  }
+
+  private static int getCount(boolean[] prime) {
+    int range = prime.length - 1;
+    int count = 0;
+    for (int p = 2; p <= range; p++) {
+      if (prime[p]) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  private static void printPrimes(boolean[] prime) {
+    int range = prime.length - 1;
+    System.out.println(
+        String.format("Prime numbers up to %s:", formatter.format(range)));
+    for (int p = 2; p <= range; p++) {
+      if (prime[p]) {
+        if (range <= 1000 || range - p <= 1000) {
+          System.out.print(p + " ");
+        }
+      }
+    }
+  }
+
+  public static void main(String[] args) {
+    System.out.println("Sieve of Erastosthenes: Find all prime numbers in a given range");
+    int range = 0;
+    if (args.length > 0) {
+      try {
+        range = Integer.parseInt(args[0]);
+      } catch (NumberFormatException nfe) {
+      }
+    } else {
+      range = getRange();
+    }
+    long start = System.nanoTime();
+    boolean[] prime = findPrimes(range);
+    double duration = (System.nanoTime() - start) / 1_000.;
+    printPrimes(prime);
+    int count = getCount(prime);
+    System.out.println(String.format("\nFound %s prime(s) in %s integers in %s microseconds\n",
+        formatter.format(count), formatter.format(range), formatter.format(duration)));
+  }
+}

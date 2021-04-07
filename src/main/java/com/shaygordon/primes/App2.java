@@ -1,0 +1,140 @@
+/*
+ * Copyright 2021 Shay Gordon
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+package com.shaygordon.primes;
+
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
+
+/**
+ * Computes prime numbers in a given range using an implementation of the
+ * Sieve of Erastosthenes algorithm.
+ */
+public class App2 {
+  // defines the number of prines to display around an ellipsis that is used
+  // when large numbers of primes are equested
+  private static int MAX_HALF = 10;
+  private static DecimalFormat FMT = new DecimalFormat("#,###");
+
+  private int range;
+  private boolean[] integers;
+  private List<Integer> primes;
+  private long startTime, endTime;
+
+  /***
+   * Private functions
+   */
+  private static String format(Number value) { return FMT.format(value); }
+
+  private static int readRange(int range) {
+    if (range == 0) {
+      System.out.print("Enter highest integer to test for primeness: ");
+      try (Scanner scanner = new Scanner(new InputStreamReader(System.in))) {
+        range = scanner.nextInt();
+      } catch (InputMismatchException ime) {
+      }
+    }
+    return range;
+  }
+
+  private static boolean[] createIntegers(int range) {
+    boolean[] prime = new boolean[range + 1];
+    Arrays.fill(prime, true);
+    return prime;
+  }
+
+  /**
+   * Public functions
+   */
+  public App2(int range) {
+    this.range = readRange(range);
+    this.integers = createIntegers(this.range);
+    this.primes = new ArrayList<Integer>();
+  }
+
+  public void computePrimes() {
+    this.startTime = System.nanoTime();
+    for (int p = 2; p * p < this.range; p++) {
+      if (this.integers[p]) {
+        for (int i = p * p; i <= this.range; i += p) {
+          if (this.integers[i]) {
+            this.integers[i] = false;
+          }
+        }
+      }
+    }
+    this.endTime = System.nanoTime();
+    for (int index = 2; index < this.range; index++) {
+      if (this.integers[index]) {
+        this.primes.add(index);
+      }
+    }
+  }
+
+  public int getRange() {
+    return this.range;
+  }
+
+  public List<Integer> getPrimes() {
+    return List.copyOf(this.primes);
+  }
+
+  public double getTime() {
+    return (this.endTime - this.startTime) / 1000.0;
+  }
+
+  public void printPrimes() {
+    System.out.println(String.format("Prime numbers up to %s:", format(range)));
+    StringBuilder sb = new StringBuilder();
+    int half = this.primes.size() / 2;
+    for (int n = 0; n < this.primes.size(); n++) {
+      int p = this.primes.get(n);
+      if (half > MAX_HALF) {
+        if (n == MAX_HALF) {
+          sb.append(".. ");
+        } else if (n < MAX_HALF || n > half * 2 - MAX_HALF) {
+          sb.append(p).append(' ');
+        }
+      } else {
+        sb.append(p).append(' ');
+      }
+    }
+    System.out.println(sb);
+    System.out.println(String.format("Found %s prime(s) in %s integers in %s microseconds\n",
+        format(this.primes.size()), format(this.range), format(this.getTime())));
+  }
+
+  public static void main(String[] args) {
+    System.out.println("Sieve of Erastosthenes: Find all prime numbers in a given range");
+
+    int range = 0;
+    if (args.length > 0) {
+      try {
+        range = Integer.parseInt(args[0]);
+      } catch (NumberFormatException nfe) {
+      }
+    }
+    App2 app = new App2(range);
+    app.computePrimes();
+    app.printPrimes();
+  }
+}
