@@ -57,9 +57,10 @@ public class App2 {
   }
 
   private static boolean[] createIntegers(int range) {
-    boolean[] prime = new boolean[range + 1];
-    Arrays.fill(prime, true);
-    return prime;
+    boolean[] integers = new boolean[range + 1];
+    Arrays.fill(integers, true);
+    integers[0] = integers[1] = false; // by convention, 0 and 1 are not primes
+    return integers;
   }
 
   /**
@@ -73,7 +74,9 @@ public class App2 {
 
   public void computePrimes() {
     this.startTime = System.nanoTime();
-    for (int p = 2; p * p < this.range; p++) {
+
+    // step 1. sieve: tag non-prime inputs
+    for (int p = 0; p * p < this.range; p++) {
       if (this.integers[p]) {
         for (int i = p * p; i <= this.range; i += p) {
           if (this.integers[i]) {
@@ -82,24 +85,15 @@ public class App2 {
         }
       }
     }
-    this.endTime = System.nanoTime();
-    for (int index = 2; index < this.range; index++) {
+    
+    // step 2. add primes to output
+    for (int index = 0; index < this.range; index++) {
       if (this.integers[index]) {
         this.primes.add(index);
       }
     }
-  }
 
-  public int getRange() {
-    return this.range;
-  }
-
-  public List<Integer> getPrimes() {
-    return List.copyOf(this.primes);
-  }
-
-  public double getTime() {
-    return (this.endTime - this.startTime) / 1000.0;
+    this.endTime = System.nanoTime();
   }
 
   public void printPrimes() {
@@ -111,7 +105,7 @@ public class App2 {
       if (half > MAX_HALF) {
         if (n == MAX_HALF) {
           sb.append(".. ");
-        } else if (n < MAX_HALF || n > half * 2 - MAX_HALF) {
+        } else if (n < MAX_HALF || n >= half * 2 - MAX_HALF) {
           sb.append(p).append(' ');
         }
       } else {
@@ -120,7 +114,19 @@ public class App2 {
     }
     System.out.println(sb);
     System.out.println(String.format("Found %s prime(s) in %s integers in %s microseconds\n",
-        format(this.primes.size()), format(this.range), format(this.getTime())));
+        format(this.primes.size()), format(this.range), format(this.getElapsed())));
+  }
+
+  public int getRange() {
+    return this.range;
+  }
+
+  public List<Integer> getPrimes() {
+    return List.copyOf(this.primes);
+  }
+
+  public double getElapsed() {
+    return (this.endTime - this.startTime) / 1000.0;
   }
 
   public static void main(String[] args) {
