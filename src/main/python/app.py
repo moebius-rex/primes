@@ -60,7 +60,7 @@ def main():
   duration = (time.time() - start) * 1_000_000.
   printPrimes(primes)
   count = sum(primes) - 2
-  print(f"\nFound {len(primes):,d} prime(s) in {range:,d} integers in {duration:,.0f} microseconds\n")
+  print(f"\nFound {count:,d} prime(s) in {range:,d} integers in {duration:,.0f} microseconds\n")
   return 0
 
 if __name__ == "__main__":
