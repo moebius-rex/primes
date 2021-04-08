@@ -12,8 +12,6 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations
  * under the License.
- *
- * SPDX-License-Identifier: Apache-2.0
  */
 #include <iostream>
 
@@ -26,7 +24,7 @@ static const int MAX_HALF = 10;
 /**
  * Private functions
  */
-bool* createIntegers(int range) {
+bool* create_integers(int range) {
   bool* integers = new bool[range + 1];
   std::fill_n(integers, range + 1, true);
   integers[0] = integers[1] = false; // by convention, 0 and 1 are not primes
@@ -38,7 +36,7 @@ bool* createIntegers(int range) {
  */
 Sieve::Sieve(int range) {
   this->range = range;
-  this->integers = createIntegers(this->range);
+  this->integers = create_integers(this->range);
 }
 
 Sieve::~Sieve() {
@@ -48,8 +46,8 @@ Sieve::~Sieve() {
   this->primes.clear();
 }
 
-void Sieve::computePrimes() {
-  gettimeofday(&this->startTime, NULL);
+void Sieve::compute_primes() {
+  gettimeofday(&this->start_time, NULL);
 
   // step 1. sieve: tag non-prime inputs
   for (int p = 0; p * p <= this->range; p++) {
@@ -77,10 +75,10 @@ void Sieve::computePrimes() {
       primes.push_back(p);
     }
   }
-  gettimeofday(&this->endTime, NULL);
+  gettimeofday(&this->end_time, NULL);
 }
 
-void Sieve::printPrimes() const {
+void Sieve::print_primes() const {
   std::cout << "Prime numbers in range 0-" << this->range << " inclusive:" << std::endl;
   int half = this->primes.size() / 2;
   for (int n = 0; n < this->primes.size(); n++) {
@@ -97,22 +95,22 @@ void Sieve::printPrimes() const {
   }
   std::cout << std::endl
             << "Found " << this->primes.size() << " prime(s) in "
-            << this->getRange() << " integers in "
-            << this->getElapsed() << " microseconds\n"
+            << this->get_range() << " integers in "
+            << this->get_elapsed() << " microseconds\n"
             << std::endl;
 }
 
-vector<int> Sieve::getPrimes() const {
+vector<int> Sieve::get_primes() const {
   // todo: verify that vector is *copied* to caller, return a copy
   // if it returns a reference
   return this->primes;
 }
 
-int Sieve::getRange() const {
+int Sieve::get_range() const {
   return this->range;
 }
 
-time_t Sieve::getElapsed() const {
-  return 1e6 * (this->endTime.tv_sec - this->startTime.tv_sec) +
-      (this->endTime.tv_usec - this->startTime.tv_usec);
+time_t Sieve::get_elapsed() const {
+  return 1e6 * (this->end_time.tv_sec - this->start_time.tv_sec) +
+      (this->end_time.tv_usec - this->start_time.tv_usec);
 }

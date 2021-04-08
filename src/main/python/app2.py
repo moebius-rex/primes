@@ -14,15 +14,13 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 #
-# SPDX-License-Identifier: Apache-2.0
-#
 import sys
 import time
 import math
 
 from sieve import Sieve
 
-def readRange(range):
+def read_range(range):
   if (range == 0):
     range = int(input("Enter highest integer to test for primeness: "))
   return range
@@ -36,7 +34,7 @@ def main():
       range = int(sys.argv[1])
     except ValueError:
       pass
-  Sieve(readRange(range)).computePrimes().printPrimes()
+  Sieve(read_range(range)).compute_primes().print_primes()
 
   return 0
 

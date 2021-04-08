@@ -12,15 +12,13 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations
  * under the License.
- *
- * SPDX-License-Identifier: Apache-2.0
  */
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "sieve.h"
 
-int readRange(int range) {
+int read_range(int range) {
   if (range == 0) {
     char buf[100];
     printf("Enter highest integer to test for primeness: ");
@@ -34,13 +32,13 @@ int main(int argc, char* argv[]) {
   printf("Sieve of Erastosthenes: Find all prime numbers in a given range\n");
 
   int range = argc > 1 ? atoi(argv[1]) : 0;
-  Sieve_t* sieve = sieve_create(readRange(range));
-  sieve_computePrimes(sieve);
-  sieve_printPrimes(sieve);
+  Sieve_t* sieve = sieve_create(read_range(range));
+  sieve_compute_primes(sieve);
+  sieve_print_primes(sieve);
 
   // for valgrind
-  int *copy = sieve_getPrimes(sieve);
-  for (int i = 0; i < sieve_getCount(sieve); ++i) {
+  int *copy = sieve_get_primes(sieve);
+  for (int i = 0; i < sieve_get_count(sieve); ++i) {
     int prime = copy[i];
   }
   free(copy);

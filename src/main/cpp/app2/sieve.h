@@ -12,8 +12,6 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations
  * under the License.
- *
- * SPDX-License-Identifier: Apache-2.0
  */
 #ifndef INCLUDED_CPP_SIEVE
 #define INCLUDED_CPP_SIEVE
@@ -34,18 +32,18 @@ class Sieve {
     vector<int> primes;          // outputs, list of primes in inputs
 
     struct timeval
-                startTime, endTime;
+                start_time, end_time;
 
   public:
     Sieve(int range = 0);
     ~Sieve();
 
-    void        computePrimes();
-    void        printPrimes()    const;
+    void        compute_primes();
+    void        print_primes()    const;
 
-    vector<int> getPrimes()      const;
-    int         getRange()       const;
-    time_t      getElapsed()     const;
+    vector<int> get_primes()      const;
+    int         get_range()       const;
+    time_t      get_elapsed()     const;
 };
 
 #endif // INCLUDED_CPP_SIEVE

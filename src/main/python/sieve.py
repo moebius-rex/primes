@@ -14,8 +14,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 #
-# SPDX-License-Identifier: Apache-2.0
-#
 import sys
 import time
 import math
@@ -35,7 +33,7 @@ class Sieve:
   Private functions
   """
   @staticmethod
-  def _createPrimes(range):
+  def _create_primes(range):
     integers = [True] * (range + 1)
     integers[0] = integers[1] = False # by convention, 0 and 1 are not primes
     return integers
@@ -45,10 +43,10 @@ class Sieve:
   """
   def __init__(self, range):
     self.range = range
-    self.primes = self._createPrimes(self.range)
+    self.primes = self._create_primes(self.range)
 
-  def computePrimes(self):
-    self.startTime = time.time()
+  def compute_primes(self):
+    self.start_time = time.time()
 
     # step 1. sieve: tag non-prime inputs
     for p in range(0, math.ceil(math.sqrt(self.range))):
@@ -58,36 +56,36 @@ class Sieve:
             self.primes[i] = False
 
     # step 2. add primes to output
-    self.primes = list(compress(range(self.getCount()), self.primes))
+    self.primes = list(compress(range(self.get_count()), self.primes))
 
-    self.endTime = time.time()
+    self.end_time = time.time()
     return self
 
-  def printPrimes(self):
+  def print_primes(self):
     print(f"Prime numbers in range 0-{self.range:,d} inclusive:")
-    half = int(self.getCount() / 2)
+    half = int(self.get_count() / 2)
     for n, p in enumerate(self.primes):
       if half > Sieve.MAX_HALF:
         if n == Sieve.MAX_HALF:
           print("..", end=" ")
-        elif n < Sieve.MAX_HALF or n >= self.getCount() - Sieve.MAX_HALF:
+        elif n < Sieve.MAX_HALF or n >= self.get_count() - Sieve.MAX_HALF:
           print(p, end=" ")
       else:
         print(p, end=" ")
-    print(f"\nFound {self.getCount():,d} prime(s) in {self.range:,d} integers in "
-        + f"{self.getElapsed():,.0f} microseconds\n")
+    print(f"\nFound {self.get_count():,d} prime(s) in {self.range:,d} integers in "
+        + f"{self.get_elapsed():,.0f} microseconds\n")
 
-  def getPrimes(self):
+  def get_primes(self):
     return self.primes.copy()
 
-  def getRange(self):
+  def get_range(self):
     return self.range
 
-  def getCount(self):
+  def get_count(self):
     return len(self.primes)
 
-  def getElapsed(self):
-    return (self.endTime - self.startTime) * 1_000_000.
+  def get_elapsed(self):
+    return (self.end_time - self.start_time) * 1_000_000.
 
   def __iter__(self):
     self.index = -1
@@ -95,13 +93,6 @@ class Sieve:
 
   def __next__(self):
     self.index += 1
-    if self.index == self.getCount():
+    if self.index == self.get_count():
       raise StopIteration
     return self.primes[self.index]
-
-if __name__ == '__main__':
-    if len(sys.argv) > 1:
-      range = sys.argv[1]
-    else:
-      range = 10
-    Sieve(range).computePrimes().printPrimes()

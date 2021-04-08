@@ -12,8 +12,6 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations
  * under the License.
- *
- * SPDX-License-Identifier: Apache-2.0
  */
 #ifndef INCLUDED_CPP_APP
 #define INCLUDED_CPP_APP
@@ -29,18 +27,18 @@ class App {
     int   range;
     bool* primes;
 
-    struct timeval startTime, endTime;
+    struct timeval start_time, end_time;
 
   public:
     App(int range = 0);
     ~App();
 
-    void  computePrimes();
-    void  printPrimes();
+    void  compute_primes();
+    void  print_primes();
 
-    int   getRange();
-    int   getCount();
-    float getElapsed();
+    int   get_range();
+    int   get_count();
+    float get_elapsed();
 };
 
 #endif // INCLUDED_CPP_APP

@@ -12,27 +12,25 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations
  * under the License.
- *
- * SPDX-License-Identifier: Apache-2.0
  */
 #include <stdio.h>
 #include <stdbool.h>
-#include <sys/time.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/time.h>
 
 /**
  * Computes prime numbers in a given range using an implementation of the
  * Sieve of Erastosthenes algorithm.
  */
-static int getRange() {
+static int read_range() {
   char buf[100];
   printf("Enter highest integer to test for primeness: ");
   fgets(buf, sizeof(buf), stdin);
   return strtol(buf, (char**) NULL, 10);
 }
 
-static void computePrimes(bool* integers, int range) {
+static void compute_primes(bool* integers, int range) {
   for (int p = 2; p * p <= range; ++p) {
     if (integers[p]) {
       for (int i = p * p; i <= range; i += p) {
@@ -44,17 +42,7 @@ static void computePrimes(bool* integers, int range) {
   }
 }
 
-static int getCount(bool* integers, int range) {
-  int count = 0;
-  for (int p = 2; p <= range; ++p) {
-    if (integers[p]) {
-      count++;
-    }
-  }
-  return count;
-}
-
-static void printPrimes(bool* integers, int range) {
+static void print_primes(bool* integers, int range) {
   printf("Prime numbers in range 0-%d inclusive:\n", range);
   for (int p = 2; p <= range; ++p) {
     if (integers[p]) {
@@ -65,24 +53,34 @@ static void printPrimes(bool* integers, int range) {
   }
 }
 
-static float getElapsed(struct timeval* start, struct timeval* end) {
+static int get_count(bool* integers, int range) {
+  int count = 0;
+  for (int p = 2; p <= range; ++p) {
+    if (integers[p]) {
+      count++;
+    }
+  }
+  return count;
+}
+
+static float get_elapsed(struct timeval* start, struct timeval* end) {
   return 1e6 * (end->tv_sec - start->tv_sec) + (end->tv_usec - start->tv_usec);
 }
 
 int main(int argc, char* argv[]) {
   printf("Sieve of Erastosthenes: Find all prime numbers in a given range\n");
 
-  int range = argc > 1 ? atoi(argv[1]) : getRange();
+  int range = argc > 1 ? atoi(argv[1]) : read_range();
   bool integers[range + 1];
   memset(integers, 1, sizeof(integers));
-  struct timeval start;
-  gettimeofday(&start, NULL);
-  computePrimes(integers, range);
-  struct timeval end;
-  gettimeofday(&end, NULL);
-  printPrimes(integers, range);
-  int count = getCount(integers, range);
-  float elapsed = getElapsed(&start, &end);
+  struct timeval start_time;
+  gettimeofday(&start_time, NULL);
+  compute_primes(integers, range);
+  struct timeval end_time;
+  gettimeofday(&end_time, NULL);
+  print_primes(integers, range);
+  int count = get_count(integers, range);
+  float elapsed = get_elapsed(&start_time, &end_time);
   printf("\nFound %d prime(s) in %d integers in %.0f microseconds\n\n",
       count, range, elapsed);
 

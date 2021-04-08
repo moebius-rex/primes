@@ -14,8 +14,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 #
-# SPDX-License-Identifier: Apache-2.0
-#
 import sys
 import time
 import math
@@ -25,10 +23,10 @@ Computes prime numbers in a given range using an implementation of the
 Sieve of Erastosthenes algorithm.
 """
 
-def getRange():
+def get_range():
   return int(input("Enter highest integer to test for primeness: "))
 
-def findPrimes(n):
+def compute_primes(n):
   prime = [True] * (n + 1)
   for p in range(2, math.ceil(math.sqrt(n))):
     if prime[p]:
@@ -37,7 +35,7 @@ def findPrimes(n):
           prime[i] = False
   return prime
 
-def printPrimes(prime):
+def print_primes(prime):
   n = len(prime)
   print(f"Prime numbers in ramge 0-{n - 1:,d} inclusive:")
   for p in range(2, n):
@@ -54,13 +52,13 @@ def main():
     except ValueError:
       pass
   if range == 0:
-    range = getRange()
-  start = time.time()
-  primes = findPrimes(range)
-  duration = (time.time() - start) * 1_000_000.
-  printPrimes(primes)
+    range = get_range()
+  start_time = time.time()
+  primes = compute_primes(range)
+  elapsed = (time.time() - start_time) * 1_000_000.
+  print_primes(primes)
   count = sum(primes) - 2
-  print(f"\nFound {count:,d} prime(s) in {range:,d} integers in {duration:,.0f} microseconds\n")
+  print(f"\nFound {count:,d} prime(s) in {range:,d} integers in {elapsed:,.0f} microseconds\n")
   return 0
 
 if __name__ == "__main__":

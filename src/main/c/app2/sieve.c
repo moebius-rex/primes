@@ -12,12 +12,8 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations
  * under the License.
- *
- * SPDX-License-Identifier: Apache-2.0
  */
 #include <stdio.h>
-#include <stdbool.h>
-#include <sys/time.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -30,7 +26,7 @@ static const int MAX_HALF = 10;
 /**
  * Private functions
  */
-bool* createIntegers(int range) {
+bool* create_integers(int range) {
   size_t size = (range + 1) * sizeof(((Sieve_t*) 0)->integers[0]);
   bool* integers = malloc(size);
   memset(integers, true, size);
@@ -38,26 +34,26 @@ bool* createIntegers(int range) {
   return integers;
 }
 
-int* createPrimes(int count) {
+int* create_primes(int count) {
   size_t size = count * sizeof(((Sieve_t*) 0)->primes[0]);
   int* primes = malloc(size);
   return primes;
 }
 
-Sieve_t* createSieve(int range, bool* integers) {
+Sieve_t* create_sieve(int range, bool* integers) {
   Sieve_t* self = malloc(sizeof(Sieve_t));
   self->range = range;
   self->integers = integers;
   return self;
 }
 
-void destroyIntegers(Sieve_t* self) {
+void destroy_integers(Sieve_t* self) {
   if (self->integers != NULL) {
     free(self->integers);
   }
 }
 
-void destroyPrimes(Sieve_t* self) {
+void destroy_primes(Sieve_t* self) {
   if (self->primes != NULL) {
     free(self->primes);
   }
@@ -67,18 +63,18 @@ void destroyPrimes(Sieve_t* self) {
  * Public functions
  */
 Sieve_t* sieve_create(int range) {
-  bool* integers = createIntegers(range);
-  return createSieve(range, integers);
+  bool* integers = create_integers(range);
+  return create_sieve(range, integers);
 }
 
 void sieve_destroy(Sieve_t* self) {
-  destroyIntegers(self);
-  destroyPrimes(self);
+  destroy_integers(self);
+  destroy_primes(self);
   free(self);
 }
 
-void sieve_computePrimes(Sieve_t* self) {
-  gettimeofday(&self->startTime, NULL);
+void sieve_compute_primes(Sieve_t* self) {
+  gettimeofday(&self->start_time, NULL);
 
   // step 1. sieve: tag non-prime inputs
   for (int p = 0; p * p <= self->range; ++p) {
@@ -100,7 +96,7 @@ void sieve_computePrimes(Sieve_t* self) {
   }
  
   // step 3. add primes found
-  self->primes = createPrimes(self->count);
+  self->primes = create_primes(self->count);
   int count = 0;
   for (int p = 0; p <= self->range; ++p) {
     if (self->integers[p]) {
@@ -108,10 +104,10 @@ void sieve_computePrimes(Sieve_t* self) {
     }
   }
 
-  gettimeofday(&self->endTime, NULL);
+  gettimeofday(&self->end_time, NULL);
 }
 
-void sieve_printPrimes(const Sieve_t* self) {
+void sieve_print_primes(const Sieve_t* self) {
   printf("Prime numbers in range 0-%d inclusive:\n", self->range);
   int half = self->count / 2;
   for (int n = 0; n < self->count; ++n) {
@@ -127,24 +123,24 @@ void sieve_printPrimes(const Sieve_t* self) {
     }
   }
   printf("\nFound %d prime(s) in %d integers in %.0f microseconds\n\n",
-      sieve_getCount(self), sieve_getRange(self), sieve_getElapsed(self));
+      sieve_get_count(self), sieve_get_range(self), sieve_get_elapsed(self));
 }
 
-int* sieve_getPrimes(const Sieve_t* self) {
-  int* copy = createPrimes(self->count);
+int* sieve_get_primes(const Sieve_t* self) {
+  int* copy = create_primes(self->count);
   memcpy(copy, self->primes, self->count * sizeof(((Sieve_t *)0)->primes[0]));
   return copy;
 }
 
-int sieve_getRange(const Sieve_t* self) {
+int sieve_get_range(const Sieve_t* self) {
   return self->range;
 }
 
-int sieve_getCount(const Sieve_t* self) {
+int sieve_get_count(const Sieve_t* self) {
   return self->count;
 }
 
-float sieve_getElapsed(const Sieve_t* self) {
-  return 1e6 * (self->endTime.tv_sec - self->startTime.tv_sec) +
-      (self->endTime.tv_usec - self->startTime.tv_usec);
+float sieve_get_elapsed(const Sieve_t* self) {
+  return 1e6 * (self->end_time.tv_sec - self->start_time.tv_sec) +
+      (self->end_time.tv_usec - self->start_time.tv_usec);
 }

@@ -12,8 +12,6 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations
  * under the License.
- *
- * SPDX-License-Identifier: Apache-2.0
  */
 #include <cstddef>
 #include <iostream>
@@ -23,15 +21,7 @@
 /**
  * Private functions
  */
-int readRange(int range) {
-  if (range == 0) {
-    std::cout << "Enter highest integer to test for primeness: ";
-    std::cin >> range;
-  }
-  return range;
-}
-
-bool* createIntegers(int range) {
+bool* create_integers(int range) {
   bool* integers = new bool[range + 1];
   for (int p = 0; p <= range; ++p) {
     integers[p] = true;
@@ -44,8 +34,8 @@ bool* createIntegers(int range) {
  * Public functions
  */
 App::App(int range) {
-  this->range = readRange(range);
-  this->primes = createIntegers(this->range);
+  this->range = range;
+  this->primes = create_integers(this->range);
 }
 
 App::~App() {
@@ -54,8 +44,8 @@ App::~App() {
   }
 }
 
-void App::computePrimes() {
-  gettimeofday(&this->startTime, NULL);
+void App::compute_primes() {
+  gettimeofday(&this->start_time, NULL);
   for (int p = 0; p * p <= this->range; ++p) {
     if (this->primes[p]) {
       for (int i = p * p; i <= this->range; i += p) {
@@ -65,10 +55,10 @@ void App::computePrimes() {
       }
     }
   }
-  gettimeofday(&this->endTime, NULL);
+  gettimeofday(&this->end_time, NULL);
 }
 
-void App::printPrimes() {
+void App::print_primes() {
   std::cout << "Prime numbers in range 0-" << this->range << " inclusive:" << std::endl;
   for (int p = 0; p <= this->range; ++p) {
     if (this->primes[p]) {
@@ -78,17 +68,17 @@ void App::printPrimes() {
     }
   }
   std::cout << std::endl
-            << "Found " << this->getCount()
-            << " prime(s) in " << this->getRange()
-            << " integers in " << this->getElapsed() << " microseconds\n"
+            << "Found " << this->get_count()
+            << " prime(s) in " << this->get_range()
+            << " integers in " << this->get_elapsed() << " microseconds\n"
             << std::endl;
 }
 
-int App::getRange() {
+int App::get_range() {
   return this->range;
 }
 
-int App::getCount() {
+int App::get_count() {
   int count = 0;
   for (int p = 0; p <= this->range; ++p) {
     if (this->primes[p]) {
@@ -98,7 +88,7 @@ int App::getCount() {
   return count;
 }
 
-float App::getElapsed() {
-  return 1e6 * (this->endTime.tv_sec - this->startTime.tv_sec) +
-      (this->endTime.tv_usec - this->startTime.tv_usec);
+float App::get_elapsed() {
+  return 1e6 * (this->end_time.tv_sec - this->start_time.tv_sec) +
+      (this->end_time.tv_usec - this->start_time.tv_usec);
 }

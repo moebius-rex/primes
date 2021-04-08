@@ -12,8 +12,6 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations
  * under the License.
- *
- * SPDX-License-Identifier: Apache-2.0
  */
 #ifndef INCLUDED_C_SIEVE
 #define INCLUDED_C_SIEVE
@@ -32,18 +30,18 @@ typedef struct sieve_t {
   int     count;           // number of primes found
 
   struct timeval
-          startTime, endTime;
+          start_time, end_time;
 } Sieve_t;
 
 Sieve_t*  sieve_create(int);
 void      sieve_destroy(Sieve_t*);
 
-void      sieve_computePrimes(Sieve_t*);
-void      sieve_printPrimes(const Sieve_t*);
+void      sieve_compute_primes(Sieve_t*);
+void      sieve_print_primes(const Sieve_t*);
 
-int*      sieve_getPrimes(const Sieve_t*);
-int       sieve_getRange(const Sieve_t*);
-int       sieve_getCount(const Sieve_t*);
-float     sieve_getElapsed(const Sieve_t*);
+int*      sieve_get_primes(const Sieve_t*);
+int       sieve_get_range(const Sieve_t*);
+int       sieve_get_count(const Sieve_t*);
+float     sieve_get_elapsed(const Sieve_t*);
 
 #endif // INCLUDED_C_SIEVE

@@ -12,8 +12,6 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations
  * under the License.
- *
- * SPDX-License-Identifier: Apache-2.0
  */
 #include <iostream>
 
@@ -21,13 +19,21 @@
 
 using namespace std;
 
+int read_range(int range) {
+  if (range == 0) {
+    std::cout << "Enter highest integer to test for primeness: ";
+    std::cin >> range;
+  }
+  return range;
+}
+
 int main(int argc, const char *argv[]) {
   cout << "Sieve of Erastosthenes: Find all prime numbers in a given range" << endl;
 
   int range = argc > 1 ? atoi(argv[1]) : 0;
-  App app(range);
-  app.computePrimes();
-  app.printPrimes();
+  App app(read_range(range));
+  app.compute_primes();
+  app.print_primes();
 
   return 0;
 }
