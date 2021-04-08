@@ -20,11 +20,21 @@
 
 #include "sieve.h"
 
+int readRange(int range) {
+  if (range == 0) {
+    char buf[100];
+    printf("Enter highest integer to test for primeness: ");
+    fgets(buf, sizeof(buf), stdin);
+    range = strtol(buf, (char**) NULL, 10);
+  }
+  return range;
+}
+
 int main(int argc, char* argv[]) {
   printf("Sieve of Erastosthenes: Find all prime numbers in a given range\n");
 
   int range = argc > 1 ? atoi(argv[1]) : 0;
-  Sieve_t* sieve = sieve_create(range);
+  Sieve_t* sieve = sieve_create(readRange(range));
   sieve_computePrimes(sieve);
   sieve_printPrimes(sieve);
 
