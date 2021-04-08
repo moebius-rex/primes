@@ -8,22 +8,25 @@ The purpose of this project is to demonstrate differences and similarities betwe
 
 ## Features
 
+Each language-specific implementation of the sieve algorithm comes in two versions:
+- A naïve version that brute forces a solution. In other words, a hack — difficult to read and consequently difficult to maintain.
+- An object-oriented version that should be more maintainable and use best practices of the language. In all languages except C, this means extracting a `Sieve` class as a separate component. In the C implementation, it means extracting a transparent structure containing algorithm data, and functions that use that data to implement the algorithm — basically, a rudimentary C++ with an *explicit* `this` pointer and data encapsulation, but no data hiding.
+
+Features of the project include:
+
 - The sieve algorithm is implemented in several languages:
   - C
   - C++
   - Java
   - JavaScript
   - Python
-- Each language implementation of the sieve algorithm comes in two versions:
-  - A naïve version that brute forces the results. In other words, a bit of a hack.
-  - A more refined version that uses features and best practices of the language to create a more maintainable implementation.
 - Uses **Maven** under the hood to build Java implementations and GNU **Makefile** to build C and C++ implementations.
-- Uses **Makefile** to run all implementations.
+- Uses **Makefile** to build and run all implementations.
 - All implementations are designed to be run from, and print to, a terminal window.
 - Where possible, all implementations produce the identical output for the identical input.
 - All C and C++ implementations produce zero `valgrind` errors or leaks when compiled with gcc/g++ on Debian-based Linux systems.
 - The implementations have been tested on Ubuntu 20.04 LTS and Mac OS 11.2.
-- The project comes with a docker file that builds an image that runs every implementation.
+- The project comes with a **Docker** file that builds an Ubuntu image and runs every implementation of the algorithm.
 
 ## Environments tested
 
