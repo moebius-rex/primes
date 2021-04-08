@@ -30,7 +30,7 @@ all: targets $(BINDIR)/app test
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@$(CC) $(CCFLAGS) -c $? -o $@
 
-$(BINDIR)/app : $(OBJDIR)/app.o $(OBJDIR)/main.o
+$(BINDIR)/app : $(OBJDIR)/sieve.o $(OBJDIR)/app.o
 	@$(CC) $(LDFLAGS) $? -o $@
 
 .PHONY: targets clean test

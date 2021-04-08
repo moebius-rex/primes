@@ -15,8 +15,8 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-#ifndef INCLUDED_C_APP
-#define INCLUDED_C_APP
+#ifndef INCLUDED_C_SIEVE
+#define INCLUDED_C_SIEVE
 
 #include <stdbool.h>
 #include <sys/time.h>
@@ -25,7 +25,7 @@
  * Computes prime numbers in a given range using an implementation of the
  * Sieve of Erastosthenes algorithm.
  */
-typedef struct app_t {
+typedef struct sieve_t {
   int     range;           // range of integers in which to find primes
   bool*   integers;        // integer inputs, true => prime number
   int*    primes;          // outputs, list of primes in inputs
@@ -33,16 +33,16 @@ typedef struct app_t {
 
   struct timeval
           startTime, endTime;
-} App_t;
+} Sieve_t;
 
-App_t*    app_create(int);
-void      app_destroy(App_t*);
+Sieve_t*  sieve_create(int);
+void      sieve_destroy(Sieve_t*);
 
-void      app_computePrimes(App_t*);
-void      app_printPrimes(App_t*);
+void      sieve_computePrimes(Sieve_t*);
+void      sieve_printPrimes(const Sieve_t*);
 
-int       app_getRange(App_t*);
-int       app_getCount(App_t*);
-float     app_getElapsed(App_t*);
+int       sieve_getRange(const Sieve_t*);
+int       sieve_getCount(const Sieve_t*);
+float     sieve_getElapsed(const Sieve_t*);
 
-#endif // INCLUDED_C_APP
+#endif // INCLUDED_C_SIEVE
