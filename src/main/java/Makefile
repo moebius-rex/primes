@@ -18,10 +18,9 @@
 JVM = java
 
 MVNDIR = ../../../target/classes
-CLSDIR = com/shaygordon/primes
+SRCDIR = com/shaygordon/primes
 
-# Add new classname stems here and you're done
-SUBPROJS = App App2
+SUBPROJS = $(patsubst $(SRCDIR)/%.java, %, $(wildcard $(SRCDIR)/App*))
 
 SIEVERANGE = 1000
 
@@ -31,4 +30,4 @@ clean:
 	@# suppress Nothing to be done for `clean' messages
 
 test:
-	@for subproj in $(SUBPROJS); do echo java/$$subproj; $(JVM) -cp $(MVNDIR) $(CLSDIR)/$$subproj $(SIEVERANGE); done
+	@for subproj in $(SUBPROJS); do echo java/$$subproj; $(JVM) -cp $(MVNDIR) $(SRCDIR)/$$subproj $(SIEVERANGE); done

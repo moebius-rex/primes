@@ -15,9 +15,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-
-# Add new sub-project directories here and you're done
-SUBDIRS = app app2
+SUBDIRS := $(wildcard */)
 
 all: $(SUBDIRS)
 

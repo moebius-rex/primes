@@ -15,9 +15,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-
-# Add new python file stems here and you're done
-SUBPROJS = app app2
+SUBPROJS = $(patsubst %.py, %, $(wildcard app*))
 
 SIEVERANGE = 1000
 
