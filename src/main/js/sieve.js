@@ -75,12 +75,12 @@ class Sieve {
   printPrimes() {
     console.log("Prime numbers in range 0-"
       + numToStr(this.range) + " inclusive:");
-    const half = this.count / 2;
+    const half = Math.floor(this.count / 2);
     this._primes.forEach((p, n) => {
       if (half > MAX_HALF) {
         if (n == MAX_HALF) {
           process.stdout.write(".. ");
-        } else if (n < MAX_HALF || n >= half * 2 - MAX_HALF) {
+        } else if (n < MAX_HALF || n >= this.count - MAX_HALF) {
           process.stdout.write(p + " ");
         }
       } else {

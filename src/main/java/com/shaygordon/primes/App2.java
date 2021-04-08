@@ -105,7 +105,7 @@ public class App2 {
       if (half > MAX_HALF) {
         if (n == MAX_HALF) {
           sb.append(".. ");
-        } else if (n < MAX_HALF || n >= half * 2 - MAX_HALF) {
+        } else if (n < MAX_HALF || n >= this.primes.size() - MAX_HALF) {
           sb.append(p).append(' ');
         }
       } else {

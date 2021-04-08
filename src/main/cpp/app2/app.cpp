@@ -96,7 +96,9 @@ void App::printPrimes() const {
     if (half > MAX_HALF) {
       if (n == MAX_HALF) {
         std::cout << ".. ";
-      } else if (n < MAX_HALF || n >= half * 2 - MAX_HALF) {
+      }
+      else if (n < MAX_HALF || n >= this->primes.size() - MAX_HALF)
+      {
         std::cout << p << ' ';
       }
     } else {

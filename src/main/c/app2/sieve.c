@@ -124,7 +124,7 @@ void sieve_printPrimes(const Sieve_t* sieve) {
     if (half > MAX_HALF) {
       if (n == MAX_HALF) {
         printf(".. ");
-      } else if (n < MAX_HALF || n >= half * 2 - MAX_HALF) {
+      } else if (n < MAX_HALF || n >= sieve->count - MAX_HALF) {
         printf("%d ", p);
       }
     } else {

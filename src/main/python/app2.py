@@ -69,12 +69,12 @@ class App2:
 
   def printPrimes(self):
     print(f"Prime numbers in range 0-{self.range:,d} inclusive:")
-    half = len(self.primes) / 2
+    half = int(len(self.primes) / 2)
     for n, p in enumerate(self.primes):
       if half > App2.MAX_HALF:
         if n == App2.MAX_HALF:
           print("..", end=" ")
-        elif n < App2.MAX_HALF or n >= half * 2 - App2.MAX_HALF:
+        elif n < App2.MAX_HALF or n >= len(self.primes) - App2.MAX_HALF:
           print(p, end=" ")
       else:
         print(p, end=" ")
