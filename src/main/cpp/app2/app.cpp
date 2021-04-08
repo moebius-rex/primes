@@ -70,8 +70,16 @@ void App::computePrimes() {
     }
   }
 
-  // step 2. add primes to output
-  this->primes.reserve(this->getCount());
+  // step 2. add up number of primes found
+  int count = 0;
+  for (int i = 0; i <= this->range; ++i) {
+    if (this->integers[i]) {
+      count++;
+    }
+  }
+ 
+  // step 3. add primes to output
+  this->primes.reserve(count);
   for (int p = 0; p <= this->range; ++p) {
     if (this->integers[p]) {
       primes.push_back(p);
@@ -110,16 +118,6 @@ vector<int> App::getPrimes() const {
 
 int App::getRange() const {
   return this->range;
-}
-
-int App::getCount() const {
-  int count = 0;
-  for (int i = 0; i <= this->range; ++i) {
-    if (this->integers[i]) {
-      count++;
-    }
-  }
-  return count;
 }
 
 time_t App::getElapsed() const {

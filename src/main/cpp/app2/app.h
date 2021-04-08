@@ -45,7 +45,6 @@ class App {
 
     vector<int> getPrimes()      const;
     int         getRange()       const;
-    int         getCount()       const;
     time_t      getElapsed()     const;
 };
 
