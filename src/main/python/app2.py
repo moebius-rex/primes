@@ -42,7 +42,9 @@ class App2:
 
   @staticmethod
   def _createPrimes(range):
-    return [True] * (range + 1)
+    integers = [True] * (range + 1)
+    integers[0] = integers[1] = False # by convention, 0 and 1 are not primes
+    return integers
 
   """
   Public functions
@@ -53,13 +55,31 @@ class App2:
 
   def computePrimes(self):
     self.startTime = time.time()
-    for p in range(2, math.ceil(math.sqrt(self.range))):
+
+    # step 1. sieve: tag non-prime inputs
+    for p in range(0, math.ceil(math.sqrt(self.range))):
       if self.primes[p]:
         for i in range(p * p, self.range + 1, p):
           if self.primes[i]:
             self.primes[i] = False
     self.endTime = time.time()
-    self.primes = list(compress(range(len(self.primes)), self.primes))[2:]
+
+    # step 2. add primes to output
+    self.primes = list(compress(range(len(self.primes)), self.primes))
+
+  def printPrimes(self):
+    print(f"Prime numbers in range 0-{self.range:,d} inclusive:")
+    half = len(self.primes) / 2
+    for n, p in enumerate(self.primes):
+      if half > App2.MAX_HALF:
+        if n == App2.MAX_HALF:
+          print("..", end=" ")
+        elif n < App2.MAX_HALF or n >= half * 2 - App2.MAX_HALF:
+          print(p, end=" ")
+      else:
+        print(p, end=" ")
+    print(f"\nFound {len(self.primes):,d} prime(s) in {self.range:,d} integers in \
+        {self.getElapsed():,.0f} microseconds\n")
 
   def getPrimes(self):
     return self.primes.copy()
@@ -69,19 +89,6 @@ class App2:
 
   def getElapsed(self):
     return (self.endTime - self.startTime) * 1_000_000.
-
-  def printPrimes(self):
-    print(f"Prime numbers in range 0-{self.range:,d} inclusive:")
-    half = len(self.primes) / 2
-    for n, p in enumerate(self.primes):
-      if half > App2.MAX_HALF:
-        if n == App2.MAX_HALF:
-          print("..", end = " ")
-        elif n < App2.MAX_HALF or n > half * 2 - App2.MAX_HALF:
-          print(p, end = " ")
-      else:
-        print(p, end = " ")
-    print(f"\nFound {len(self.primes):,d} prime(s) in {self.range:,d} integers in {self.getElapsed():,.0f} microseconds\n")
 
   def __iter__(self):
     self.index = -1
