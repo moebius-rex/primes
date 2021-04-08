@@ -15,8 +15,8 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-#ifndef INCLUDED_CPP_APP
-#define INCLUDED_CPP_APP
+#ifndef INCLUDED_CPP_SIEVE
+#define INCLUDED_CPP_SIEVE
 
 #include <sys/time.h>
 #include <vector>
@@ -27,7 +27,7 @@ using namespace std;
  * Computes prime numbers in a given range using an implementation of the
  * Sieve of Erastosthenes algorithm.
  */
-class App {
+class Sieve {
   private:
     int         range;           // range of integers in which to find primes
     bool*       integers;        // integer inputs, true => prime number
@@ -37,8 +37,8 @@ class App {
                 startTime, endTime;
 
   public:
-    App(int range = 0);
-    ~App();
+    Sieve(int range = 0);
+    ~Sieve();
 
     void        computePrimes();
     void        printPrimes()    const;
@@ -48,4 +48,4 @@ class App {
     time_t      getElapsed()     const;
 };
 
-#endif // INCLUDED_CPP_APP
+#endif // INCLUDED_CPP_SIEVE
