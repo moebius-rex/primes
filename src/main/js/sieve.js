@@ -68,6 +68,7 @@ class Sieve {
         this._primes.push(p);
       }
     });
+  
     this._end = performance.now();
   }
 
