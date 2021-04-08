@@ -27,6 +27,16 @@ int main(int argc, char* argv[]) {
   Sieve_t* sieve = sieve_create(range);
   sieve_computePrimes(sieve);
   sieve_printPrimes(sieve);
+
+  int *copy = sieve_getPrimes(sieve);
+  printf("Copy of prime results:\n");
+  for (int i = 0; i < sieve_getCount(sieve); ++i)
+  {
+    printf("%d ", copy[i]);
+  }
+  free(copy);
+  printf("\n\n");
+
   sieve_destroy(sieve);
 
   return 0;

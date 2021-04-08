@@ -51,7 +51,6 @@ bool* createIntegers(int range) {
 int* createPrimes(int count) {
   size_t size = count * sizeof(((Sieve_t*) 0)->primes[0]);
   int* primes = malloc(size);
-  // memset(primes, true, size);
   return primes;
 }
 
@@ -104,7 +103,14 @@ void sieve_computePrimes(Sieve_t* sieve) {
   }
 
   // step 2. add up number of primes found
-  sieve->count = sieve_getCount(sieve);
+  sieve->count = 0;
+  for (int i = 0; i <= sieve->range; ++i) {
+    if (sieve->integers[i]) {
+      sieve->count++;
+    }
+  }
+ 
+  // step 3. add primes found
   sieve->primes = createPrimes(sieve->count);
   int count = 0;
   for (int p = 0; p <= sieve->range; ++p) {
@@ -135,18 +141,18 @@ void sieve_printPrimes(const Sieve_t* sieve) {
       sieve_getCount(sieve), sieve_getRange(sieve), sieve_getElapsed(sieve));
 }
 
+int* sieve_getPrimes(const Sieve_t* sieve) {
+  int* copy = createPrimes(sieve->count);
+  memcpy(copy, sieve->primes, sieve->count * sizeof(((Sieve_t *)0)->primes[0]));
+  return copy;
+}
+
 int sieve_getRange(const Sieve_t* sieve) {
   return sieve->range;
 }
 
 int sieve_getCount(const Sieve_t* sieve) {
-  int count = 0;
-  for (int p = 0; p <= sieve->range; ++p) {
-    if (sieve->integers[p]) {
-      count++;
-    }
-  }
-  return count;
+  return sieve->count;
 }
 
 float sieve_getElapsed(const Sieve_t* sieve) {

@@ -41,6 +41,7 @@ void      sieve_destroy(Sieve_t*);
 void      sieve_computePrimes(Sieve_t*);
 void      sieve_printPrimes(const Sieve_t*);
 
+int*      sieve_getPrimes(const Sieve_t*);
 int       sieve_getRange(const Sieve_t*);
 int       sieve_getCount(const Sieve_t*);
 float     sieve_getElapsed(const Sieve_t*);
