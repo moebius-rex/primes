@@ -20,89 +20,13 @@ import sys
 import time
 import math
 
-from itertools import compress
+from sieve import Sieve
 
-"""
-Computes prime numbers in a given range using an implementation of the
-Sieve of Erastosthenes algorithm.
-"""
-class App2:
-  # defines the number of primes to display around an ellipsis that is used
-  # when large numbers of primes are requested
-  MAX_HALF = 10
+def readRange(range):
+  if (range == 0):
+    range = int(input("Enter highest integer to test for primeness: "))
+  return range
 
-  """
-  Private functions
-  """
-  @staticmethod
-  def _readRange(range):
-    if (range == 0):
-      range = int(input("Enter highest integer to test for primeness: "))
-    return range
-
-  @staticmethod
-  def _createPrimes(range):
-    integers = [True] * (range + 1)
-    integers[0] = integers[1] = False # by convention, 0 and 1 are not primes
-    return integers
-
-  """
-  Public functions
-  """
-  def __init__(self, range):
-    self.range = self._readRange(range)
-    self.primes = self._createPrimes(self.range)
-
-  def computePrimes(self):
-    self.startTime = time.time()
-
-    # step 1. sieve: tag non-prime inputs
-    for p in range(0, math.ceil(math.sqrt(self.range))):
-      if self.primes[p]:
-        for i in range(p * p, self.range + 1, p):
-          if self.primes[i]:
-            self.primes[i] = False
-    self.endTime = time.time()
-
-    # step 2. add primes to output
-    self.primes = list(compress(range(len(self.primes)), self.primes))
-
-  def printPrimes(self):
-    print(f"Prime numbers in range 0-{self.range:,d} inclusive:")
-    half = int(len(self.primes) / 2)
-    for n, p in enumerate(self.primes):
-      if half > App2.MAX_HALF:
-        if n == App2.MAX_HALF:
-          print("..", end=" ")
-        elif n < App2.MAX_HALF or n >= len(self.primes) - App2.MAX_HALF:
-          print(p, end=" ")
-      else:
-        print(p, end=" ")
-    print(f"\nFound {len(self.primes):,d} prime(s) in {self.range:,d} integers in "
-        + f"{self.getElapsed():,.0f} microseconds\n")
-
-  def getPrimes(self):
-    return self.primes.copy()
-
-  def getRange(self):
-    return self.range
-
-  def getElapsed(self):
-    return (self.endTime - self.startTime) * 1_000_000.
-
-  def __iter__(self):
-    self.index = -1
-    return self
-
-  def __next__(self):
-    self.index += 1
-    if self.index == len(self.primes):
-      raise StopIteration
-    return self.primes[self.index]
-
-"""
-Main entry point
-"""
 def main():
   print("Sieve of Erastosthenes: Find all prime numbers in a given range")
 
@@ -112,9 +36,7 @@ def main():
       range = int(sys.argv[1])
     except ValueError:
       pass
-  app = App2(range)
-  app.computePrimes()
-  app.printPrimes()
+  Sieve(readRange(range)).computePrimes().printPrimes()
 
   return 0
 

@@ -22,7 +22,7 @@ SIEVERANGE = 1000
 all: clean test
 
 clean:
-	@# suppress Nothing to be done for `clean' messages
+	@$(RM) -r __pycache__
 
 test:
 	@for subproj in $(SUBPROJS); do echo python/$$subproj; ./$$subproj.py $(SIEVERANGE); done

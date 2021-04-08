@@ -15,3 +15,6 @@ obj/
 target
 classes/
 test-classes/
+
+# Python-generated files
+__pycache__/
