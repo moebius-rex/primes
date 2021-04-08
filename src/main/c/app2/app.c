@@ -28,14 +28,12 @@ int main(int argc, char* argv[]) {
   sieve_computePrimes(sieve);
   sieve_printPrimes(sieve);
 
+  // for valgrind
   int *copy = sieve_getPrimes(sieve);
-  printf("Copy of prime results:\n");
-  for (int i = 0; i < sieve_getCount(sieve); ++i)
-  {
-    printf("%d ", copy[i]);
+  for (int i = 0; i < sieve_getCount(sieve); ++i) {
+    int prime = copy[i];
   }
   free(copy);
-  printf("\n\n");
 
   sieve_destroy(sieve);
 
