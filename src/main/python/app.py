@@ -39,14 +39,14 @@ def findPrimes(n):
 
 def printPrimes(prime):
   n = len(prime)
-  print(f"Prime numbers up to {n - 1:,d}:")
+  print(f"Prime numbers in ramge 0-{n - 1:,d} inclusive:")
   for p in range(2, n):
     if prime[p]:
       if n <= 1000 or n - p <= 1000:
         print(p, end = " ")
 
 def main():
-  print("Sieve of Erastosthenes: Find all prime numbers up to a given range")
+  print("Sieve of Erastosthenes: Find all prime numbers in a given range")
   range = 0
   if len(sys.argv) > 1:
     try:

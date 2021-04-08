@@ -71,7 +71,7 @@ class App2:
     return (self.endTime - self.startTime) * 1_000_000.
 
   def printPrimes(self):
-    print(f"Prime numbers up to {self.range:,d}:")
+    print(f"Prime numbers in range 0-{self.range:,d} inclusive:")
     half = len(self.primes) / 2
     for n, p in enumerate(self.primes):
       if half > App2.MAX_HALF:
@@ -97,7 +97,7 @@ class App2:
 Main entry point
 """
 def main():
-  print("Sieve of Erastosthenes: Find all prime numbers up to a given range")
+  print("Sieve of Erastosthenes: Find all prime numbers in a given range")
 
   range = 0
   if len(sys.argv) > 1:
