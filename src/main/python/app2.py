@@ -78,8 +78,8 @@ class App2:
           print(p, end=" ")
       else:
         print(p, end=" ")
-    print(f"\nFound {len(self.primes):,d} prime(s) in {self.range:,d} integers in \
-        {self.getElapsed():,.0f} microseconds\n")
+    print(f"\nFound {len(self.primes):,d} prime(s) in {self.range:,d} integers in "
+        + f"{self.getElapsed():,.0f} microseconds\n")
 
   def getPrimes(self):
     return self.primes.copy()
