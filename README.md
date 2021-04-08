@@ -8,21 +8,36 @@ The purpose of this project is to demonstrate differences and similarities betwe
 
 ## Features
 
-- Sieve algorithm is implemented in several languages:
-  - C 11
-  - C++ 15
-  - Java 13
-  - Python 3
-- Each language implementation comes in two versions:
-  - A naïve version that brute forces the results. In other words, a hack.
-  - A more refined version that uses features of the language and best practices to create a more maintainable implementation.
+- The sieve algorithm is implemented in several languages:
+  - C
+  - C++
+  - Java
+  - JavaScript
+  - Python
+- Each language implementation of the sieve algorithm comes in two versions:
+  - A naïve version that brute forces the results. In other words, a bit of a hack.
+  - A more refined version that uses features and best practices of the language to create a more maintainable implementation.
 - Uses **Maven** under the hood to build Java implementations and GNU **Makefile** to build C and C++ implementations.
 - Uses **Makefile** to run all implementations.
 - All implementations are designed to be run from, and print to, a terminal window.
 - Where possible, all implementations produce the identical output for the identical input.
-- All C and C++ implementations produce zero `valgrind` errors when compiled with gcc/g++ on Debian-based Linux systems.
+- All C and C++ implementations produce zero `valgrind` errors or leaks when compiled with gcc/g++ on Debian-based Linux systems.
 - The implementations have been tested on Ubuntu 20.04 LTS and Mac OS 11.2.
-- Comes with a docker file that builds and runs every implementation.
+- The project comes with a docker file that builds an image that runs every implementation.
+
+## Environments tested
+
+The project's sieve implementations have been tested on Ubuntu 20.04 LTS and Mac OS 11.2. The following language and tool versions were used:
+
+| Language       | Tool     | Version   |
+| :------------- | -------- | --------- |
+| C              | gcc      | 11        |
+| C++            | g++      | 15        |
+| Java           | javac    | 13        |
+| JavaScript ES6 | node.js  | 14.16 LTS |
+| Python         | pyrthon3 | 3.8       |
+
+
 
 ## Installation
 
@@ -70,6 +85,7 @@ sudo apt install maven
 sudo apt install gcc
 sudo apt install g++
 sudo apt install openjdk-11-jdk
+sudo apt install nodejs
 sudo apt install python3
 ```
 
@@ -115,7 +131,7 @@ You can use the **Chocolatey** package manager's `choco` command to download and
 
 To install any of the packages required by this project, open a **PowerShell** window *as Administrator* (e.g., type `powershell` in the Windows 10 search bar and click on the `Run as Administrator` option listed in the right hand panel of the popup menu that appears) and then enter any of the following commands as necessary:
 
-```bash
+```
 choco install make
 choco install maven
 choco install openjdk11
@@ -126,9 +142,8 @@ choco install python3
 The mingw package installs both `gcc` and `g++` compilers. If you needed to install a **Java JDK**, you will need to set the `JAVA_HOME` environment variable to point to the location where the package manager installed it, for example:
 
 ```
-> [Environment]::SetEnvironmentVariable("JAVA_HOME", "C:\Program Files\OpenJDK\openjdk-11.0.10_9")
-> $env:JAVA_HOME
-C:\Program Files\OpenJDK\openjdk-11.0.10_9
+[Environment]::SetEnvironmentVariable("JAVA_HOME", "C:\Program Files\OpenJDK\openjdk-11.0.10_9")
+$env:JAVA_HOME C:\Program Files\OpenJDK\openjdk-11.0.10_9
 ```
 
 ## Background
