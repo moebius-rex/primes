@@ -13,8 +13,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 #
-# SPDX-License-Identifier: Apache-2.0
-#
 
 # Build and/or run all language sub-projects
 SUBDIRS = src/main

@@ -13,8 +13,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 #
-# SPDX-License-Identifier: Apache-2.0
-#
 SUBPROJS = $(patsubst %.js, %, $(wildcard app*))
 
 SIEVERANGE = 1000
