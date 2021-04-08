@@ -26,14 +26,6 @@ static const int MAX_HALF = 10;
 /**
  * Private functions
  */
-int readRange(int range) {
-  if (range == 0) {
-    std::cout << "Enter highest integer to test for primeness: ";
-    std::cin >> range;
-  }
-  return range;
-}
-
 bool* createIntegers(int range) {
   bool* integers = new bool[range + 1];
   std::fill_n(integers, range + 1, true);
@@ -45,7 +37,7 @@ bool* createIntegers(int range) {
  * Public functions
  */
 Sieve::Sieve(int range) {
-  this->range = readRange(range);
+  this->range = range;
   this->integers = createIntegers(this->range);
 }
 

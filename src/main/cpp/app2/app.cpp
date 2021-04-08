@@ -21,11 +21,19 @@
 
 using namespace std;
 
+int readRange(int range) {
+  if (range == 0) {
+    std::cout << "Enter highest integer to test for primeness: ";
+    std::cin >> range;
+  }
+  return range;
+}
+
 int main(int argc, const char *argv[]) {
   cout << "Sieve of Erastosthenes: Find all prime numbers in a given range" << endl;
 
   int range = argc > 1 ? atoi(argv[1]) : 0;
-  Sieve sieve(range);
+  Sieve sieve(readRange(range));
   sieve.computePrimes();
   sieve.printPrimes();
 
