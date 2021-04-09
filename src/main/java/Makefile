@@ -24,6 +24,9 @@ SIEVERANGE = 1000
 
 all: clean test
 
+$(SUBPROJS):
+	$(JVM) -cp $(MVNDIR) $(SRCDIR)/$@ $(SIEVERANGE)
+
 clean:
 	@# suppress Nothing to be done for `clean' messages
 
