@@ -22,11 +22,11 @@ all: maven $(SUBDIRS)
 .PHONY: maven $(SUBDIRS) clean test
 
 maven:
-	@mvn -q compile
+	-@mvn -q compile
 
 $(SUBDIRS):
 	$(MAKE) --no-print-directory -C $@
 
 clean test:
-	@mvn -q $@
+	-@mvn -q $@
 	@for subdir in $(SUBDIRS); do $(MAKE) --no-print-directory -C $$subdir $@; done
