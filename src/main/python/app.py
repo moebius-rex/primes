@@ -37,7 +37,7 @@ def compute_primes(n):
 
 def print_primes(prime):
   n = len(prime)
-  print(f"Prime numbers in ramge 0-{n - 1:,d} inclusive:")
+  print(f"Prime numbers in range 0-{n - 1:,d} inclusive:")
   for p in range(2, n):
     if prime[p]:
       if n <= 1000 or n - p <= 1000:
