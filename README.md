@@ -1,20 +1,20 @@
-# Primes project
+# Primes — The Sieve of Erastosthenes Project
 
-**Primes** is a project that implements the **Sieve of Erastosthenes** algorithm in several popular programming languages.
+**Primes** is a project that implements the **Sieve of Erastosthenes** algorithm in several popular programming languages for educational purposes.
 
 ## Purpose
 
-The purpose of this project is to demonstrate differences and similarities between several popular programming languages by implementing the same algorithm in each language, and to demonstrate the comparative ease or difficulty in implementing the algorithm in each language. The project is *not* intended to provide a bullet-proof and thoroughly documented implementation of the algorithm in the selected languages. The project does *not* provide written documentation explaining the differences between the various language implementations; the hope instead is that these implementations are small enough to be easily digestible and allow for easy side-by-side comparisons.
+The purpose of this project is to demonstrate differences and similarities between several popular programming languages by implementing the same algorithm in each language, and to demonstrate the comparative ease or difficulty in implementing the algorithm in each language. The project is *not* intended to provide a bullet-proof and thoroughly documented implementation of the algorithm in the selected languages. The project does *not* provide written documentation explaining the differences between the various language implementations or extolling the virtues of one language over another; the hope instead is that downloaders will find their own uses for the project and its contents, that the set of languages will grow and that more language features will be explored as (*if*) the project's momentum grows.
 
 ## Features
 
-Each language-specific implementation of the sieve algorithm comes in two versions:
+Each language-specific implementation of the Sieve of Erastosthenes algorithm comes in two versions:
 - A naïve version that brute forces a solution. In other words, a hack — difficult to read and consequently difficult to maintain.
 - An object-oriented version that should be more maintainable and use best practices of the language. In all languages except C, this means extracting a `Sieve` class as a separate component. In the C implementation, it means extracting a transparent structure containing algorithm data, and functions that use that data to implement the algorithm — basically, a rudimentary C++ with an *explicit* `this` pointer and data encapsulation, but no data hiding.
 
-Features of the project include:
+Project features include:
 
-- The sieve algorithm is implemented in several languages:
+- The sieve algorithm is implemented in the top five most popular programming languages at the time of writing:
   - C
   - C++
   - Java
@@ -25,31 +25,31 @@ Features of the project include:
 - All implementations are designed to be run from, and print to, a terminal window.
 - Where possible, all implementations produce the identical output for the identical input.
 - All C and C++ implementations produce zero `valgrind` errors or leaks when compiled with gcc/g++ on Debian-based Linux systems.
-- The implementations have been tested on Ubuntu 20.04 LTS and Mac OS 11.2.
-- The project comes with a **Docker** file that builds an Ubuntu image and runs every implementation of the algorithm.
+- The implementations have been tested on desktop Ubuntu and macOS installations as well as containerized Ubuntu and Alpine installations.
+- The project comes with **Docker** files that allow for implementations of the algorithm to run in a container.
 
-## Environments tested
+## Environments
 
-The project's sieve implementations have been tested on Ubuntu 20.04 LTS and Mac OS 11.2. The following language and tool versions were used:
+The project's Sieve of Erastosthenes implementations have been tested on desktop Ubuntu 20.04 LTS and Mac OS 11.2. Containerized versions of the implementations have been tested on Alpine Linux, Fedora and Ubuntu Focal (20.04 LTS). The following language and tool versions were used:
 
 | Language       | Tool     | Version   |
 | :------------- | -------- | --------- |
-| C              | gcc      | 11        |
-| C++            | g++      | 15        |
+| C              | gcc      | 99        |
+| C++            | g++      | 11        |
 | Java           | javac    | 13        |
 | JavaScript ES6 | node.js  | 14.16 LTS |
 | Python         | pyrthon3 | 3.8       |
 
-
-
 ## Installation
+
+Throughout this guide, the `%` sign is used to indicate the command prompt; what follows the prompt is the command that you enter. All commands must be entered at a command prompt in a terminal window on `macOS` and `Linux` systems, or a `CMD` or `PowerShell` window on `Windows` systems. 
 
 To clone, build run the implementations provided by this project, enter the following commands at a Linux, macOS or Windows command prompt:
 
 ```
-git clone https://github.com/moebius-rex/primes.git
-cd primes
-make
+% git clone https://github.com/moebius-rex/primes.git
+% cd primes
+% make
 ```
 
 If your system already has installed all dependencies required by this project, you will see console output that begins like this:
@@ -65,9 +65,7 @@ Prime numbers in range 0-1000 inclusive:
 Found 168 integers(s) in 1000 integers in 4 microseconds
 ```
 
-If however you see errors, it almost certainly means that you're missing at least one of the following dependencies and will need to install additional packages:
-
-You may need to add  using `apt`,  `brew`, `choco` or some other package manager depending on your system. Below are the instructions that will install these dependencies on a Debian-based Linux system: 
+If however you see errors, it almost certainly means that you're missing at least one of the packages listed in the sections below and will need to install them using `apt`,  `brew`, `choco` or some other package manager depending on your operating system. Below are the instructions that will install these dependencies on three popular systems. 
 
 ### Debian-based Linux
 
@@ -149,7 +147,15 @@ The mingw package installs both `gcc` and `g++` compilers. If you needed to inst
 $env:JAVA_HOME C:\Program Files\OpenJDK\openjdk-11.0.10_9
 ```
 
-## Background
+## Docker
+
+The project includes **Docker** configuration files that let you build images and launch containers that run the project's Sieve of Erastosthenes implementations. If you would like to use Docker **containers** to run the implementations, refer to [this guide](DOCKER.md) for instructions.
+
+
+
+------
+
+## Project Background
 
 ### Why choose the Sieve of Erastosthenes algorithm and not some other one?
 
@@ -164,7 +170,7 @@ Any popular algorithm could have been chosen as the basis for this project, as l
 Several algorithms were considered, but the Sieve of Erastosthenes was selected because it absolutely satisfies each of the above criteria. Some of the other algorithms that were considered:
 
 - The Euclidean algorithm for finding the greatest common divisor between two numbers, but it requires two inputs rather than one. Credit to Euclid though for proving in around 300 BCE that there are an infinite number of prime numbers.
-- The Babylonian method for factorizing integers, but the algorithm requires a table of prime numbers as input.
+- The Babylonian method for factorizing integers, but the algorithm requires a table of *prime numbers* as input.
 - The Fibonacci Sequence. This algorithm is fascinating and has many practical uses, but output verification requires manually calculating binomial coefficients, which is difficult for all but the smallest of Fibonacci numbers.
 
 ### Algorithm pseudocode
@@ -193,11 +199,15 @@ Much is known of [Erastothenes](https://en.wikipedia.org/wiki/Eratosthenes), a p
 
 > The earliest known reference to the sieve (Ancient Greek: κόσκινον Ἐρατοσθένους, *kóskinon Eratosthénous*) is in [Nicomachus of Gerasa](https://en.wikipedia.org/wiki/Nicomachus)'s *[Introduction to Arithmetic](https://en.wikipedia.org/wiki/Introduction_to_Arithmetic)*, an early 2nd cent. CE book, which describes it and attributes it to [Eratosthenes of Cyrene](https://en.wikipedia.org/wiki/Eratosthenes), a 3rd cent. BCE Greek mathematician.
 
-# Notes
+
+
+------
+
+## Notes
 
 This section contains some notes about this installation.
 
-## Maven errors
+### Maven errors
 
 On Ubuntu, the `mvn clean` command invoked by running `make clean` on the top-level Makefile has been seen to cause the following messages to be written to the console. The messages do not appear to affect behavior in any way and can be ignored:
 
@@ -209,7 +219,7 @@ WARNING: Use --illegal-access=warn to enable warnings of further illegal reflect
 WARNING: All illegal access operations will be denied in a future release
 ```
 
-## Java version
+### Java version
 
 The project's Maven configuration file, `pom.xml`, specifies Java 11 as the version to use when building and running Java apps:
 
