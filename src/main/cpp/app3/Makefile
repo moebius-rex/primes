@@ -33,8 +33,8 @@ all: targets $(BINDIR)/app test
 $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
 	@$(CPP) $(CPPFLAGS) $(INC) -c $? -o $@
 
-$(BINDIR)/app : $(OBJDIR)/sieve.o $(OBJDIR)/app.o
-	@$(CPP) $(LDFLAGS) $(LIB) $? -o $@
+$(BINDIR)/app : $(LIBDIR)/sieve.o $(OBJDIR)/sieve.o $(OBJDIR)/app.o
+	@$(CPP) $(LDFLAGS) $? -o $@
 
 .PHONY: targets clean test
 targets:
