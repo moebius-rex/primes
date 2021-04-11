@@ -38,7 +38,8 @@ int main(int argc, const char *argv[]) {
   // for valgrind
   vector<int> copy = sieve.get_primes();
   for(vector<int>::iterator it = copy.begin(); it != copy.end(); ++it) {
-    int p = *it;
+    int prime = *it;
+    (void) prime;
   }
   copy.clear();
 

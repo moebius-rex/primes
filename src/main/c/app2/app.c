@@ -40,6 +40,7 @@ int main(int argc, char* argv[]) {
   int *copy = sieve_get_primes(sieve);
   for (int i = 0; i < sieve_get_count(sieve); ++i) {
     int prime = copy[i];
+    (void) prime;
   }
   free(copy);
 

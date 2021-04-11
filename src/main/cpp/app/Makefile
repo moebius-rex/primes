@@ -14,7 +14,7 @@
 # under the License.
 #
 CPP = g++
-CPPFLAGS = -g
+CPPFLAGS = -std=c++17 -Wall -Werror -pedantic
 LDFLAGS =
 
 SRCDIR = .

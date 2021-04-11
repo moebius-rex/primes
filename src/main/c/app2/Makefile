@@ -14,7 +14,7 @@
 # under the License.
 #
 CC = gcc
-CCFLAGS = -g
+CCFLAGS = -std=c11 -Wall -Werror -pedantic
 LDFLAGS =
 
 SRCDIR = .

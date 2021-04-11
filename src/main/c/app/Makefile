@@ -14,8 +14,8 @@
 # under the License.
 #
 CC = gcc
-CCFLAGS =
-LDFLAGS = -O
+CCFLAGS = -std=c11 -Wall -Werror -pedantic
+LDFLAGS =
 
 SRCDIR = .
 BINDIR = bin

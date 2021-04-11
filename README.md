@@ -10,7 +10,7 @@ The purpose of this project is to demonstrate differences and similarities betwe
 
 Each language-specific implementation of the Sieve of Erastosthenes algorithm comes in two versions:
 - A naïve version that brute forces a solution. In other words, a hack — difficult to read and consequently difficult to maintain.
-- An object-oriented version that should be more maintainable and use best practices of the language. In all languages except C, this means extracting a `Sieve` class as a separate component. In the C implementation, it means extracting a transparent structure containing algorithm data, and functions that use that data to implement the algorithm — basically, a rudimentary C++ with an *explicit* `this` pointer and data encapsulation, but no data hiding.
+- One or more object-oriented versions that should be more maintainable and use the best practices of the language. In all languages except C, this means extracting a `Sieve` class as a separate component. In the C implementation, it means extracting a transparent structure containing algorithm data, and functions that use that data to implement the algorithm — basically, a rudimentary C++ with an *explicit* `this` pointer and data encapsulation, but no data hiding.
 
 Project features include:
 
@@ -34,9 +34,9 @@ The project's Sieve of Erastosthenes implementations have been tested on desktop
 
 | Language       | Tool     | Version   |
 | :------------- | -------- | --------- |
-| C              | gcc      | 99        |
-| C++            | g++      | 11        |
-| Java           | javac    | 13        |
+| C              | gcc      | C11       |
+| C++            | g++      | C++17     |
+| Java           | javac    | SE 11 LTS |
 | JavaScript ES6 | node.js  | 14.16 LTS |
 | Python         | pyrthon3 | 3.8       |
 

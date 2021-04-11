@@ -14,7 +14,7 @@
 # under the License.
 #
 CC = gcc
-CCFLAGS = -g -Wall -Werror -pedantic
+CCFLAGS = -std=c11 -Wall -Werror -pedantic
 SOFLAGS = -fPIC -shared
 LDFLAGS =
 
