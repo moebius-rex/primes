@@ -52,7 +52,7 @@ The project's Sieve of Erastosthenes implementations have been tested on desktop
 | C              | gcc      | C11       |
 | C++            | g++      | C++17     |
 | Java           | javac    | SE 11 LTS |
-| JavaScript ES6 | node.js  | 14.16 LTS |
+| JavaScript ES5 | node.js  | 14.16 LTS |
 | Python         | pyrthon3 | 3.8       |
 
 ## Installation
@@ -64,6 +64,7 @@ To clone, build run the implementations provided by this project, enter the foll
 ```
 % git clone https://github.com/moebius-rex/primes.git
 % cd primes
+% ./init.sh
 % make
 ```
 
@@ -80,7 +81,13 @@ Prime numbers in range 0-1000 inclusive:
 Found 168 integers(s) in 1000 integers in 4 microseconds
 ```
 
-If however you see errors, it almost certainly means that you're missing at least one of the packages listed in the sections below and will need to install them using `apt`,  `brew`, `choco` or some other package manager depending on your operating system. Below are the instructions that will install these dependencies on three popular systems. 
+If however you see errors, it almost certainly means that you're missing at least one of the packages listed in the sections below and will need to install them using `apt`,  `brew`, `choco` or some other package manager depending on your operating system. Below are the instructions that will install these dependencies on three popular systems.
+
+Once all required packages have been installed, complete the installation by performing some simple project initialization:
+```
+% ./init.sh
+```
+Follow any instructions the script may give you before trying to run the sieve implementations.
 
 ### Debian-based Linux
 
@@ -135,13 +142,11 @@ brew install python3
 
 ### Windows
 
-> The commands described in this section correctly install the required packages for this project but work remains to be done to make the project work properly in a pure Windows environment. Any language implementation may be built or run successfully, but **Windows PowerShell** doesn't understand all of the commands used by `make` to recursively build, run and manage files in the project. If you still wish to install this project on a Windows system and use it in the manner for which it was intended, you should consider one of the following options:
+> The commands described in this section correctly install the required packages for this project but a significant amount work remains to be completed to make the project work properly in a pure Windows environment. Any individual language implementation may be built or run successfully, but **Windows PowerShell** doesn't understand all of the commands used by `make` to *recursively* build, run and manage files in the project. If you still wish to install this project on a Windows system and use it in the manner for which it was designed, you should consider one of the following options:
 >
-> 1. Enable **Windows Subsystem for Linux** (WSL)  and install the project in WSL's Ubuntu VM.
+> 1. Enable **Windows Subsystem for Linux** (WSL)  and install the project in WSL's Ubuntu virtual machine (VM).
 > 2. Create a Linux VM using Oracle's **VirtualBox** product and install the project in the VM.
 > 3. Create a Linux VM **Docker** image and install the project in the image.
-
-------
 
 You can use the **Chocolatey** package manager's `choco` command to download and install required packages. To install Chocolatey, follow the instructions [here](https://chocolatey.org/install).
 
@@ -162,9 +167,46 @@ The mingw package installs both `gcc` and `g++` compilers. If you needed to inst
 $env:JAVA_HOME C:\Program Files\OpenJDK\openjdk-11.0.10_9
 ```
 
-## Docker
+### Docker
 
 The project includes **Docker** configuration files that let you build images and launch containers that run the project's Sieve of Erastosthenes implementations. If you would like to use Docker **containers** to run the implementations, refer to [this guide](DOCKER.md) for instructions.
+
+## Running the sieve implementations
+
+Once you've completed the installation steps described above, yoiu can run the implementations. To run them all back-to-back (make sure you are in the project top-level directory):
+
+```
+% make
+Sieve of Erastosthenes: Find all prime numbers in a given range
+Prime numbers in range 0-1000 inclusive:
+2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97 101 103 107 109 113 127 131 137 139 149 151 157 163 167 173 179 181 191 193 197 199 211 223 227 229 233 239 241 251 257 263 269 271 277 281 283 293 307 311 313 317 331 337 347 349 353 359 367 373 379 383 389 397 401 409 419 421 431 433 439 443 449 457 461 463 467 479 487 491 499 503 509 521 523 541 547 557 563 569 571 577 587 593 599 601 607 613 617 619 631 641 643 647 653 659 661 673 677 683 691 701 709 719 727 733 739 743 751 757 761 769 773 787 797 809 811 821 823 827 829 839 853 857 859 863 877 881 883 887 907 911 919 929 937 941 947 953 967 971 977 983 991 997 
+Found 168 prime(s) in 1000 integers in 4 microseconds
+[snip]
+```
+
+Alternatively, you can run only the implemnatations for a given language:
+
+```
+% cd src/main
+% ls
+Makefile  c/        cpp/      java/     js/       python/
+% make c/
+Sieve of Erastosthenes: Find all prime numbers in a given range
+[snip]
+```
+
+And finally, for a given example of a given language:
+
+```
+% cd c
+% ls
+Makefile  app/      app2/     app3/
+% make app2/
+Sieve of Erastosthenes: Find all prime numbers in a given range
+Prime numbers in range 0-1000 inclusive:
+2 3 5 7 11 13 17 19 23 29 .. 937 941 947 953 967 971 977 983 991 997 
+Found 168 prime(s) in 1000 integers in 11 microseconds
+```
 
 
 

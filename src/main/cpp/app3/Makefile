@@ -19,7 +19,7 @@ LDFLAGS =
 SRCDIR = .
 BINDIR = bin
 OBJDIR = obj
-LIBDIR = ../../c/app3/obj
+LIBDIR = ../../c/app3/lib
 
 INCFLAGS = -I../../
 

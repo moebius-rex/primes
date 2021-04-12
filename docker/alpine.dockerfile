@@ -18,6 +18,9 @@ FROM alpine
 RUN apk update
 RUN apk upgrade
 
+# install utilities
+RUN apk add file tree vim
+
 # install project build & run toolchains
 RUN apk add bash
 RUN apk add gcc 
@@ -34,4 +37,7 @@ RUN apk del openjdk8
 # copy project source files to image & remove generated files
 WORKDIR /project
 COPY . .
-RUN make clean
+RUN ./init.sh
+
+# create temporary loader library path for seive shared library
+ENV LD_LIBRARY_PATH=/project/src/main/c/app3/lib

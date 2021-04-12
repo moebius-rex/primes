@@ -18,6 +18,9 @@ FROM ubuntu
 RUN apt-get update  -y
 RUN apt-get upgrade -y
 
+# install utilities
+RUN apt-get install -y file tree vim
+
 # install project build & run toolchains
 RUN apt-get install -y gcc 
 RUN apt-get install -y g++ 
@@ -29,4 +32,4 @@ RUN apt-get install -y python3
 # copy project source files to image & remove generated files
 WORKDIR /project
 COPY . .
-RUN make clean
+RUN ./init.sh

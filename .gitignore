@@ -23,6 +23,7 @@
 
 # Makefile-generated files
 bin/
+lib/
 obj/
 
 # Maven-generated files

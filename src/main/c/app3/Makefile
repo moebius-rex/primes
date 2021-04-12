@@ -19,16 +19,17 @@ LDFLAGS =
 
 SRCDIR = .
 BINDIR = bin
+LIBDIR = lib
 OBJDIR = obj
 
 SIEVERANGE = 1000
 
-all: targets $(OBJDIR)/libsieve.so $(BINDIR)/app test
+all: targets $(LIBDIR)/libsieve.so $(BINDIR)/app test
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@$(CC) $(CCFLAGS) -c $? -o $@
 
-$(OBJDIR)/lib%.so : $(SRCDIR)/%.c $(SRCDIR)/%_main.c
+$(LIBDIR)/lib%.so : $(SRCDIR)/%.c $(SRCDIR)/%_main.c
 	@$(CC) $(SOFLAGS) $(CCFLAGS) $? -o $@
 
 $(BINDIR)/app : $(OBJDIR)/sieve.o $(OBJDIR)/app.o
@@ -37,10 +38,12 @@ $(BINDIR)/app : $(OBJDIR)/sieve.o $(OBJDIR)/app.o
 .PHONY: targets clean test
 targets:
 	-@mkdir -p $(OBJDIR)
+	-@mkdir -p $(LIBDIR)
 	-@mkdir -p $(BINDIR)
 
 clean:
 	-@$(RM) -r $(OBJDIR)
+	-@$(RM) -r $(LIBDIR)
 	-@$(RM) -r $(BINDIR)
 
 test:

@@ -42,9 +42,9 @@ It takes in the order of a minute to build each image. Use `docker images` to vi
 ```
 % docker images
 REPOSITORY   TAG       IMAGE ID       CREATED              SIZE
-sieve        ubuntu    18e8f59a6c31   5 seconds ago        608MB
-sieve        fedora    0abdd04df7f4   About a minute ago   1.12GB
-sieve        alpine    5d00d4db8dd7   4 minutes ago        645MB
+sieve        ubuntu    18e8f59a6c31   5 seconds ago        650MB
+sieve        fedora    0abdd04df7f4   About a minute ago   1.16GB
+sieve        alpine    5d00d4db8dd7   4 minutes ago        668MB
 ```
 
 If you wished to build a subset of these images, say, the Alpine and Ubuntu images but not the Fedora image, you would enter the following command instead:
@@ -83,7 +83,7 @@ The `COMMAND` column shows the shell command that was called in the container on
 
 The `docker-conpose` exec command passes a command to a containerA sieve implementation for a particular container, say, the Alpine container, can be run as follows:
 
-```
+```bash
 % docker-compose exec alpine make
 [snip]
 Sieve of Erastosthenes: Find all prime numbers in a given range

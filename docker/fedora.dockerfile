@@ -18,7 +18,10 @@ FROM fedora
 RUN dnf update  -y
 RUN dnf upgrade -y
 
-# # install project build & run toolchains
+# install utilities
+RUN dnf install -y file tree vim
+
+# install project build & run toolchains
 RUN dnf install -y gcc 
 RUN dnf install -y gcc-c++ 
 RUN dnf install -y maven
@@ -29,4 +32,4 @@ RUN dnf install -y python3
 # copy project source files to image & remove generated files
 WORKDIR /project
 COPY . .
-RUN make clean
+RUN ./init.sh
