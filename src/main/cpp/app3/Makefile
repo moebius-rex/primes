@@ -1,4 +1,3 @@
-#
 # Copyright 2021 Shay Gordon
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -12,7 +11,7 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-#
+
 CPP = g++
 CPPFLAGS = -std=c++17 -Wall -Werror -pedantic
 LDFLAGS =
@@ -22,19 +21,17 @@ BINDIR = bin
 OBJDIR = obj
 LIBDIR = ../../c/app3/obj
 
-INC = -I../../
-# LIB = -L$(LIBDIR) -lsieve.so 
-LIB = $(LIBDIR)/sieve.o
+INCFLAGS = -I../../
 
 SIEVERANGE = 1000
 
 all: targets $(BINDIR)/app test
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	@$(CPP) $(CPPFLAGS) $(INC) -c $? -o $@
+	@$(CPP) $(CPPFLAGS) $(INCFLAGS) -c $? -o $@
 
-$(BINDIR)/app : $(LIBDIR)/sieve.o $(OBJDIR)/sieve.o $(OBJDIR)/app.o
-	@$(CPP) $(LDFLAGS) $? -o $@
+$(BINDIR)/app : $(OBJDIR)/sieve.o $(OBJDIR)/app.o
+	@$(CPP) $(LDFLAGS) -L$(LIBDIR) -lsieve $? -o $@
 
 .PHONY: targets clean test
 targets:

@@ -1,4 +1,3 @@
-#
 # Copyright 2021 Shay Gordon
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -12,9 +11,8 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-#
 
-# Build and/or run all language sub-projects
+# build and/or run all language sub-projects
 SUBDIRS = src/main
 
 all: maven $(SUBDIRS)
@@ -22,11 +20,11 @@ all: maven $(SUBDIRS)
 .PHONY: maven $(SUBDIRS) clean test
 
 maven:
-	-@mvn -q compile
+	@-mvn -q compile
 
 $(SUBDIRS):
 	$(MAKE) --no-print-directory -C $@
 
 clean test:
-	-@mvn -q $@
+	@-mvn -q $@
 	@for subdir in $(SUBDIRS); do $(MAKE) --no-print-directory -C $$subdir $@; done

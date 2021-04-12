@@ -1,3 +1,18 @@
+---
+Copyright 229021 Shay Gordon
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+---
 # Using Docker to run Sieve of Erastosthenes implementations
 
 The Prime project includes **Docker** configuration files that let you build Docker images and launch Docker containers that run the project's Sieve of Erastosthenes implementations to compute and print all prime numbers in a given range. This document is a guide to building one or more of these images and launching one or more of these containers. An understanding of Docker is *not* required — simply follow the step-by-step instructions in this document.
@@ -139,4 +154,5 @@ Deleted build cache objects:
 [snip]
 Total reclaimed space: 2.714GB
 ```
+
 

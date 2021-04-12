@@ -1,3 +1,18 @@
+---
+Copyright 229021 Shay Gordon
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+---
 # Primes — The Sieve of Erastosthenes Project
 
 **Primes** is a project that implements the **Sieve of Erastosthenes** algorithm in several popular programming languages for educational purposes.
@@ -232,3 +247,4 @@ The project's Maven configuration file, `pom.xml`, specifies Java 11 as the vers
 ```
 
 At the time of writing Java 11 is the default Java version on Linux distros that include it. You may of course change this to any version of Java you wish, but do remember to reflect your version of choice in `pom.xml`.
+
