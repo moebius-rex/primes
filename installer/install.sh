@@ -16,7 +16,7 @@
 
 # get the normalized path of this script, i.e., the project home directory
 projpath=$(pwd)/$(dirname $0)
-projpath=$(cd ${projpath} && pwd)
+projpath=$(cd ${projpath}/../ && pwd)
 
 # clean all generated project files
 cd ${projpath}
@@ -32,8 +32,8 @@ make targets lib/libcsieve.so
 # 2. libraries are searched for in /usr/local/lib
 # 3. libraries are searched for in LD_LIBRARY_PATH environment variable
 
-# use LD_LIBRARY_PATH instead if standard location to install softlinks
-if [ ! -d /usr/local/bin ]; then
+# if no /usr/local/lib, use LD_LIBRARY_PATH to identify shared objects
+if [ ! -d /usr/local/lib ]; then
   rc=".$(basename ${SHELL})rc"
   echo "-----------------------------------------------------------------------------"
   echo "                              I M P O R T A N T                              "
@@ -59,11 +59,9 @@ if [ -L ${target} ]; then
 fi
 ln -s ${libpath}/libcsieve.so ${target}
 
-# configure libcsieve.so in loader if available
-if [ -d /etc/ld.so.conf.d ]; then
-  config=/etc/ld.so.conf.d/libcsieve.conf
-  echo "# Sieve of Eratosthenes location" > ${config}
-  echo "/usr/local/lib" >> ${config}
-  echo >> ${config}
+# configure libcsieve.so in loader if rquired
+target=/etc/ld.so.conf.d
+if [ -d ${target} ]; then
+  cp ${projpath}/installer/libcsieve.so.conf ${target}
   ldconfig
 fi
