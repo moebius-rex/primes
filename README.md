@@ -64,7 +64,7 @@ To clone, build run the implementations provided by this project, enter the foll
 ```
 % git clone https://github.com/moebius-rex/primes.git
 % cd primes
-% ./install.sh
+% installer/install.sh
 % make
 ```
 
@@ -83,9 +83,9 @@ Found 168 integers(s) in 1000 integers in 4 microseconds
 
 If however you see errors, it almost certainly means that you're missing at least one of the packages listed in the sections below and will need to install them using `apt`,  `brew`, `choco` or some other package manager depending on your operating system. Below are the instructions that will install these dependencies on three popular systems.
 
-Once all required packages have been installed, complete the installation by running the instalation script in the project home directory:
+Once all required packages have been installed, complete the installation by running the instalation script from the project home directory:
 ```
-% ./install.sh
+% installer/install.sh
 ```
 Follow any instructions the script may give you before trying to run the sieve implementations.
 
