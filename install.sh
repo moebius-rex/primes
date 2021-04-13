@@ -27,15 +27,13 @@ cd ${projpath}/src/main/c/app3
 libpath=$(pwd)/lib
 make targets lib/libcsieve.so
 
-# install libsieve.so softlink in /usr/local/lib
-if [ -d /usr/local/bin ]; then
-  target=/usr/local/lib/libcsieve.so
-  if [ -L ${target} ]; then
-    unlink ${target}
-  fi
-  ln -s ${libpath}/libcsieve.so ${target}
-else
-  # don't know how to permanently install so use LD_LIBRARY_PATH instead
+# Three ways shared libraries may be located by loader in order of permanence:
+# 1. libraries are described in /etc/ld.so.conf
+# 2. libraries are searched for in /usr/local/lib
+# 3. libraries are searched for in LD_LIBRARY_PATH environment variable
+
+# use LD_LIBRARY_PATH instead if standard location to install softlinks
+if [ ! -d /usr/local/bin ]; then
   rc=".$(basename ${SHELL})rc"
   echo "-----------------------------------------------------------------------------"
   echo "                              I M P O R T A N T                              "
@@ -51,4 +49,21 @@ else
   echo
   echo "Alternatively, log out and back in for the change to take effect"
   echo "-----------------------------------------------------------------------------"
+  exit
+fi
+
+# install softlink in /usr/local/lib
+target=/usr/local/lib/libcsieve.so
+if [ -L ${target} ]; then
+  unlink ${target}
+fi
+ln -s ${libpath}/libcsieve.so ${target}
+
+# configure libcsieve.so in loader if available
+if [ -d /etc/ld.so.conf.d ]; then
+  config=/etc/ld.so.conf.d/libcsieve.conf
+  echo "# Sieve of Eratosthenes location" > ${config}
+  echo "/usr/local/lib" >> ${config}
+  echo >> ${config}
+  ldconfig
 fi
