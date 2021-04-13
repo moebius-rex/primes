@@ -64,7 +64,7 @@ To clone, build run the implementations provided by this project, enter the foll
 ```
 % git clone https://github.com/moebius-rex/primes.git
 % cd primes
-% ./init.sh
+% ./install.sh
 % make
 ```
 
@@ -83,9 +83,9 @@ Found 168 integers(s) in 1000 integers in 4 microseconds
 
 If however you see errors, it almost certainly means that you're missing at least one of the packages listed in the sections below and will need to install them using `apt`,  `brew`, `choco` or some other package manager depending on your operating system. Below are the instructions that will install these dependencies on three popular systems.
 
-Once all required packages have been installed, complete the installation by performing some simple project initialization:
+Once all required packages have been installed, complete the installation by running the instalation script in the project home directory:
 ```
-% ./init.sh
+% ./install.sh
 ```
 Follow any instructions the script may give you before trying to run the sieve implementations.
 
@@ -173,7 +173,7 @@ The project includes **Docker** configuration files that let you build images an
 
 ## Running the sieve implementations
 
-Once you've completed the installation steps described above, yoiu can run the implementations. To run them all back-to-back (make sure you are in the project top-level directory):
+Once you've completed the installation steps described above, yoiu can run the implementations. To run them all back-to-back (make sure you are in the project home directory):
 
 ```
 % make

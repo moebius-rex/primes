@@ -116,7 +116,7 @@ static void print_primes(const csieve* self) {
 
 static int* get_primes(const csieve* self) {
   int* copy = create_primes(self->count);
-  memcpy(copy, self->primes, self->count * sizeof(((csieve *)0)->primes[0]));
+  memcpy(copy, self->primes, self->count* sizeof(((csieve*) 0)->primes[0]));
   return copy;
 }
 

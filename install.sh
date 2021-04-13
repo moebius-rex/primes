@@ -23,7 +23,7 @@ cd ${projpath}
 make clean
 
 # make sieved libraries
-cd ${projpath}/src/main/c/app3
+cd ${projpath}/src/main/c/sieve
 libpath=$(pwd)/lib
 make targets lib/libcsieve.so
 

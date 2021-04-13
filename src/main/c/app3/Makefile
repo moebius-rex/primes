@@ -13,40 +13,33 @@
 # under the License.
 
 CC = gcc
-CCFLAGS = -std=c11 -Wall -Werror -pedantic
-SOFLAGS = -fPIC -shared
+CPPFLAGS = -std=c++17 -Wall -Werror -pedantic
 LDFLAGS =
 
 SRCDIR = .
 BINDIR = bin
-LIBDIR = lib
+LIBDIR = ../../c/sieve/lib
 OBJDIR = obj
+
+INCFLAGS = -I../../c/sieve
 
 SIEVERANGE = 1000
 
-all: targets $(LIBDIR)/libcsieve.a $(LIBDIR)/libcsieve.so $(BINDIR)/app test
+all: targets $(BINDIR)/app test
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
-	@$(CC) $(CCFLAGS) -c $? -o $@
+	@$(CC) $(CCFLAGS) $(INCFLAGS) -c $? -o $@
 
-$(LIBDIR)/lib%.a : $(SRCDIR)/%.o
-	@$(AR) q $@ $?
-
-$(LIBDIR)/lib%.so : $(SRCDIR)/%.c $(SRCDIR)/%_main.c
-	@$(CC) $(SOFLAGS) $(CCFLAGS) $? -o $@
-
-$(BINDIR)/app : $(OBJDIR)/csieve.o $(OBJDIR)/app.o
-	@$(CC) $(LDFLAGS) $? -o $@
+$(BINDIR)/app : $(OBJDIR)/app.o
+	@$(CC) $(LDFLAGS) -L$(LIBDIR) -lcsieve $? -o $@
 
 .PHONY: targets clean test
 targets:
 	-@mkdir -p $(OBJDIR)
-	-@mkdir -p $(LIBDIR)
 	-@mkdir -p $(BINDIR)
 
 clean:
 	-@$(RM) -r $(OBJDIR)
-	-@$(RM) -r $(LIBDIR)
 	-@$(RM) -r $(BINDIR)
 
 test:

@@ -27,8 +27,8 @@ using namespace std;
  * Computes prime numbers in a given range using an implementation of the
  * Sieve of Erastosthenes algorithm.
  * 
- * This class is a pure wrapper around the C language implementaion
- * cd in c/app3.
+ * This class is a pure wrapper around the C language implementaion in
+ * c/sieve.
  */
 class sieve {
   private:

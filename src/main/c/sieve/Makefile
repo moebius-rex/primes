@@ -12,35 +12,33 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-CPP = g++
-CPPFLAGS = -std=c++17 -Wall -Werror -pedantic
+CC = gcc
+CCFLAGS = -std=c11 -Wall -Werror -pedantic
+SOFLAGS = -fPIC -shared
 LDFLAGS =
 
 SRCDIR = .
-BINDIR = bin
-LIBDIR = ../../c/sieve/lib
+LIBDIR = lib
 OBJDIR = obj
-
-INCFLAGS = -I../../c/sieve
 
 SIEVERANGE = 1000
 
-all: targets $(BINDIR)/app test
+all: targets $(LIBDIR)/libcsieve.a $(LIBDIR)/libcsieve.so test
 
-$(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	@$(CPP) $(CPPFLAGS) $(INCFLAGS) -c $? -o $@
+$(OBJDIR)/%.o : $(SRCDIR)/%.c
+	@$(CC) $(CCFLAGS) -c $? -o $@
 
-$(BINDIR)/app : $(OBJDIR)/sieve.o $(OBJDIR)/app.o
-	@$(CPP) $(LDFLAGS) -L$(LIBDIR) -lcsieve $? -o $@
+$(LIBDIR)/lib%.a : $(SRCDIR)/%.o
+	@$(AR) q $@ $?
+
+$(LIBDIR)/lib%.so : $(SRCDIR)/%.c $(SRCDIR)/%_main.c
+	@$(CC) $(SOFLAGS) $(CCFLAGS) $? -o $@
 
 .PHONY: targets clean test
 targets:
 	-@mkdir -p $(OBJDIR)
-	-@mkdir -p $(BINDIR)
+	-@mkdir -p $(LIBDIR)
 
 clean:
 	-@$(RM) -r $(OBJDIR)
-	-@$(RM) -r $(BINDIR)
-
-test:
-	@$(BINDIR)/app $(SIEVERANGE)
+	-@$(RM) -r $(LIBDIR)
