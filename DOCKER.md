@@ -55,7 +55,7 @@ If you wished to build a subset of these images, say, the Alpine and Ubuntu imag
 
 ## Step 2: Start Docker containers
 
-A Docker container is a **virtual machine** that loads and runs a Docker image. To start Docker containers for all Prime project images:
+A Docker container is a **virtual machine** that loads and runs a Docker image. To start Docker containers for all Prime project images and run them in the background, i.e., detached from the terminal:
 
 ```
 % docker-compose up -d
@@ -77,11 +77,11 @@ CONTAINER ID   IMAGE          COMMAND               CREATED          STATUS     
 6f5b92d53669   sieve:fedora   "tail -f /dev/null"   17 seconds ago   Up 15 seconds             fedora
 ```
 
-The `COMMAND` column shows the shell command that was called in the container once it was started. The Linux `tail -f /dev/null` command is a trick that keeps a container running until you decide to stop it with `docker-compose down` command; if we had given it a command that returns immediately, the container would stop once the command was completed.
+The `COMMAND` column shows the shell command that was called in the container once it was started. The Linux `tail -f /dev/null` command is a standard trick that keeps a container running until you decide to stop it with `docker-compose down` command; if we were to give it a command that returns immediately, the container would stop once the command completed.
 
 ## Step 3: Run sieve implementations in a Docker container
 
-The `docker-conpose` exec command passes a command to a containerA sieve implementation for a particular container, say, the Alpine container, can be run as follows:
+The `docker-conpose` exec command runs a command in a named container. For example, to run all sieve implementations in, say, the Alpine container, you would enter the following:
 
 ```bash
 % docker-compose exec alpine make
@@ -93,11 +93,11 @@ Found 168 prime(s) in 1,000 integers in 98 microseconds
 [snip]
 ```
 
-If you would like to run only a subset of the implementations in a given container, or you would simply like to explore a container's environment, you can open up a Bourne or Bash shell as follows:
+If you would like to run only a subset of the implementations in a given container, or you would simply like to explore a container's environment, you can open up a `Bourne` or `Bash` shell as follows:
 
 ```bash
 % docker-compose exec ubuntu sh
-         -- OR --
+              OR
 % docker-compose exec ubuntu bash
 root@314fba7533e6:/project# cd src/main/python
 root@314fba7533e6:/project/src/main/python# ls
@@ -152,7 +152,7 @@ deleted: sha256:17683f22293e9cf90e02bcc103ef011778e4217b100a121bf3f45da07ceabf09
 
 Deleted build cache objects:
 [snip]
-Total reclaimed space: 2.714GB
+Total reclaimed space: 2.229GB
 ```
 
 
