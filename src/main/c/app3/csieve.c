@@ -7,7 +7,7 @@
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by sievelicable law or agreed to in writing, software
+ * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations
@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "sieve.h"
+#include "csieve.h"
 
 // defines the number of primes to display around an ellipsis that is used
 // when large numbers of primes are requested
@@ -27,7 +27,7 @@ static const int MAX_HALF = 10;
  * Private functions
  */
 static bool* create_integers(int range) {
-  size_t size = (range + 1) * sizeof(((sieve*) 0)->integers[0]);
+  size_t size = (range + 1) * sizeof(((csieve*) 0)->integers[0]);
   bool* integers = malloc(size);
   memset(integers, true, size);
   integers[0] = integers[1] = false; // by convention, 0 and 1 are not primes
@@ -35,18 +35,18 @@ static bool* create_integers(int range) {
 }
 
 static int* create_primes(int count) {
-  size_t size = count * sizeof(((sieve*) 0)->primes[0]);
+  size_t size = count * sizeof(((csieve*) 0)->primes[0]);
   int* primes = malloc(size);
   return primes;
 }
 
-static void destroy_integers(sieve* self) {
+static void destroy_integers(csieve* self) {
   if (self->integers != NULL) {
     free(self->integers);
   }
 }
 
-static void destroy_primes(sieve* self) {
+static void destroy_primes(csieve* self) {
   if (self->primes != NULL) {
     free(self->primes);
   }
@@ -55,16 +55,16 @@ static void destroy_primes(sieve* self) {
 /**
  * Static, private implementations of public member functions
  */
-static void destroy(sieve* self) {
+static void destroy(csieve* self) {
   destroy_integers(self);
   destroy_primes(self);
   free(self);
 }
 
-static void compute_primes(sieve* self) {
+static void compute_primes(csieve* self) {
   gettimeofday(&self->start_time, NULL);
 
-  // step 1. sieve: tag non-prime inputs
+  // step 1. csieve: tag non-prime inputs
   for (int p = 0; p * p <= self->range; ++p) {
     if (self->integers[p]) {
       for (int i = p * p; i <= self->range; i += p) {
@@ -95,7 +95,7 @@ static void compute_primes(sieve* self) {
   gettimeofday(&self->end_time, NULL);
 }
 
-static void print_primes(const sieve* self) {
+static void print_primes(const csieve* self) {
   printf("Prime numbers in range 0-%d inclusive:\n", self->range);
   int half = self->count / 2;
   for (int n = 0; n < self->count; ++n) {
@@ -114,27 +114,27 @@ static void print_primes(const sieve* self) {
       self->get_count(self), self->get_range(self), self->get_elapsed(self));
 }
 
-static int* get_primes(const sieve* self) {
+static int* get_primes(const csieve* self) {
   int* copy = create_primes(self->count);
-  memcpy(copy, self->primes, self->count * sizeof(((sieve *)0)->primes[0]));
+  memcpy(copy, self->primes, self->count * sizeof(((csieve *)0)->primes[0]));
   return copy;
 }
 
-static int get_range(const sieve* self) {
+static int get_range(const csieve* self) {
   return self->range;
 }
 
-static int get_count(const sieve* self) {
+static int get_count(const csieve* self) {
   return self->count;
 }
 
-static float get_elapsed(const sieve* self) {
+static float get_elapsed(const csieve* self) {
   return 1e6 * (self->end_time.tv_sec - self->start_time.tv_sec) +
       (self->end_time.tv_usec - self->start_time.tv_usec);
 }
 
 /* internal initializer */
-static sieve* sieve_init(sieve* self, int range) {
+static csieve* sieve_init(csieve* self, int range) {
   /* initialize struct data */
   self->range = range;
   self->integers = create_integers(self->range);
@@ -154,6 +154,6 @@ static sieve* sieve_init(sieve* self, int range) {
 /**
  * Public non-member functions
  */
-sieve* sieve_create(int range) {
-  return sieve_init((sieve*) calloc(sizeof(sieve), 1), range);
+csieve* sieve_create(int range) {
+  return sieve_init((csieve*) calloc(sizeof(csieve), 1), range);
 }

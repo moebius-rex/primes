@@ -24,15 +24,18 @@ OBJDIR = obj
 
 SIEVERANGE = 1000
 
-all: targets $(LIBDIR)/libsieve.so $(BINDIR)/app test
+all: targets $(LIBDIR)/libcsieve.a $(LIBDIR)/libcsieve.so $(BINDIR)/app test
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@$(CC) $(CCFLAGS) -c $? -o $@
 
+$(LIBDIR)/lib%.a : $(SRCDIR)/%.o
+	@$(AR) q $@ $?
+
 $(LIBDIR)/lib%.so : $(SRCDIR)/%.c $(SRCDIR)/%_main.c
 	@$(CC) $(SOFLAGS) $(CCFLAGS) $? -o $@
 
-$(BINDIR)/app : $(OBJDIR)/sieve.o $(OBJDIR)/app.o
+$(BINDIR)/app : $(OBJDIR)/csieve.o $(OBJDIR)/app.o
 	@$(CC) $(LDFLAGS) $? -o $@
 
 .PHONY: targets clean test

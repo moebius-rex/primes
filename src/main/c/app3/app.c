@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "sieve.h"
+#include "csieve.h"
 
 static int read_range(int range) {
   if (range == 0) {
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
   printf("Sieve of Erastosthenes: Find all prime numbers in a given range\n");
 
   int range = argc > 1 ? atoi(argv[1]) : 0;
-  sieve* sieve = sieve_create(read_range(range));
+  csieve* sieve = sieve_create(read_range(range));
   sieve->compute_primes(sieve);
   sieve->print_primes(sieve);
 

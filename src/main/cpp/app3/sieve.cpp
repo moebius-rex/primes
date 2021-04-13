@@ -17,34 +17,34 @@
 
 #include "sieve.h"
 
-Sieve::Sieve(int range) {
+sieve::sieve(int range) {
   this->impl = sieve_create(range);
 }
 
-Sieve::~Sieve() {
+sieve::~sieve() {
   this->impl->destroy(this->impl);
 }
 
-void Sieve::compute_primes() {
+void sieve::compute_primes() {
   this->impl->compute_primes(this->impl);
 }
 
-void Sieve::print_primes() const {
+void sieve::print_primes() const {
   this->impl->print_primes(this->impl);
 }
 
-int* Sieve::get_primes() const {
+int* sieve::get_primes() const {
   return this->impl->get_primes(this->impl);
 }
 
-int Sieve::get_range() const {
+int sieve::get_range() const {
   return this->impl->get_range(this->impl);
 }
 
-int Sieve::get_count() const {
+int sieve::get_count() const {
   return this->impl->get_count(this->impl);
 }
 
-time_t Sieve::get_elapsed() const {
+time_t sieve::get_elapsed() const {
   return this->impl->get_elapsed(this->impl);
 }

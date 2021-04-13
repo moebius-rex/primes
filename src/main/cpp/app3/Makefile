@@ -21,7 +21,7 @@ BINDIR = bin
 OBJDIR = obj
 LIBDIR = ../../c/app3/lib
 
-INCFLAGS = -I../../
+INCFLAGS = -I../../c/app3
 
 SIEVERANGE = 1000
 
@@ -31,7 +31,7 @@ $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
 	@$(CPP) $(CPPFLAGS) $(INCFLAGS) -c $? -o $@
 
 $(BINDIR)/app : $(OBJDIR)/sieve.o $(OBJDIR)/app.o
-	@$(CPP) $(LDFLAGS) -L$(LIBDIR) -lsieve $? -o $@
+	@$(CPP) $(LDFLAGS) -L$(LIBDIR) -lcsieve $? -o $@
 
 .PHONY: targets clean test
 targets:

@@ -13,8 +13,8 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-#ifndef INCLUDED_C_SIEVE
-#define INCLUDED_C_SIEVE
+#ifndef INCLUDED_CSIEVE
+#define INCLUDED_CSIEVE
 
 // allow C++ source to include C functions
 #ifdef __cplusplus
@@ -28,7 +28,7 @@ extern "C" {
  * Computes prime numbers in a given range using an implementation of the
  * Sieve of Erastosthenes algorithm.
  */
-typedef struct sieve_t {
+typedef struct csieve_t {
   int     range;           // range of integers in which to find primes
   bool*   integers;        // integer inputs, true => prime number
   int*    primes;          // outputs, list of primes in inputs
@@ -37,24 +37,24 @@ typedef struct sieve_t {
   struct timeval
           start_time, end_time;
 
-  void    (*destroy)(struct sieve_t*);
+  void    (*destroy)(struct csieve_t*);
 
-  void    (*compute_primes)(struct sieve_t*);
-  void    (*print_primes)(const struct sieve_t*);
+  void    (*compute_primes)(struct csieve_t*);
+  void    (*print_primes)(const struct csieve_t*);
 
-  int*    (*get_primes)(const struct sieve_t*);
-  int     (*get_range)(const struct sieve_t*);
-  int     (*get_count)(const struct sieve_t*);
-  float   (*get_elapsed)(const struct sieve_t*);
+  int*    (*get_primes)(const struct csieve_t*);
+  int     (*get_range)(const struct csieve_t*);
+  int     (*get_count)(const struct csieve_t*);
+  float   (*get_elapsed)(const struct csieve_t*);
 
-} sieve;
+} csieve;
 
 /* constructor(s) */
-sieve* sieve_create(int);
+csieve* sieve_create(int);
 
 // allow C++ source to include C functions
 #ifdef __cplusplus
 }
 #endif
 
-#endif // INCLUDED_C_SIEVE
+#endif // INCLUDED_CSIEVE

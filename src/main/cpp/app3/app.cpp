@@ -31,7 +31,7 @@ int main(int argc, const char *argv[]) {
   cout << "Sieve of Erastosthenes: Find all prime numbers in a given range" << endl;
 
   int range = argc > 1 ? atoi(argv[1]) : 0;
-  Sieve sieve(read_range(range));
+  sieve sieve(read_range(range));
   sieve.compute_primes();
   sieve.print_primes();
 

@@ -13,13 +13,13 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-#ifndef INCLUDED_CPP_SIEVE
-#define INCLUDED_CPP_SIEVE
+#ifndef INCLUDED_SIEVE
+#define INCLUDED_SIEVE
 
 #include <sys/time.h>
 #include <vector>
 
-#include "c/app3/sieve.h"
+#include "csieve.h"
 
 using namespace std;
 
@@ -30,13 +30,13 @@ using namespace std;
  * This class is a pure wrapper around the C language implementaion
  * cd in c/app3.
  */
-class Sieve {
+class sieve {
   private:
-    sieve *impl;
+    csieve *impl;
 
   public:
-    Sieve(int range = 0);
-    ~Sieve();
+    sieve(int range = 0);
+    ~sieve();
 
     void    compute_primes();
     void    print_primes()    const;
@@ -47,4 +47,4 @@ class Sieve {
     time_t  get_elapsed()     const;
 };
 
-#endif // INCLUDED_CPP_SIEVE
+#endif // INCLUDED_SIEVE

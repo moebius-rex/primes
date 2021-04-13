@@ -25,15 +25,15 @@ make clean
 # make sieved libraries
 cd ${projpath}/src/main/c/app3
 libpath=$(pwd)/lib
-make targets lib/libsieve.so
+make targets lib/libcsieve.so
 
 # install libsieve.so softlink in /usr/local/lib
 if [ -d /usr/local/bin ]; then
-  target=/usr/local/lib/libsieve.so
+  target=/usr/local/lib/libcsieve.so
   if [ -L ${target} ]; then
     unlink ${target}
   fi
-  ln -s ${libpath}/libsieve.so ${target}
+  ln -s ${libpath}/libcsieve.so ${target}
 else
   # don't know how to permanently install so use LD_LIBRARY_PATH instead
   rc=".$(basename ${SHELL})rc"
