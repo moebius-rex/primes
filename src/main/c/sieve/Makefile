@@ -31,8 +31,8 @@ $(OBJDIR)/%.o : $(SRCDIR)/%.c
 $(LIBDIR)/lib%.a : $(SRCDIR)/%.o
 	@$(AR) q $@ $?
 
-$(LIBDIR)/lib%.so : $(SRCDIR)/%.c $(SRCDIR)/%_main.c
-	@$(CC) $(SOFLAGS) $(CCFLAGS) $? -o $@
+$(LIBDIR)/lib%.so : $(SRCDIR)/%.c
+	@$(CC) $(CCFLAGS) $(SOFLAGS) $? -o $@
 
 .PHONY: targets clean test
 targets:
