@@ -32,4 +32,4 @@ RUN apt-get install -y python3
 # copy project source files to image & remove generated files
 WORKDIR /project
 COPY . .
-RUN ./init.sh
+RUN ./install.sh

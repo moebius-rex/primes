@@ -37,7 +37,7 @@ RUN apk del openjdk8
 # copy project source files to image & remove generated files
 WORKDIR /project
 COPY . .
-RUN ./init.sh
+RUN ./install.sh
 
 # create temporary loader library path for seive shared library
 ENV LD_LIBRARY_PATH=/project/src/main/c/app3/lib
