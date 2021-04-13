@@ -21,7 +21,7 @@
 
 /**
  * Computes prime numbers in a given range using an implementation of the
- * Sieve of Erastosthenes algorithm.
+ * Sieve of Eratosthenes algorithm.
  */
 static int read_range() {
   char buf[100];
@@ -68,7 +68,7 @@ static float get_elapsed(struct timeval* start, struct timeval* end) {
 }
 
 int main(int argc, char* argv[]) {
-  printf("Sieve of Erastosthenes: Find all prime numbers in a given range\n");
+  printf("Sieve of Eratosthenes: Find all prime numbers in a given range\n");
 
   int range = argc > 1 ? atoi(argv[1]) : read_range();
   bool integers[range + 1];

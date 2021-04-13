@@ -23,7 +23,7 @@ import java.util.Scanner;
 
 /**
  * Computes prime numbers in a given range using an implementation of the
- * Sieve of Erastosthenes algorithm.
+ * Sieve of Eratosthenes algorithm.
  */
 public class App {
   private static DecimalFormat formatter = new DecimalFormat("#,###");
@@ -79,7 +79,7 @@ public class App {
   }
 
   public static void main(String[] args) {
-    System.out.println("Sieve of Erastosthenes: Find all prime numbers in a given range");
+    System.out.println("Sieve of Eratosthenes: Find all prime numbers in a given range");
     int range = 0;
     if (args.length > 0) {
       try {

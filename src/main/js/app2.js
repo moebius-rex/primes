@@ -19,7 +19,7 @@ const Sieve = require("./sieve.js");
 
 /**
  * Computes prime numbers in a given range using an implementation of the
- * Sieve of Erastosthenes algorithm.
+ * Sieve of Eratosthenes algorithm.
  */
 
 function main(range) {
@@ -28,7 +28,7 @@ function main(range) {
   sieve.printPrimes();
 }
 
-console.log("Sieve of Erastosthenes: Find all prime numbers in a given range");
+console.log("Sieve of Eratosthenes: Find all prime numbers in a given range");
 if (process.argv.length > 2) {
   main(process.argv[2]);
 } else {

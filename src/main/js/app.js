@@ -20,7 +20,7 @@ const { _, performance } = require("perf_hooks");
 
 /**
  * Computes prime numbers in a given range using an implementation of the
- * Sieve of Erastosthenes algorithm.
+ * Sieve of Eratosthenes algorithm.
  */
 
 /** Lambda that simplifies printing numbers with thousands separators. */
@@ -92,7 +92,7 @@ function readlineSync() {
   });
 }
 
-console.log("Sieve of Erastosthenes: Find all prime numbers in a given range");
+console.log("Sieve of Eratosthenes: Find all prime numbers in a given range");
 
 if (process.argv.length > 2) {
   main(parseInt(process.argv[2]));

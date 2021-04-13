@@ -32,7 +32,7 @@ public class App2 {
   }
 
   public static void main(String[] args) {
-    System.out.println("Sieve of Erastosthenes: Find all prime numbers in a given range");
+    System.out.println("Sieve of Eratosthenes: Find all prime numbers in a given range");
 
     int range = 0;
     if (args.length > 0) {

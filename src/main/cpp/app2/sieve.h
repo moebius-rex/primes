@@ -23,7 +23,7 @@ using namespace std;
 
 /**
  * Computes prime numbers in a given range using an implementation of the
- * Sieve of Erastosthenes algorithm.
+ * Sieve of Eratosthenes algorithm.
  */
 class Sieve {
   private:

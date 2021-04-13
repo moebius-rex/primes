@@ -18,7 +18,7 @@ import sys
 import time
 import math
 
-from sieve import Sieve
+from sieve_c import Sieve
 
 def read_range(range):
   if (range == 0):

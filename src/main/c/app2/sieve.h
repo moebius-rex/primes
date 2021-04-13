@@ -21,7 +21,7 @@
 
 /**
  * Computes prime numbers in a given range using an implementation of the
- * sieve of Erastosthenes algorithm.
+ * sieve of Eratosthenes algorithm.
  */
 typedef struct sieve_t {
   int   range;           // range of integers in which to find primes

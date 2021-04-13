@@ -20,7 +20,7 @@ import math
 
 """
 Computes prime numbers in a given range using an implementation of the
-Sieve of Erastosthenes algorithm.
+Sieve of Eratosthenes algorithm.
 """
 
 def get_range():
@@ -44,7 +44,7 @@ def print_primes(prime):
         print(p, end = " ")
 
 def main():
-  print("Sieve of Erastosthenes: Find all prime numbers in a given range")
+  print("Sieve of Eratosthenes: Find all prime numbers in a given range")
   range = 0
   if len(sys.argv) > 1:
     try:

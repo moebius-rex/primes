@@ -28,7 +28,7 @@ int read_range(int range) {
 }
 
 int main(int argc, const char *argv[]) {
-  cout << "Sieve of Erastosthenes: Find all prime numbers in a given range" << endl;
+  cout << "Sieve of Eratosthenes: Find all prime numbers in a given range" << endl;
 
   int range = argc > 1 ? atoi(argv[1]) : 0;
   App app(read_range(range));

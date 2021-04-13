@@ -13,9 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ---
-# Primes — The Sieve of Erastosthenes Project
+# Primes — The Sieve of Eratosthenes Project
 
-**Primes** is a project that implements the **Sieve of Erastosthenes** algorithm in several popular programming languages for educational purposes.
+**Primes** is a project that implements the **Sieve of Eratosthenes** algorithm in several popular programming languages for educational purposes.
 
 ## Purpose
 
@@ -23,7 +23,7 @@ The purpose of this project is to demonstrate differences and similarities betwe
 
 ## Features
 
-Each language-specific implementation of the Sieve of Erastosthenes algorithm comes in two versions:
+Each language-specific implementation of the Sieve of Eratosthenes algorithm comes in two versions:
 - A naïve version that brute forces a solution. In other words, a hack — difficult to read and consequently difficult to maintain.
 - One or more object-oriented versions that should be more maintainable and use the best practices of the language. In all languages except C, this means extracting a `Sieve` class as a separate component. In the C implementation, it means extracting a transparent structure containing algorithm data, and functions that use that data to implement the algorithm — basically, a rudimentary C++ with an *explicit* `this` pointer and data encapsulation, but no data hiding.
 
@@ -45,7 +45,7 @@ Project features include:
 
 ## Environments
 
-The project's Sieve of Erastosthenes implementations have been tested on desktop Ubuntu 20.04 LTS and Mac OS 11.2. Containerized versions of the implementations have been tested on Alpine Linux, Fedora and Ubuntu Focal (20.04 LTS). The following language and tool versions were used:
+The project's Sieve of Eratosthenes implementations have been tested on desktop Ubuntu 20.04 LTS and Mac OS 11.2. Containerized versions of the implementations have been tested on Alpine Linux, Fedora and Ubuntu Focal (20.04 LTS). The following language and tool versions were used:
 
 | Language       | Tool     | Version   |
 | :------------- | -------- | --------- |
@@ -75,7 +75,7 @@ make --no-print-directory -C src/main
 make --no-print-directory -C c
 make --no-print-directory -C app
 bin/App 1000
-Sieve of Erastosthenes: Find all prime numbers in a given range
+Sieve of Eratosthenes: Find all prime numbers in a given range
 Prime numbers in range 0-1000 inclusive:
 2 3 5 7 11 13 17 19 23 29 31 37 .. 907 911 919 929 937 941 947 953 967 971 977 983 991 997
 Found 168 integers(s) in 1000 integers in 4 microseconds
@@ -169,7 +169,7 @@ $env:JAVA_HOME C:\Program Files\OpenJDK\openjdk-11.0.10_9
 
 ### Docker
 
-The project includes **Docker** configuration files that let you build images and launch containers that run the project's Sieve of Erastosthenes implementations. If you would like to use Docker **containers** to run the implementations, refer to [this guide](DOCKER.md) for instructions.
+The project includes **Docker** configuration files that let you build images and launch containers that run the project's Sieve of Eratosthenes implementations. If you would like to use Docker **containers** to run the implementations, refer to [this guide](DOCKER.md) for instructions.
 
 ## Running the sieve implementations
 
@@ -177,7 +177,7 @@ Once you've completed the installation steps described above, yoiu can run the i
 
 ```
 % make
-Sieve of Erastosthenes: Find all prime numbers in a given range
+Sieve of Eratosthenes: Find all prime numbers in a given range
 Prime numbers in range 0-1000 inclusive:
 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97 101 103 107 109 113 127 131 137 139 149 151 157 163 167 173 179 181 191 193 197 199 211 223 227 229 233 239 241 251 257 263 269 271 277 281 283 293 307 311 313 317 331 337 347 349 353 359 367 373 379 383 389 397 401 409 419 421 431 433 439 443 449 457 461 463 467 479 487 491 499 503 509 521 523 541 547 557 563 569 571 577 587 593 599 601 607 613 617 619 631 641 643 647 653 659 661 673 677 683 691 701 709 719 727 733 739 743 751 757 761 769 773 787 797 809 811 821 823 827 829 839 853 857 859 863 877 881 883 887 907 911 919 929 937 941 947 953 967 971 977 983 991 997 
 Found 168 prime(s) in 1000 integers in 4 microseconds
@@ -191,7 +191,7 @@ Alternatively, you can run only the implemnatations for a given language:
 % ls
 Makefile  c/        cpp/      java/     js/       python/
 % make c/
-Sieve of Erastosthenes: Find all prime numbers in a given range
+Sieve of Eratosthenes: Find all prime numbers in a given range
 [snip]
 ```
 
@@ -202,7 +202,7 @@ And finally, for a given example of a given language:
 % ls
 Makefile  app/      app2/     app3/
 % make app2/
-Sieve of Erastosthenes: Find all prime numbers in a given range
+Sieve of Eratosthenes: Find all prime numbers in a given range
 Prime numbers in range 0-1000 inclusive:
 2 3 5 7 11 13 17 19 23 29 .. 937 941 947 953 967 971 977 983 991 997 
 Found 168 prime(s) in 1000 integers in 11 microseconds
@@ -214,7 +214,7 @@ Found 168 prime(s) in 1000 integers in 11 microseconds
 
 ## Project Background
 
-### Why choose the Sieve of Erastosthenes algorithm and not some other one?
+### Why choose the Sieve of Eratosthenes algorithm and not some other one?
 
 Any popular algorithm could have been chosen as the basis for this project, as long as it satisfies the criteria set for the project:
 
@@ -224,7 +224,7 @@ Any popular algorithm could have been chosen as the basis for this project, as l
 - it takes as few inputs as possible
 - its output is easily verifiable manually, at least for small input values
 
-Several algorithms were considered, but the Sieve of Erastosthenes was selected because it absolutely satisfies each of the above criteria. Some of the other algorithms that were considered:
+Several algorithms were considered, but the Sieve of Eratosthenes was selected because it absolutely satisfies each of the above criteria. Some of the other algorithms that were considered:
 
 - The Euclidean algorithm for finding the greatest common divisor between two numbers, but it requires two inputs rather than one. Credit to Euclid though for proving in around 300 BCE that there are an infinite number of prime numbers.
 - The Babylonian method for factorizing integers, but the algorithm requires a table of *prime numbers* as input.
@@ -250,9 +250,9 @@ algorithm Sieve of Eratosthenes is
     return all i such that A[i] is true.
 ```
 
-### History of the Sieve of Erastosthenes
+### History of the Sieve of Eratosthenes
 
-Much is known of [Erastothenes](https://en.wikipedia.org/wiki/Eratosthenes), a polymath whose principal occupation was chief librarian at the [Library of Alexandria](https://en.wikipedia.org/wiki/Library_of_Alexandria), but little is known of the circumstances surrounding the derivation of his method for determining prime numbers. From [Wikipedia](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)'s main entry on the topic:
+Much is known of [Eratothenes](https://en.wikipedia.org/wiki/Eratosthenes), a polymath whose principal occupation was chief librarian at the [Library of Alexandria](https://en.wikipedia.org/wiki/Library_of_Alexandria), but little is known of the circumstances surrounding the derivation of his method for determining prime numbers. From [Wikipedia](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)'s main entry on the topic:
 
 > The earliest known reference to the sieve (Ancient Greek: κόσκινον Ἐρατοσθένους, *kóskinon Eratosthénous*) is in [Nicomachus of Gerasa](https://en.wikipedia.org/wiki/Nicomachus)'s *[Introduction to Arithmetic](https://en.wikipedia.org/wiki/Introduction_to_Arithmetic)*, an early 2nd cent. CE book, which describes it and attributes it to [Eratosthenes of Cyrene](https://en.wikipedia.org/wiki/Eratosthenes), a 3rd cent. BCE Greek mathematician.
 

@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * Computes prime numbers in a given range using an implementation of the
- * Sieve of Erastosthenes algorithm.
+ * Sieve of Eratosthenes algorithm.
  */
 public class Sieve {
   // defines the number of prines to display around an ellipsis that is used

@@ -26,7 +26,7 @@ extern "C" {
 
 /**
  * Computes prime numbers in a given range using an implementation of the
- * Sieve of Erastosthenes algorithm.
+ * Sieve of Eratosthenes algorithm.
  */
 typedef struct csieve_t {
   int     range;           // range of integers in which to find primes
