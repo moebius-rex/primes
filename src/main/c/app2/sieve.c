@@ -27,7 +27,7 @@ static const int MAX_HALF = 10;
  * Private functions
  */
 bool* create_integers(int range) {
-  size_t size = (range + 1) * sizeof(((Sieve_t*) 0)->integers[0]);
+  size_t size = (range + 1) * sizeof(((sieve*) 0)->integers[0]);
   bool* integers = malloc(size);
   memset(integers, true, size);
   integers[0] = integers[1] = false; // by convention, 0 and 1 are not primes
@@ -35,25 +35,25 @@ bool* create_integers(int range) {
 }
 
 int* create_primes(int count) {
-  size_t size = count * sizeof(((Sieve_t*) 0)->primes[0]);
+  size_t size = count * sizeof(((sieve*) 0)->primes[0]);
   int* primes = malloc(size);
   return primes;
 }
 
-Sieve_t* create_sieve(int range, bool* integers) {
-  Sieve_t* self = malloc(sizeof(Sieve_t));
+sieve* create_sieve(int range, bool* integers) {
+  sieve* self = malloc(sizeof(sieve));
   self->range = range;
   self->integers = integers;
   return self;
 }
 
-void destroy_integers(Sieve_t* self) {
+void destroy_integers(sieve* self) {
   if (self->integers != NULL) {
     free(self->integers);
   }
 }
 
-void destroy_primes(Sieve_t* self) {
+void destroy_primes(sieve* self) {
   if (self->primes != NULL) {
     free(self->primes);
   }
@@ -62,18 +62,18 @@ void destroy_primes(Sieve_t* self) {
 /**
  * Public functions
  */
-Sieve_t* sieve_create(int range) {
+sieve* sieve_create(int range) {
   bool* integers = create_integers(range);
   return create_sieve(range, integers);
 }
 
-void sieve_destroy(Sieve_t* self) {
+void sieve_destroy(sieve* self) {
   destroy_integers(self);
   destroy_primes(self);
   free(self);
 }
 
-void sieve_compute_primes(Sieve_t* self) {
+void sieve_compute_primes(sieve* self) {
   gettimeofday(&self->start_time, NULL);
 
   // step 1. sieve: tag non-prime inputs
@@ -107,7 +107,7 @@ void sieve_compute_primes(Sieve_t* self) {
   gettimeofday(&self->end_time, NULL);
 }
 
-void sieve_print_primes(const Sieve_t* self) {
+void sieve_print_primes(const sieve* self) {
   printf("Prime numbers in range 0-%d inclusive:\n", self->range);
   int half = self->count / 2;
   for (int n = 0; n < self->count; ++n) {
@@ -126,21 +126,21 @@ void sieve_print_primes(const Sieve_t* self) {
       sieve_get_count(self), sieve_get_range(self), sieve_get_elapsed(self));
 }
 
-int* sieve_get_primes(const Sieve_t* self) {
+int* sieve_get_primes(const sieve* self) {
   int* copy = create_primes(self->count);
-  memcpy(copy, self->primes, self->count * sizeof(((Sieve_t *)0)->primes[0]));
+  memcpy(copy, self->primes, self->count * sizeof(((sieve *)0)->primes[0]));
   return copy;
 }
 
-int sieve_get_range(const Sieve_t* self) {
+int sieve_get_range(const sieve* self) {
   return self->range;
 }
 
-int sieve_get_count(const Sieve_t* self) {
+int sieve_get_count(const sieve* self) {
   return self->count;
 }
 
-float sieve_get_elapsed(const Sieve_t* self) {
+float sieve_get_elapsed(const sieve* self) {
   return 1e6 * (self->end_time.tv_sec - self->start_time.tv_sec) +
       (self->end_time.tv_usec - self->start_time.tv_usec);
 }

@@ -21,27 +21,27 @@
 
 /**
  * Computes prime numbers in a given range using an implementation of the
- * Sieve of Erastosthenes algorithm.
+ * sieve of Erastosthenes algorithm.
  */
 typedef struct sieve_t {
-  int     range;           // range of integers in which to find primes
-  bool*   integers;        // integer inputs, true => prime number
-  int*    primes;          // outputs, list of primes in inputs
-  int     count;           // number of primes found
+  int   range;           // range of integers in which to find primes
+  bool* integers;        // integer inputs, true => prime number
+  int*  primes;          // outputs, list of primes in inputs
+  int   count;           // number of primes found
 
   struct timeval
           start_time, end_time;
-} Sieve_t;
+} sieve;
 
-Sieve_t*  sieve_create(int);
-void      sieve_destroy(Sieve_t*);
+sieve*  sieve_create(int);
+void    sieve_destroy(sieve*);
 
-void      sieve_compute_primes(Sieve_t*);
-void      sieve_print_primes(const Sieve_t*);
+void    sieve_compute_primes(sieve*);
+void    sieve_print_primes(const sieve*);
 
-int*      sieve_get_primes(const Sieve_t*);
-int       sieve_get_range(const Sieve_t*);
-int       sieve_get_count(const Sieve_t*);
-float     sieve_get_elapsed(const Sieve_t*);
+int*    sieve_get_primes(const sieve*);
+int     sieve_get_range(const sieve*);
+int     sieve_get_count(const sieve*);
+float   sieve_get_elapsed(const sieve*);
 
 #endif // INCLUDED_C_SIEVE

@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
   printf("Sieve of Erastosthenes: Find all prime numbers in a given range\n");
 
   int range = argc > 1 ? atoi(argv[1]) : 0;
-  Sieve_t* sieve = sieve_create(read_range(range));
+  sieve* sieve = sieve_create(read_range(range));
   sieve_compute_primes(sieve);
   sieve_print_primes(sieve);
 
