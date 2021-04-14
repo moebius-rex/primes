@@ -18,12 +18,12 @@ LDFLAGS =
 
 SRCDIR = .
 BINDIR = bin
-LIBDIR = ../../c/sieve/lib
 OBJDIR = obj
 
-INCFLAGS = -I../../c/sieve
-
 SIEVERANGE = 1000
+
+INCFLAGS = -I../../c/sieve
+LIBDIR = ../../c/sieve/lib
 
 all: targets $(BINDIR)/app test
 

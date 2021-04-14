@@ -13,17 +13,17 @@
 # under the License.
 
 CC = gcc
-CPPFLAGS = -std=c++17 -Wall -Werror -pedantic
+CCFLAGS = -std=c11 -Wall -Werror -pedantic
 LDFLAGS =
 
 SRCDIR = .
 BINDIR = bin
-LIBDIR = ../../c/sieve/lib
 OBJDIR = obj
 
-INCFLAGS = -I../../c/sieve
-
 SIEVERANGE = 1000
+
+INCFLAGS = -I../../c/sieve
+LIBDIR = ../../c/sieve/lib
 
 all: targets $(BINDIR)/app test
 
