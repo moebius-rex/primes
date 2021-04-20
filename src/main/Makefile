@@ -12,14 +12,14 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-SUBDIRS := $(wildcard */)
+SUBDIRS := $(filter-out Makefile, $(wildcard *))
 
 all: $(SUBDIRS)
 
 .PHONY: $(SUBDIRS) clean test
 
 $(SUBDIRS):
-	$(MAKE) --no-print-directory -C $@
+	$(MAKE) --directory $@
 
 clean test:
-	@for subdir in $(SUBDIRS); do $(MAKE) --no-print-directory -C $$subdir $@; done
+	@for subdir in $(SUBDIRS); do $(MAKE) --directory $$subdir $@; done

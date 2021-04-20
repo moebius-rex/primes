@@ -23,8 +23,8 @@ maven:
 	@-mvn -q compile
 
 $(SUBDIRS):
-	$(MAKE) --no-print-directory -C $@
+	$(MAKE) --directory $@
 
 clean test:
 	@-mvn -q $@
-	@for subdir in $(SUBDIRS); do $(MAKE) --no-print-directory -C $$subdir $@; done
+	@for subdir in $(SUBDIRS); do $(MAKE) --directory $$subdir $@; done

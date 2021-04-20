@@ -29,10 +29,13 @@ To download, build and run the implementations provided by this project, enter t
 If your system already has installed all dependencies required by this project, you will see console output that begins like this:
 
 ```
-make --no-print-directory -C src/main
-make --no-print-directory -C c
-make --no-print-directory -C app
-bin/App 1000
+make --directory src/main
+make --directory c/
+make --directory sieve
+gcc -c -o csieve.o csieve.c
+ar: creating archive lib/libcsieve.a
+rm csieve.o
+/Library/Developer/CommandLineTools/usr/bin/make --directory app
 Sieve of Eratosthenes: Find all prime numbers in a given range
 Prime numbers in range 0-1000 inclusive:
 2 3 5 7 11 13 17 19 23 29 31 37 .. 907 911 919 929 937 941 947 953 967 971 977 983 991 997
