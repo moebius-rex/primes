@@ -18,12 +18,13 @@ SOFLAGS = -shared
 LDFLAGS =
 
 SRCDIR = .
+BINDIR = bin
 LIBDIR = lib
 OBJDIR = obj
 
 SIEVERANGE = 1000
 
-all: targets $(LIBDIR)/libcsieve.a $(LIBDIR)/libcsieve.so test
+all: targets $(LIBDIR)/libcsieve.a $(LIBDIR)/libcsieve.so $(BINDIR)/appa $(BINDIR)/appso test
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) $(CCFLAGS) -c $? -o $@
@@ -34,11 +35,23 @@ $(LIBDIR)/lib%.a : $(OBJDIR)/%.o
 $(LIBDIR)/lib%.so : $(OBJDIR)/%.o
 	$(CC) $(SOFLAGS) $? -o $@
 
+$(BINDIR)/appa : $(OBJDIR)/app.o $(LIBDIR)/libcsieve.a
+	@$(CC) $(LDFLAGS) $? -o $@
+
+$(BINDIR)/appso : $(OBJDIR)/app.o $(LIBDIR)/libcsieve.so
+	@$(CC) $(LDFLAGS) -L$(LIBDIR) -lcsieve $? -o $@
+
 .PHONY: targets clean test
 targets:
 	-@mkdir -p $(OBJDIR)
 	-@mkdir -p $(LIBDIR)
+	-@mkdir -p $(BINDIR)
 
 clean:
 	-@$(RM) -r $(OBJDIR)
 	-@$(RM) -r $(LIBDIR)
+	-@$(RM) -r $(BINDIR)
+
+test: $(BINDIR)/appa $(BINDIR)/appso
+	@$(BINDIR)/appa $(SIEVERANGE)
+	@$(BINDIR)/appso $(SIEVERANGE)
