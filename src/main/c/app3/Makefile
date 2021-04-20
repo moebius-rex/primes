@@ -22,8 +22,8 @@ OBJDIR = obj
 
 SIEVERANGE = 1000
 
-INCFLAGS = -I../../c/sieve
-LIBDIR = ../../c/sieve/lib
+INCFLAGS = -I../sieve
+LIBDIR = ../sieve/lib
 
 all: targets $(BINDIR)/app test
 
