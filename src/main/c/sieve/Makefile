@@ -13,8 +13,8 @@
 # under the License.
 
 CC = gcc
-CCFLAGS = -std=c11 -Wall -Werror -pedantic
-SOFLAGS = -fPIC -shared
+CCFLAGS = -std=c11 -Wall -Werror -pedantic -fPIC
+SOFLAGS = -shared
 LDFLAGS =
 
 SRCDIR = .
@@ -26,13 +26,13 @@ SIEVERANGE = 1000
 all: targets $(LIBDIR)/libcsieve.a $(LIBDIR)/libcsieve.so test
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
-	@$(CC) $(CCFLAGS) -c $? -o $@
+	$(CC) $(CCFLAGS) -c $? -o $@
 
-$(LIBDIR)/lib%.a : $(SRCDIR)/%.o
-	@$(AR) q $@ $?
+$(LIBDIR)/lib%.a : $(OBJDIR)/%.o
+	$(AR) q $@ $?
 
-$(LIBDIR)/lib%.so : $(SRCDIR)/%.c
-	@$(CC) $(CCFLAGS) $(SOFLAGS) $? -o $@
+$(LIBDIR)/lib%.so : $(OBJDIR)/%.o
+	$(CC) $(SOFLAGS) $? -o $@
 
 .PHONY: targets clean test
 targets:
