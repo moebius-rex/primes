@@ -134,19 +134,19 @@ static float get_elapsed(const csieve* self) {
 }
 
 /* internal initializer */
-static csieve* sieve_init(csieve* self, int range) {
+static csieve* init(csieve* self, int range) {
   /* initialize struct data */
   self->range = range;
   self->integers = create_integers(self->range);
 
   /* bind struct function pointers */
-  self->destroy = &destroy;
-  self->compute_primes = &compute_primes;
-  self->print_primes = &print_primes;
-  self->get_primes = &get_primes;
-  self->get_range = &get_range;
-  self->get_count = &get_count;
-  self->get_elapsed = &get_elapsed;
+  self->destroy = destroy;
+  self->compute_primes = compute_primes;
+  self->print_primes = print_primes;
+  self->get_primes = get_primes;
+  self->get_range = get_range;
+  self->get_count = get_count;
+  self->get_elapsed = get_elapsed;
 
   return self;
 }
@@ -155,5 +155,5 @@ static csieve* sieve_init(csieve* self, int range) {
  * Public non-member functions
  */
 csieve* sieve_create(int range) {
-  return sieve_init((csieve*) calloc(sizeof(csieve), 1), range);
+  return init((csieve*) calloc(sizeof(csieve), 1), range);
 }
