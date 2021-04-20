@@ -19,7 +19,7 @@ RUN apt-get update  -y
 RUN apt-get upgrade -y
 
 # install utilities
-RUN apt-get install -y file tree vim
+RUN apt-get install -y file less tree vim
 
 # install project build & run toolchains
 RUN apt-get install -y gcc 

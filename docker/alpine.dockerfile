@@ -19,7 +19,7 @@ RUN apk update
 RUN apk upgrade
 
 # install utilities
-RUN apk add file tree vim
+RUN apk add file less tree vim
 
 # install project build & run toolchains
 RUN apk add bash
@@ -38,6 +38,3 @@ RUN apk del openjdk8
 WORKDIR /project
 COPY . .
 RUN ./installer/install.sh
-
-# create temporary loader library path for seive shared library
-ENV LD_LIBRARY_PATH=/project/src/main/c/app3/lib

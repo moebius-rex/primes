@@ -19,7 +19,7 @@ RUN dnf update  -y
 RUN dnf upgrade -y
 
 # install utilities
-RUN dnf install -y file tree vim
+RUN dnf install -y file less tree vim
 
 # install project build & run toolchains
 RUN dnf install -y gcc 
