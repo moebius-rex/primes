@@ -19,12 +19,12 @@ limitations under the License.
 
 ## Purpose
 
-The purpose of this project is to demonstrate differences and similarities between several popular programming languages by implementing the same algorithm in each language, and to demonstrate the comparative ease or difficulty in implementing the algorithm in each language. The project is *not* intended to provide a bullet-proof and thoroughly documented implementation of the algorithm in the selected languages. The project does *not* provide written documentation explaining the differences between the various language implementations or extolling the virtues of one language over another; the hope instead is that downloaders will find their own uses for the project and its contents, that the set of languages will grow and that more language features will be explored as (*if*) the project's momentum grows.
+The purpose of this project is to demonstrate differences and similarities between several popular programming languages by implementing the same algorithm in each language, and to demonstrate the comparative ease or difficulty in implementing the algorithm in each language. The project is *not* intended to provide a bullet-proof and thoroughly documented implementation of the algorithm in the selected languages. The project does *not* provide written documentation explaining the differences between the various language implementations — though it may do in the future — or extolling the virtues of one language over another; the hope instead is that downloaders will find their own uses for the project and its contents, that the set of languages will grow and that more language features will be explored as — or *if* — the project's momentum grows.
 
 ## Features
 
 Each language-specific implementation of the Sieve of Eratosthenes algorithm comes in two versions:
-- A naïve version that brute forces a solution. In other words, a hack — difficult to read and consequently difficult to maintain.
+- A naïve version that brute forces a solution. In other words, a hack — difficult to read and consequently, difficult to maintain.
 - One or more object-oriented versions that should be more maintainable and use the best practices of the language. In all languages except C, this means extracting a `Sieve` class as a separate component. In the C implementation, it means extracting a transparent structure containing algorithm data, and functions that use that data to implement the algorithm — basically, a rudimentary C++ with an *explicit* `this` pointer and data encapsulation, but no data hiding.
 
 Project features include:
@@ -35,13 +35,13 @@ Project features include:
   - Java
   - JavaScript
   - Python
-- Uses **Maven** under the hood to build Java implementations and GNU **Makefile** to build C and C++ implementations.
-- Uses **Makefile** to build and run all implementations.
+- One C++ and one Python implentation are derived by wrapping a C implementation. Similar Java and server-side JavaScript (node.js) implementations will follow.
+- The project uses **Maven** under the hood to build Java implementations and GNU **Makefile** to build C and C++ implementations and to run all implementations.
 - All implementations are designed to be run from, and print to, a terminal window.
 - Where possible, all implementations produce the identical output for the identical input.
 - All C and C++ implementations produce zero `valgrind` errors or leaks when compiled with gcc/g++ on Debian-based Linux systems.
-- The implementations have been tested on desktop Ubuntu and macOS installations as well as containerized Ubuntu and Alpine installations.
-- The project comes with **Docker** files that allow for implementations of the algorithm to run in a container.
+- The implementations have been tested on desktop Ubuntu and macOS installations as well as containerized Alpine, Fedora and Ubuntu installations.
+- The project comes with **Docker** configurations that enable running algorithm implementations in containers.
 
 ## Environments
 
