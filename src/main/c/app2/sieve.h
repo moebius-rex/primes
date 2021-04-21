@@ -13,8 +13,8 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-#ifndef INCLUDED_C_SIEVE
-#define INCLUDED_C_SIEVE
+
+#pragma once
 
 #include <stdbool.h>
 #include <sys/time.h>
@@ -43,5 +43,3 @@ int*    sieve_get_primes(const sieve*);
 int     sieve_get_range(const sieve*);
 int     sieve_get_count(const sieve*);
 float   sieve_get_elapsed(const sieve*);
-
-#endif // INCLUDED_C_SIEVE

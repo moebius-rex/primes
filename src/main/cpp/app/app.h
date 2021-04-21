@@ -13,8 +13,8 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-#ifndef INCLUDED_CPP_APP
-#define INCLUDED_CPP_APP
+
+#pragma once
 
 #include <sys/time.h>
 
@@ -40,5 +40,3 @@ class App {
     int   get_count();
     float get_elapsed();
 };
-
-#endif // INCLUDED_CPP_APP

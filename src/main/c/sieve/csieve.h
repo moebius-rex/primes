@@ -13,8 +13,8 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-#ifndef INCLUDED_CSIEVE
-#define INCLUDED_CSIEVE
+
+#pragma once
 
 // allow C++ source to include C functions
 #ifdef __cplusplus
@@ -56,5 +56,3 @@ csieve* sieve_create(int);
 #ifdef __cplusplus
 }
 #endif
-
-#endif // INCLUDED_CSIEVE

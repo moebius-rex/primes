@@ -13,8 +13,8 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-#ifndef INCLUDED_CPP_SIEVE
-#define INCLUDED_CPP_SIEVE
+
+#pragma once
 
 #include <sys/time.h>
 #include <vector>
@@ -45,5 +45,3 @@ class Sieve {
     int         get_range()       const;
     time_t      get_elapsed()     const;
 };
-
-#endif // INCLUDED_CPP_SIEVE
