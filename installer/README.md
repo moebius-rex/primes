@@ -132,5 +132,5 @@ $env:JAVA_HOME C:\Program Files\OpenJDK\openjdk-11.0.10_9
 
 ## Docker
 
-The project includes **Docker** configuration files that let you build images and launch containers that run the project's Sieve of Eratosthenes implementations. If you would like to use Docker **containers** to run the implementations, refer to [this guide](DOCKER.md) for instructions.
+The project includes **Docker** configuration files that let you build images and launch containers that run the project's Sieve of Eratosthenes implementations. If you would like to use Docker **containers** to run the implementations, refer to [this guide](../docker/README.md) for instructions.
 
