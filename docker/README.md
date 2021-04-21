@@ -58,9 +58,9 @@ It takes in the order of a minute to build each image. Use `docker images` to vi
 ```
 % docker images
 REPOSITORY   TAG       IMAGE ID       CREATED              SIZE
-sieve        ubuntu    18e8f59a6c31   5 seconds ago        650MB
+sieve        ubuntu    18e8f59a6c31   5 seconds ago        652MB
 sieve        fedora    0abdd04df7f4   About a minute ago   1.16GB
-sieve        alpine    5d00d4db8dd7   4 minutes ago        668MB
+sieve        alpine    5d00d4db8dd7   4 minutes ago        669MB
 ```
 
 If you wished to build a subset of these images, say, the Alpine and Ubuntu images but not the Fedora image, you would enter the following command instead:
@@ -115,25 +115,32 @@ If you would like to run only a subset of the implementations in a given contain
 % docker-compose exec ubuntu sh
               OR
 % docker-compose exec ubuntu bash
-root@314fba7533e6:/project# cd src/main/python
-root@314fba7533e6:/project/src/main/python# ls
-Makefile  app.py  app2.py  sieve.py
-root@314fba7533e6:/project/src/main/python# make
+root@314fba7533e6:/prime# cd src/main/python
+root@314fba7533e6:/prime/src/main/python# ls
+Makefile   app.py     app2.py    app3.py    csieve.py  sieve.py
+root@314fba7533e6:/prime/src/main/python# make
 python/app
 Sieve of Eratosthenes: Find all prime numbers in a given range
 Prime numbers in range 0-1,000 inclusive:
 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97 101 103 107 109 113 127 131 137 139 149 151 157 163 167 173 179 181 191 193 197 199 211 223 227 229 233 239 241 251 257 263 269 271 277 281 283 293 307 311 313 317 331 337 347 349 353 359 367 373 379 383 389 397 401 409 419 421 431 433 439 443 449 457 461 463 467 479 487 491 499 503 509 521 523 541 547 557 563 569 571 577 587 593 599 601 607 613 617 619 631 641 643 647 653 659 661 673 677 683 691 701 709 719 727 733 739 743 751 757 761 769 773 787 797 809 811 821 823 827 829 839 853 857 859 863 877 881 883 887 907 911 919 929 937 941 947 953 967 971 977 983 991 997 
-Found 168 prime(s) in 1,000 integers in 98 microseconds
+Found 168 prime(s) in 1,000 integers in 102 microseconds
 
 python/app2
 Sieve of Eratosthenes: Find all prime numbers in a given range
 Prime numbers in range 0-1,000 inclusive:
 2 3 5 7 11 13 17 19 23 29 .. 937 941 947 953 967 971 977 983 991 997 
-Found 168 prime(s) in 1,000 integers in 1,021 microseconds
-root@314fba7533e6:/project# 
+Found 168 prime(s) in 1,000 integers in 174 microseconds
+
+python/app3
+Sieve of Eratosthenes: Find all prime numbers in a given range
+Prime numbers in range 0-1,000 inclusive:
+2 3 5 7 11 13 17 19 23 29 .. 937 941 947 953 967 971 977 983 991 997 
+Found 168 prime(s) in 1,000 integers in 19 microseconds
+
+root@314fba7533e6:/prime/src/main/python# 
 ```
 
-#### Step 4. Stop all containers
+### Step 4. Stop all containers
 
 As already mentioned, the sieve implementation containers are configured to run until a command is issued to stop them as follows:
 
@@ -147,7 +154,7 @@ Removing alpine ... done
 Removing fedora ... done
 ```
 
-##### Step 5: Clean up
+### Step 5: Clean up
 
 Docker images take up disk space. If you wish to reclaim that space, you can delete all sieve implementation Docker images like this:
 
@@ -168,7 +175,7 @@ deleted: sha256:17683f22293e9cf90e02bcc103ef011778e4217b100a121bf3f45da07ceabf09
 
 Deleted build cache objects:
 [snip]
-Total reclaimed space: 2.229GB
+Total reclaimed space: 2.232GB
 ```
 
 

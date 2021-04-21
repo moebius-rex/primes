@@ -78,7 +78,7 @@ Alternatively, you can run only the implemnatations for a given language:
 % cd src/main
 % ls
 Makefile  c/        cpp/      java/     js/       python/
-% make c/
+% make c
 Sieve of Eratosthenes: Find all prime numbers in a given range
 [snip]
 ```
@@ -88,7 +88,7 @@ And finally, for a given example of a given language:
 ```
 % cd c
 % ls
-Makefile  app/      app2/     app3/
+Makefile  app/      app2/     app3/     sieve/
 % make app2/
 Sieve of Eratosthenes: Find all prime numbers in a given range
 Prime numbers in range 0-1000 inclusive:
@@ -156,7 +156,7 @@ This section contains some notes about this installation.
 
 ### Maven errors
 
-On Ubuntu, the `mvn clean` command invoked by running `make clean` on the top-level Makefile has been seen to cause the following messages to be written to the console. The messages do not appear to affect behavior in any way and can be ignored:
+On Ubuntu, the `mvn clean` command invoked by running `make clean` on the project top-level `Makefile` has been seen to cause the following messages to be written to the console. The messages do not appear to affect behavior in any way and can probably be ignored:
 
 ``` 
 WARNING: An illegal reflective access operation has occurred

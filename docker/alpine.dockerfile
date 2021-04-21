@@ -35,6 +35,6 @@ RUN apk add openjdk11
 RUN apk del openjdk8
 
 # copy project source files to image & remove generated files
-WORKDIR /project
+WORKDIR /prime
 COPY . .
 RUN ./installer/install.sh

@@ -30,6 +30,6 @@ RUN dnf install -y nodejs
 RUN dnf install -y python3
 
 # copy project source files to image & remove generated files
-WORKDIR /project
+WORKDIR /prime
 COPY . .
 RUN ./installer/install.sh

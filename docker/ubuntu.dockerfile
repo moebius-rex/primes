@@ -30,6 +30,6 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y python3
 
 # copy project source files to image & remove generated files
-WORKDIR /project
+WORKDIR /prime
 COPY . .
 RUN ./installer/install.sh
