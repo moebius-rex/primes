@@ -18,25 +18,29 @@ import sys
 import time
 import math
 
-from sieve_c import Sieve
+from csieve import CSieve
 
 def read_range(range):
-  if (range == 0):
-    range = int(input("Enter highest integer to test for primeness: "))
-  return range
+	if (range == 0):
+		range = int(input("Enter highest integer to test for primeness: "))
+	return range
 
 def main():
-  print("Sieve of Eratosthenes: Find all prime numbers in a given range")
+	print("Sieve of Eratosthenes: Find all prime numbers in a given range")
 
-  range = 0
-  if len(sys.argv) > 1:
-    try:
-      range = int(sys.argv[1])
-    except ValueError:
-      pass
-  Sieve(read_range(range)).compute_primes().print_primes()
+	range = 0
+	if len(sys.argv) > 1:
+		try:
+			range = int(sys.argv[1])
+		except ValueError:
+			pass
 
-  return 0
+	csieve = CSieve(read_range(range))
+	csieve.compute_primes()
+	csieve.print_primes()
+	csieve.destroy()
+
+	return 0
 
 if __name__ == "__main__":
-   sys.exit(main())
+	sys.exit(main())
