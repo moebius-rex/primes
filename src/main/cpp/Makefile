@@ -17,7 +17,6 @@ SUBDIRS := $(wildcard app*)
 all: $(SUBDIRS)
 
 .PHONY: $(SUBDIRS) clean test
-
 $(SUBDIRS):
 	$(MAKE) --directory $@
 

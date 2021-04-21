@@ -17,7 +17,6 @@ SUBDIRS := $(filter-out Makefile, $(wildcard *))
 all: $(SUBDIRS)
 
 .PHONY: $(SUBDIRS) clean test
-
 $(SUBDIRS):
 	$(MAKE) --directory $@
 

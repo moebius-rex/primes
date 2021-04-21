@@ -17,7 +17,6 @@ SUBDIRS := $(wildcard app*)
 all: sieve $(SUBDIRS)
 
 .PHONY: sieve $(SUBDIRS) clean test
-
 sieve:
 	$(MAKE) --directory $@
 
