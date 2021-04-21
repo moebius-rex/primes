@@ -23,7 +23,23 @@ The Prime project includes **Docker** configuration files that let you build Doc
 
 Throughout this guide, the `%` sign is used to indicate the command prompt; what follows the prompt is the command that you enter. All commands must be entered at a command prompt in a terminal window on `macOS` and `Linux` systems, or a `CMD` or `PowerShell` window on `Windows` systems. All commands should be run fron the top level of the Prime project installation, i.e., whatever location on disk you chose to clone the project's contents to.
 
-## Step 1: Build Docker images
+## Step-by-step Guide
+
+### Summary of steps
+
+The steps below execute the following commands in order:
+
+```bash
+% docker-compose build
+% docker-compose up -d
+% docker-compose exec alpine make
+% docker-compose exec fedora make
+% docker-compose exec ubuntu make
+% docker-compose down
+% docker system prune -a
+```
+
+### Step 1: Build Docker images
 
 Up to three Docker images may be built, each one based on a different Linux distribution:
 
@@ -53,7 +69,7 @@ If you wished to build a subset of these images, say, the Alpine and Ubuntu imag
 % docker-compose build alpine fedora
 ```
 
-## Step 2: Start Docker containers
+### Step 2: Start Docker containers
 
 A Docker container is a **virtual machine** that loads and runs a Docker image. To start Docker containers for all Prime project images and run them in the background, i.e., detached from the terminal:
 
@@ -79,7 +95,7 @@ CONTAINER ID   IMAGE          COMMAND               CREATED          STATUS     
 
 The `COMMAND` column shows the shell command that was called in the container once it was started. The Linux `tail -f /dev/null` command is a standard trick that keeps a container running until you decide to stop it with `docker-compose down` command; if we were to give it a command that returns immediately, the container would stop once the command completed.
 
-## Step 3: Run sieve implementations in a Docker container
+### Step 3: Run sieve implementations in a Docker container
 
 The `docker-conpose` exec command runs a command in a named container. For example, to run all sieve implementations in, say, the Alpine container, you would enter the following:
 
@@ -117,7 +133,7 @@ Found 168 prime(s) in 1,000 integers in 1,021 microseconds
 root@314fba7533e6:/project# 
 ```
 
-## Step 4. Stop all containers
+#### Step 4. Stop all containers
 
 As already mentioned, the sieve implementation containers are configured to run until a command is issued to stop them as follows:
 
@@ -131,7 +147,7 @@ Removing alpine ... done
 Removing fedora ... done
 ```
 
-## Step 5: Clean up
+##### Step 5: Clean up
 
 Docker images take up disk space. If you wish to reclaim that space, you can delete all sieve implementation Docker images like this:
 
