@@ -18,7 +18,7 @@
 #include "sieve.h"
 
 sieve::sieve(int range) {
-  this->impl = sieve_create(range);
+  this->impl = csieve_create(range);
 }
 
 sieve::~sieve() {
