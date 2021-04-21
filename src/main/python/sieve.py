@@ -22,7 +22,7 @@ from itertools import compress
 
 """
 Computes prime numbers in a given range using an implementation of the
-Sieve of Erastosthenes algorithm.
+Sieve of Eratosthenes algorithm.
 """
 class Sieve:
   # defines the number of primes to display around an ellipsis that is used
