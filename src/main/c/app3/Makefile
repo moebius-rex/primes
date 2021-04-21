@@ -30,7 +30,7 @@ all: targets $(BINDIR)/app test
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@$(CC) $(CCFLAGS) $(INCFLAGS) -c $? -o $@
 
-$(BINDIR)/app : $(OBJDIR)/app.o
+$(BINDIR)/app : $(OBJDIR)/app.o $(LIBDIR)/libcsieve.so
 	@$(CC) $(LDFLAGS) -L$(LIBDIR) -lcsieve $? -o $@
 
 .PHONY: targets clean test
