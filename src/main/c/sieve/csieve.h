@@ -49,8 +49,18 @@ typedef struct csieve_t {
 
 } csieve;
 
-/* constructor(s) */
-csieve* sieve_create(int);
+/**
+ * Non-member functions.
+ * 
+ * These provide limited support for implementing language bindings.
+ */
+csieve* csieve_create(int);
+void csieve_destroy(csieve*);
+
+void csieve_compute_primes(csieve*);
+void csieve_print_primes(const csieve*);
+
+float csieve_get_elapsed(const csieve*);
 
 // allow C++ source to include C functions
 #ifdef __cplusplus

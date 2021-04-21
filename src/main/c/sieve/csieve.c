@@ -152,8 +152,24 @@ static csieve* init(csieve* self, int range) {
 }
 
 /**
- * Public non-member functions
+ * Non-member functions for creating language bindings
  */
-csieve* sieve_create(int range) {
+csieve* csieve_create(int range) {
   return init((csieve*) calloc(sizeof(csieve), 1), range);
+}
+
+void csieve_destroy(csieve* self) {
+  self->destroy(self);
+}
+
+void csieve_compute_primes(csieve* self) {
+  self->compute_primes(self);
+}
+
+void csieve_print_primes(const csieve* self) {
+  self->print_primes(self);
+}
+
+float csieve_get_elapsed(const csieve* self) {
+  return self->get_elapsed(self);
 }
