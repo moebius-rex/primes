@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-#include <locale.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -44,7 +43,7 @@ static void compute_primes(bool* integers, int range) {
 }
 
 static void print_primes(bool* integers, int range) {
-  printf("Prime numbers in range 0-%'d inclusive:\n", range);
+  printf("Prime numbers in range 0-%d inclusive:\n", range);
   for (int p = 2; p <= range; ++p) {
     if (integers[p]) {
       if (range <= 1000 || range - p <= 1000) {
@@ -69,7 +68,6 @@ static float get_elapsed(struct timeval* start, struct timeval* end) {
 }
 
 int main(int argc, char* argv[]) {
-  setlocale(LC_NUMERIC, "");
   printf("Sieve of Eratosthenes: Find all prime numbers in a given range\n");
 
   int range = argc > 1 ? atoi(argv[1]) : read_range();
@@ -83,7 +81,7 @@ int main(int argc, char* argv[]) {
   print_primes(integers, range);
   int count = get_count(integers, range);
   float elapsed = get_elapsed(&start_time, &end_time);
-  printf("\nFound %'d prime(s) in %'d integers in %'.0f microseconds\n\n",
+  printf("\nFound %d prime(s) in %d integers in %.0f microseconds\n\n",
       count, range, elapsed);
 
   return 0;

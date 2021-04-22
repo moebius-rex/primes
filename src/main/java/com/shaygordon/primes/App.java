@@ -16,7 +16,6 @@
 package com.shaygordon.primes;
 
 import java.io.InputStreamReader;
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -26,8 +25,6 @@ import java.util.Scanner;
  * Sieve of Eratosthenes algorithm.
  */
 public class App {
-  private static DecimalFormat formatter = new DecimalFormat("#,###");
-
   private static int getRange() {
     int range = 0;
     System.out.print("Enter highest integer to test for primeness: ");
@@ -67,8 +64,7 @@ public class App {
 
   private static void printPrimes(boolean[] prime) {
     int range = prime.length - 1;
-    System.out.println(
-        String.format("Prime numbers up to %s:", formatter.format(range)));
+    System.out.println(String.format("Prime numbers in range 0-%d:", range));
     for (int p = 2; p <= range; p++) {
       if (prime[p]) {
         if (range <= 1000 || range - p <= 1000) {
@@ -94,7 +90,8 @@ public class App {
     double duration = (System.nanoTime() - start) / 1_000.;
     printPrimes(prime);
     int count = getCount(prime);
-    System.out.println(String.format("\nFound %s prime(s) in %s integers in %s microseconds\n",
-        formatter.format(count), formatter.format(range), formatter.format(duration)));
+    System.out.println(
+        String.format("\nFound %d prime(s) in %d integers in %.0f microseconds\n",
+            count, range, duration));
   }
 }

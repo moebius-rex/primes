@@ -23,9 +23,6 @@ const { _, performance } = require("perf_hooks");
  * Sieve of Eratosthenes algorithm.
  */
 
-/** Lambda that simplifies printing numbers with thousands separators. */
-const numToStr = n => { return Number(n).toLocaleString() };
-
 function main(range) {
   let integers = new Array(range + 1);
   integers.fill(true);
@@ -36,9 +33,8 @@ function main(range) {
   printPrimes(integers);
   let count = getCount(integers);
   let elapsed = getElapsed(start, end);
-  console.log("\nFound " + numToStr(count) + " prime(s) in "
-    + numToStr(range) + " integers in "
-    + numToStr(elapsed) + " microseconds\n");
+  console.log("\nFound " + count + " prime(s) in " + range + " integers in "
+      + elapsed + " microseconds\n");
 }
 
 function computePrimes(integers) {
@@ -54,8 +50,8 @@ function computePrimes(integers) {
 }
 
 function printPrimes(integers) {
-  console.log("Prime numbers in range 0-"
-      + numToStr(integers.length - 1) + " inclusive:");
+  console.log("Prime numbers in range 0-" + (integers.length - 1)
+      + " inclusive:");
   integers.forEach((val, p) => {
     if (val) {
       if (integers.length <= 1000 || integers.length - p <= 1000) {
