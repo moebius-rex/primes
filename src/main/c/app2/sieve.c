@@ -29,7 +29,7 @@ static const int MAX_HALF = 10;
  */
 bool* create_integers(int range) {
   size_t size = (range + 1) * sizeof(((sieve*) 0)->integers[0]);
-  bool* integers = malloc(size);
+  bool* integers = (bool*) malloc(size);
   memset(integers, true, size);
   integers[0] = integers[1] = false; // by convention, 0 and 1 are not primes
   return integers;
@@ -37,12 +37,12 @@ bool* create_integers(int range) {
 
 int* create_primes(int count) {
   size_t size = count * sizeof(((sieve*) 0)->primes[0]);
-  int* primes = malloc(size);
+  int* primes = (int*) malloc(size);
   return primes;
 }
 
 sieve* create_sieve(int range, bool* integers) {
-  sieve* self = malloc(sizeof(sieve));
+  sieve* self = (sieve*) malloc(sizeof(sieve));
   self->range = range;
   self->integers = integers;
   return self;
