@@ -1,4 +1,4 @@
-# Installing the Prime project
+# Installing the Primes project
 
 Throughout this guide, the `%` sign is used to indicate the command prompt; what follows the prompt is the command that you enter. All commands must be entered at a command prompt in a terminal window on `macOS` and `Linux` systems, or a `CMD` or `PowerShell` window on `Windows` systems. 
 
@@ -31,7 +31,7 @@ If however you see errors, it almost certainly means that you're missing at leas
 
 Once all required packages have been installed, complete the installation by running a script from the project directory:
 
-```
+```bash
 % ./installer/install.sh
 ```
 
@@ -43,21 +43,21 @@ If you installed this project on a Debian, Ubuntu, Linux Mint or any other Debia
 
 First, update the local package list and then upgrade any existing packages:
 
-```
-sudo apt update
-sudo apt -y upgrade
+```bash
+% sudo apt update
+% sudo apt -y upgrade
 ```
 
 Install any of the packages required by this project:
 
-```
-sudo apt install make
-sudo apt install maven
-sudo apt install gcc
-sudo apt install g++
-sudo apt install openjdk-11-jdk
-sudo apt install nodejs
-sudo apt install python3
+```bash
+% sudo apt install make
+% sudo apt install maven
+% sudo apt install gcc
+% sudo apt install g++
+% sudo apt install openjdk-11-jdk
+% sudo apt install nodejs
+% sudo apt install python3
 ```
 
 ## macOS
@@ -66,26 +66,26 @@ You can use the **Homebrew** package manager's `brew` command to download and in
 
 To install Homebrew, enter the following commands at a command prompt:
 
-```
-xcode-select --install
-curl -fsSL -o install.sh https://raw.githubusercontent.com/Homebrew/install/master/install.sh
+```bash
+% xcode-select --install
+% curl -fsSL -o install.sh https://raw.githubusercontent.com/Homebrew/install/master/install.sh
 ```
 
 Update the local package list and then upgrade any existing packages:
 
 ```bash
-brew update
+% brew update
 ```
 
 Install any of the packages required by this project:
 
-```
-brew install make
-brew install maven
-brew install gcc
-brew install g++
-brew install openjdk-11-jdk
-brew install python3
+```bash
+% brew install make
+% brew install maven
+% brew install gcc
+% brew install g++
+% brew install openjdk-11-jdk
+% brew install python3
 ```
 
 ## Windows
@@ -101,18 +101,18 @@ You can use the **Chocolatey** package manager's `choco` command to download and
 To install any of the packages required by this project, open a **PowerShell** window *as Administrator* (e.g., type `powershell` in the Windows 10 search bar and click on the `Run as Administrator` option listed in the right hand panel of the popup menu that appears) and then enter any of the following commands as necessary:
 
 ```
-choco install make
-choco install maven
-choco install openjdk11
-choco install mingw
-choco install python3
+% choco install make
+% choco install maven
+% choco install openjdk11
+% choco install mingw
+% choco install python3
 ```
 
 The mingw package installs both `gcc` and `g++` compilers. If you needed to install a **Java JDK**, you will need to set the `JAVA_HOME` environment variable to point to the location where the package manager installed it, for example:
 
-```
-[Environment]::SetEnvironmentVariable("JAVA_HOME", "C:\Program Files\OpenJDK\openjdk-11.0.10_9")
-$env:JAVA_HOME C:\Program Files\OpenJDK\openjdk-11.0.10_9
+```powershell
+% [Environment]::SetEnvironmentVariable("JAVA_HOME", "C:\Program Files\OpenJDK\openjdk-11.0.10_9")
+% $env:JAVA_HOME C:\Program Files\OpenJDK\openjdk-11.0.10_9
 ```
 
 ## Docker
