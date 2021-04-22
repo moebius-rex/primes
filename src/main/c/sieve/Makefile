@@ -15,7 +15,7 @@
 CC = gcc
 CCFLAGS = -std=c11 -Wall -Werror -pedantic -fPIC
 SOFLAGS = -shared
-LDFLAGS =
+LDFLAGS = -lm
 
 SRCDIR = .
 BINDIR = bin
@@ -27,13 +27,13 @@ SIEVERANGE = 1000
 all: targets $(LIBDIR)/libcsieve.a $(LIBDIR)/libcsieve.so $(BINDIR)/appa $(BINDIR)/appso test
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
-	$(CC) $(CCFLAGS) -c $? -o $@
+	@$(CC) $(CCFLAGS) -c $? -o $@
 
 $(LIBDIR)/lib%.a : $(OBJDIR)/%.o
-	$(AR) q $@ $?
+	@$(AR) q $@ $?
 
 $(LIBDIR)/lib%.so : $(OBJDIR)/%.o
-	$(CC) $(SOFLAGS) $? -o $@
+	@$(CC) $(SOFLAGS) $? -o $@
 
 $(BINDIR)/appa : $(OBJDIR)/app.o $(LIBDIR)/libcsieve.a
 	@$(CC) $(LDFLAGS) $? -o $@
