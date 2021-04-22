@@ -62,7 +62,7 @@ class Sieve:
     return self
 
   def print_primes(self):
-    print(f"Prime numbers in range 0-{self.range:,d} inclusive:")
+    print(f"Prime numbers in range 0-{self.range:d} inclusive:")
     half = int(self.get_count() / 2)
     for n, p in enumerate(self.primes):
       if half > Sieve.MAX_HALF:
@@ -72,8 +72,8 @@ class Sieve:
           print(p, end=" ")
       else:
         print(p, end=" ")
-    print(f"\nFound {self.get_count():,d} prime(s) in {self.range:,d} integers in "
-        + f"{self.get_elapsed():,.0f} microseconds\n")
+    print(f"\nFound {self.get_count():d} prime(s) in {self.range:d} integers in "
+        + f"{self.get_elapsed():.0f} microseconds\n")
 
   def get_primes(self):
     return self.primes.copy()

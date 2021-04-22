@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-#include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -109,8 +108,7 @@ void sieve_compute_primes(sieve* self) {
 }
 
 void sieve_print_primes(const sieve* self) {
-  setlocale(LC_NUMERIC, "");
-  printf("Prime numbers in range 0-%'d inclusive:\n", self->range);
+  printf("Prime numbers in range 0-%d inclusive:\n", self->range);
   int half = self->count / 2;
   for (int n = 0; n < self->count; ++n) {
     int p = self->primes[n];
@@ -124,7 +122,7 @@ void sieve_print_primes(const sieve* self) {
       printf("%d ", p);
     }
   }
-  printf("\nFound %'d prime(s) in %'d integers in %'.0f microseconds\n\n",
+  printf("\nFound %d prime(s) in %d integers in %.0f microseconds\n\n",
       sieve_get_count(self), sieve_get_range(self), sieve_get_elapsed(self));
 }
 

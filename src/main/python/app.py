@@ -37,7 +37,7 @@ def compute_primes(n):
 
 def print_primes(prime):
   n = len(prime)
-  print(f"Prime numbers in range 0-{n - 1:,d} inclusive:")
+  print(f"Prime numbers in range 0-{n - 1:d} inclusive:")
   for p in range(2, n):
     if prime[p]:
       if n <= 1000 or n - p <= 1000:
@@ -58,7 +58,7 @@ def main():
   elapsed = (time.time() - start_time) * 1_000_000.
   print_primes(primes)
   count = sum(primes) - 2
-  print(f"\nFound {count:,d} prime(s) in {range:,d} integers in {elapsed:,.0f} microseconds\n")
+  print(f"\nFound {count:d} prime(s) in {range:d} integers in {elapsed:.0f} microseconds\n")
   return 0
 
 if __name__ == "__main__":

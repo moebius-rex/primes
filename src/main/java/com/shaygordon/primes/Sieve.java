@@ -15,7 +15,6 @@
  */
 package com.shaygordon.primes;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +27,6 @@ public class Sieve {
   // defines the number of prines to display around an ellipsis that is used
   // when large numbers of primes are equested
   private static int MAX_HALF = 10;
-  private static DecimalFormat FMT = new DecimalFormat("#,###");
 
   private int range;
   private boolean[] integers;
@@ -38,8 +36,6 @@ public class Sieve {
   /***
    * Private functions
    */
-  private static String format(Number value) { return FMT.format(value); }
-
   private static boolean[] createIntegers(int range) {
     boolean[] integers = new boolean[range + 1];
     Arrays.fill(integers, true);
@@ -81,7 +77,7 @@ public class Sieve {
   }
 
   public void printPrimes() {
-    System.out.println(String.format("Prime numbers up to %s:", format(range)));
+    System.out.println(String.format("Prime numbers in range 0-%d:", range));
     StringBuilder sb = new StringBuilder();
     int half = this.primes.size() / 2;
     for (int n = 0; n < this.primes.size(); n++) {
@@ -97,8 +93,9 @@ public class Sieve {
       }
     }
     System.out.println(sb);
-    System.out.println(String.format("Found %s prime(s) in %s integers in %s microseconds\n",
-        format(this.primes.size()), format(this.range), format(this.getElapsed())));
+    System.out.println(
+        String.format("Found %d prime(s) in %d integers in %.0f microseconds\n",
+            this.primes.size(), this.range, this.getElapsed()));
   }
 
   public List<Integer> getPrimes() {

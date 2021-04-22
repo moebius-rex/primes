@@ -21,9 +21,6 @@ const { _, performance } = require("perf_hooks");
 // when large numbers of primes are requested
 const MAX_HALF = 10;
 
-/** Lambda that simplifies printing numbers with thousands separators. */
-const numToStr = n => { return Number(n).toLocaleString() }
-
 /**
  * Private methods
  */
@@ -71,8 +68,7 @@ class Sieve {
   }
 
   printPrimes() {
-    console.log("Prime numbers in range 0-"
-      + numToStr(this.range) + " inclusive:");
+    console.log("Prime numbers in range 0-" + this.range + " inclusive:");
     const half = Math.floor(this.count / 2);
     this._primes.forEach((p, n) => {
       if (half > MAX_HALF) {
@@ -85,9 +81,8 @@ class Sieve {
         process.stdout.write(p + " ");
       }
     });
-    console.log("\nFound " + numToStr(this.count) + " prime(s) in "
-      + numToStr(this.range) + " integers in "
-      + numToStr(this.elapsed) + " microseconds\n");
+    console.log("\nFound " + this.count + " prime(s) in "
+        + this.range + " integers in " + this.elapsed + " microseconds\n");
   }
 
   get primes() {
@@ -108,4 +103,3 @@ class Sieve {
 }
 
 module.exports = Sieve;
-
