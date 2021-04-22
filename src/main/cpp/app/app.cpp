@@ -59,6 +59,7 @@ void App::compute_primes() {
 }
 
 void App::print_primes() {
+  std::cout.imbue(std::locale(""));
   std::cout << "Prime numbers in range 0-" << this->range << " inclusive:" << std::endl;
   for (int p = 0; p <= this->range; ++p) {
     if (this->primes[p]) {
