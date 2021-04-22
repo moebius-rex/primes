@@ -1,12 +1,12 @@
 # Using Docker to run Sieve of Eratosthenes implementations
 
-The Prime project includes **Docker** configuration files that let you build Docker images and launch Docker containers that run the project's Sieve of Eratosthenes implementations to compute and print all prime numbers in a given range. This document is a guide to building one or more of these images and launching one or more of these containers. An understanding of Docker is *not* required — simply follow the step-by-step instructions in this document.
+The Primes project includes **Docker** configuration files that let you build Docker images and launch Docker containers that run the project's Sieve of Eratosthenes implementations to compute and print all prime numbers in a given range. This document is a guide to building one or more of these images and launching one or more of these containers. An understanding of Docker is *not* required — simply follow the step-by-step instructions in this document.
 
 ## Prerequisites
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and running on your desktop.
 
-Throughout this guide, the `%` sign is used to indicate the command prompt; what follows the prompt is the command that you enter. All commands must be entered at a command prompt in a terminal window on `macOS` and `Linux` systems, or a `CMD` or `PowerShell` window on `Windows` systems. All commands should be run fron the top level of the Prime project installation, i.e., whatever location on disk you chose to clone the project's contents to.
+Throughout this guide, the `%` sign is used to indicate the command prompt; what follows the prompt is the command that you enter. All commands must be entered at a command prompt in a terminal window on `macOS` and `Linux` systems, or a `CMD` or `PowerShell` window on `Windows` systems. All commands should be run fron the top level of the Primes project installation, i.e., whatever location on disk you chose to clone the project's contents to.
 
 ## Step-by-step Guide
 
@@ -56,7 +56,7 @@ If you wished to build a subset of these images, say, the Alpine and Ubuntu imag
 
 ### Step 2: Start Docker containers
 
-A Docker container is a **virtual machine** that loads and runs a Docker image. To start Docker containers for all Prime project images and run them in the background, i.e., detached from the terminal:
+A Docker container is a **virtual machine** that loads and runs a Docker image. To start Docker containers for all Primes project images and run them in the background, i.e., detached from the terminal:
 
 ```
 % docker-compose up -d
