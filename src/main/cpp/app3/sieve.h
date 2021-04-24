@@ -16,11 +16,8 @@
 #pragma once
 
 #include <sys/time.h>
-#include <vector>
 
-#include "csieve.h"
-
-using namespace std;
+#include "csievex.h"
 
 /**
  * Computes prime numbers in a given range using an implementation of the
@@ -31,17 +28,17 @@ using namespace std;
  */
 class sieve {
   private:
-    csieve *impl;
+    csievex* impl;
 
   public:
     sieve(int range = 0);
     ~sieve();
 
-    void    compute_primes();
-    void    print_primes()    const;
+    void     compute_primes();
+    void     print_primes()    const;
 
-    int*    get_primes()      const;
-    int     get_range()       const;
-    int     get_count()       const;
-    time_t  get_elapsed()     const;
+    int*     get_primes()      const;
+    int      get_range()       const;
+    int      get_count()       const;
+    time_t   get_elapsed()     const;
 };

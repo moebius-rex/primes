@@ -32,19 +32,19 @@ int main(int argc, char* argv[]) {
   printf("Sieve of Eratosthenes: Find all prime numbers in a given range\n");
 
   int range = argc > 1 ? atoi(argv[1]) : 0;
-  csieve* csieve = csieve_create(read_range(range));
-  csieve->compute_primes(csieve);
-  csieve->print_primes(csieve);
+  csieve* sieve = csieve_create(read_range(range));
+  csieve_compute_primes(sieve);
+  csieve_print_primes(sieve);
 
   // for valgrind
-  int *copy = csieve->get_primes(csieve);
-  for (int i = 0; i < csieve->get_count(csieve); ++i) {
+  int* copy = csieve_get_primes(sieve);
+  for (int i = 0; i < csieve_get_count(sieve); ++i) {
     int prime = copy[i];
     (void) prime;
   }
   free(copy);
 
-  csieve->destroy(csieve);
+  csieve_destroy(sieve);
 
   return 0;
 }

@@ -13,9 +13,11 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/time.h>
 
 #include "csieve.h"
 
@@ -23,8 +25,19 @@
 // when large numbers of primes are requested
 static const int MAX_HALF = 10;
 
+// define the contents of the opaque csieve_t struct declared in the header
+struct csieve_t {
+  int    range;               // range of integers in which to find primes
+  bool*  integers;            // integer inputs, true => prime number
+  int*   primes;              // outputs, list of primes in inputs
+  int    count;               // number of primes found
+
+  struct timeval start_time;  // time to complete the algo in microseconds
+  struct timeval end_time;
+};
+
 /**
- * Private functions
+ * Private functions.
  */
 static bool* create_integers(int range) {
   size_t size = (range + 1) * sizeof(((csieve*) 0)->integers[0]);
@@ -40,6 +53,13 @@ static int* create_primes(int count) {
   return primes;
 }
 
+static csieve* create_sieve(int range, bool* integers) {
+  csieve* self = (csieve*) malloc(sizeof(*self));
+  self->range = range;
+  self->integers = integers;
+  return self;
+}
+
 static void destroy_integers(csieve* self) {
   if (self->integers != NULL) {
     free(self->integers);
@@ -53,18 +73,23 @@ static void destroy_primes(csieve* self) {
 }
 
 /**
- * Static, private implementations of public member functions
+ * Public functions.
  */
-static void destroy(csieve* self) {
+csieve* csieve_create(int range) {
+  bool* integers = create_integers(range);
+  return create_sieve(range, integers);
+}
+
+void csieve_destroy(csieve* self) {
   destroy_integers(self);
   destroy_primes(self);
   free(self);
 }
 
-static void compute_primes(csieve* self) {
+void csieve_compute_primes(csieve* self) {
   gettimeofday(&self->start_time, NULL);
 
-  // step 1. csieve: tag non-prime inputs
+  // step 1. sieve: tag non-prime inputs
   for (int p = 0; p * p <= self->range; ++p) {
     if (self->integers[p]) {
       for (int i = p * p; i <= self->range; i += p) {
@@ -95,9 +120,8 @@ static void compute_primes(csieve* self) {
   gettimeofday(&self->end_time, NULL);
 }
 
-static void print_primes(const csieve* self) {
+void csieve_print_primes(const csieve* self) {
   printf("Prime numbers in range 0-%d inclusive:\n", self->range);
-
   int half = self->count / 2;
   for (int n = 0; n < self->count; ++n) {
     int p = self->primes[n];
@@ -111,67 +135,26 @@ static void print_primes(const csieve* self) {
       printf("%d ", p);
     }
   }
-  
   printf("\nFound %d prime(s) in %d integers in %.0f microseconds\n\n",
-      self->get_count(self), self->get_range(self), self->get_elapsed(self));
+      csieve_get_count(self), csieve_get_range(self),
+      csieve_get_elapsed(self));
 }
 
-static int* get_primes(const csieve* self) {
+int* csieve_get_primes(const csieve* self) {
   int* copy = create_primes(self->count);
-  memcpy(copy, self->primes, self->count* sizeof(((csieve*) 0)->primes[0]));
+  memcpy(copy, self->primes, self->count * sizeof(self->primes[0]));
   return copy;
 }
 
-static int get_range(const csieve* self) {
+int csieve_get_range(const csieve* self) {
   return self->range;
 }
 
-static int get_count(const csieve* self) {
+int csieve_get_count(const csieve* self) {
   return self->count;
 }
 
-static float get_elapsed(const csieve* self) {
+float csieve_get_elapsed(const csieve* self) {
   return 1e6 * (self->end_time.tv_sec - self->start_time.tv_sec) +
       (self->end_time.tv_usec - self->start_time.tv_usec);
-}
-
-/* internal initializer */
-static csieve* init(csieve* self, int range) {
-  /* initialize struct data */
-  self->range = range;
-  self->integers = create_integers(self->range);
-
-  /* bind struct function pointers */
-  self->destroy = destroy;
-  self->compute_primes = compute_primes;
-  self->print_primes = print_primes;
-  self->get_primes = get_primes;
-  self->get_range = get_range;
-  self->get_count = get_count;
-  self->get_elapsed = get_elapsed;
-
-  return self;
-}
-
-/**
- * Non-member functions for creating language bindings
- */
-csieve* csieve_create(int range) {
-  return init((csieve*) calloc(sizeof(csieve), 1), range);
-}
-
-void csieve_destroy(csieve* self) {
-  self->destroy(self);
-}
-
-void csieve_compute_primes(csieve* self) {
-  self->compute_primes(self);
-}
-
-void csieve_print_primes(const csieve* self) {
-  self->print_primes(self);
-}
-
-float csieve_get_elapsed(const csieve* self) {
-  return self->get_elapsed(self);
 }

@@ -12,24 +12,40 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ubuntu
+# START include .gitignore ---------------------------------------------------
 
-# update package list & upgrade
-RUN apt-get update  -y
-RUN apt-get upgrade -y
+# macOS detritus
+.DS_Store
 
-# install utilities
-RUN apt-get install -y file less tree vim
+# Visual Studio Code-generated files
+.settings
+.vscode
+.classpath
+.project
 
-# install project build & run toolchains
-RUN apt-get install -y gcc 
-RUN apt-get install -y g++ 
-RUN apt-get install -y make
-RUN apt-get install -y maven
-RUN apt-get install -y nodejs
-RUN apt-get install -y python3
+# Makefile-generated files
+bin/
+lib/
+obj/
 
-# copy project source files to image & remove generated files
-WORKDIR /prime
-COPY . .
-RUN ./setup/setup.sh
+# Maven-generated files
+target
+classes/
+test-classes/
+
+# Python-generated files
+__pycache__/
+
+# END include .gitignore -----------------------------------------------------
+
+# Git files
+.git/
+.gitignore
+
+# Docker files
+.dockerignore
+docker-compose.yaml
+docker/
+
+# Project docs
+**/*.md

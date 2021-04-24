@@ -24,12 +24,12 @@ RUN dnf install -y file less tree vim
 # install project build & run toolchains
 RUN dnf install -y gcc 
 RUN dnf install -y gcc-c++ 
-RUN dnf install -y maven
 RUN dnf install -y make
+RUN dnf install -y maven
 RUN dnf install -y nodejs
 RUN dnf install -y python3
 
 # copy project source files to image & remove generated files
 WORKDIR /prime
 COPY . .
-RUN ./installer/install.sh
+RUN ./setup/setup.sh

@@ -16,10 +16,17 @@ SUBPROJS = $(patsubst %.js, %, $(wildcard app*))
 
 SIEVERANGE = 1000
 
-all: clean test
+all: test
+	@# nothing to build, just run the tests
 
-clean:
-	@# suppress Nothing to be done for `clean' messages
+$(SUBPROJS):
+	@# run one app script by entering e.g. 'make app2' on the command line
+	node $@.js $(SIEVERANGE)
 
 test:
 	@for subproj in $(SUBPROJS); do echo js/$$subproj; node $$subproj $(SIEVERANGE); done
+
+clean install:
+	@# suppress nothing to be done messages
+
+.PHONY: $(SUBPROJS) clean test install

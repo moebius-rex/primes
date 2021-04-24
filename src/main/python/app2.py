@@ -16,7 +16,6 @@
 #
 import sys
 import time
-import math
 
 from sieve import Sieve
 

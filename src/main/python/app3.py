@@ -15,8 +15,6 @@
 # under the License.
 #
 import sys
-import time
-import math
 
 from csieve import CSieve
 

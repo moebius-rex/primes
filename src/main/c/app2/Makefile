@@ -22,15 +22,17 @@ OBJDIR = obj
 
 SIEVERANGE = 1000
 
+INCFLAGS = -I../sieve
+LIBDIR = ../sieve/lib
+
 all: targets $(BINDIR)/app test
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
-	@$(CC) $(CCFLAGS) -c $? -o $@
+	@$(CC) $(CCFLAGS) $(INCFLAGS) -c $? -o $@
 
-$(BINDIR)/app : $(OBJDIR)/sieve.o $(OBJDIR)/app.o
-	@$(CC) $(LDFLAGS) $? -o $@
+$(BINDIR)/app : $(OBJDIR)/app.o $(LIBDIR)/libcsieve.so
+	@$(CC) $(LDFLAGS) -L$(LIBDIR) -lcsieve $? -o $@
 
-.PHONY: targets clean test
 targets:
 	-@mkdir -p $(OBJDIR)
 	-@mkdir -p $(BINDIR)
@@ -41,3 +43,5 @@ clean:
 
 test:
 	@$(BINDIR)/app $(SIEVERANGE)
+
+.PHONY: targets clean test

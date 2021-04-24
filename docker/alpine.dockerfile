@@ -37,4 +37,5 @@ RUN apk del openjdk8
 # copy project source files to image & remove generated files
 WORKDIR /prime
 COPY . .
-RUN ./installer/install.sh
+RUN if [ ! -e /usr/local/include ]; then mkdir /usr/local/include; fi
+RUN ./setup/setup.sh

@@ -13,12 +13,10 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-#include <iostream>
-
 #include "sieve.h"
 
 sieve::sieve(int range) {
-  this->impl = csieve_create(range);
+  this->impl = csievex_create(range);
 }
 
 sieve::~sieve() {

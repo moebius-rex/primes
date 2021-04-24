@@ -12,19 +12,24 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-# build and/or run all language sub-projects
 SUBDIRS = src/main
 
 all: maven $(SUBDIRS)
-
-.PHONY: maven $(SUBDIRS) clean test
+	@# compile anything that needs to be compiled and then run
 
 maven:
-	@-mvn -q compile
+	@# compile java classes
+	@mvn -q compile
 
 $(SUBDIRS):
-	$(MAKE) --directory $@
+	@# run make with no arguments for each subdirectory
+	$(MAKE) --no-print-directory --directory $@
 
-clean test:
-	@-mvn -q $@
-	@for subdir in $(SUBDIRS); do $(MAKE) --directory $$subdir $@; done
+clean:
+	@mvn -q $@
+	@for subdir in $(SUBDIRS); do $(MAKE) --no-print-directory --directory $$subdir $@; done
+
+test install:
+	@for subdir in $(SUBDIRS); do $(MAKE) --no-print-directory --directory $$subdir $@; done
+
+.PHONY: maven $(SUBDIRS) clean test install

@@ -16,13 +16,20 @@ SUBPROJS = $(patsubst %.py, %, $(wildcard app*))
 
 SIEVERANGE = 1000
 
-all: clean test
+all: test
+	@# nothing to build, just run the tests
 
 $(SUBPROJS):
-	./$@.py $(SIEVERANGE)
+	@# run one app script by entering e.g. 'make app2' on the command line
+	python3 $@.py $(SIEVERANGE)
 
 clean:
 	@$(RM) -r __pycache__
 
 test:
 	@for subproj in $(SUBPROJS); do echo python/$$subproj; ./$$subproj.py $(SIEVERANGE); done
+
+install:
+	@# suppress nothing to be done messages
+
+.PHONY: $(SUBPROJS) clean test install
