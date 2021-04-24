@@ -14,15 +14,28 @@
 
 SUBDIRS := $(wildcard app*)
 
-all: sieve $(SUBDIRS)
+all: sieve sievex $(SUBDIRS)
+	@# compile anything that needs to be compiled and then run
 
-.PHONY: sieve $(SUBDIRS) clean test
 sieve:
-	$(MAKE) --directory $@
+	@# run make with no arguments for sieve subdirectory
+	$(MAKE) --no-print-directory --directory $@
+
+sievex:
+	@# run make with no arguments for sievex subdirectory
+	$(MAKE) --no-print-directory --directory $@
 
 $(SUBDIRS):
-	$(MAKE) --directory $@
+	@# run make with no arguments for each subdirectory
+	$(MAKE) --no-print-directory --directory $@
 
 clean test:
-	@$(MAKE) --directory sieve $@
-	@for subdir in $(SUBDIRS); do $(MAKE) --directory $$subdir $@; done
+	@$(MAKE) --no-print-directory --directory sieve $@
+	@$(MAKE) --no-print-directory --directory sievex $@
+	@for subdir in $(SUBDIRS); do $(MAKE) --no-print-directory --directory $$subdir $@; done
+
+install:
+	@$(MAKE) --no-print-directory --directory sieve $@
+	@$(MAKE) --no-print-directory --directory sievex $@
+
+.PHONY: sieve sievex $(SUBDIRS) clean test install

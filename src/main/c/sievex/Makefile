@@ -15,33 +15,36 @@
 CC = gcc
 CCFLAGS = -std=c11 -Wall -Werror -pedantic -fPIC
 SOFLAGS = -shared
-LDFLAGS = -lm
+LDFLAGS = 
 
 SRCDIR = .
 BINDIR = bin
 LIBDIR = lib
 OBJDIR = obj
 
+CINCDIR = -I/usr/local/include
+CLIBDIR = /usr/local/lib
+
 SIEVERANGE = 1000
 
-all: targets $(LIBDIR)/libcsieve.a $(LIBDIR)/libcsieve.so $(BINDIR)/appa $(BINDIR)/appso test
+all: targets $(LIBDIR)/libcsievex.a $(LIBDIR)/libcsievex.so $(BINDIR)/appa $(BINDIR)/appso test
 
 .PRECIOUS: $(OBJDIR)/%.o  # only way to suppress the 'rm obj/...' message
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
-	@$(CC) $(CCFLAGS) -c $? -o $@
+	@$(CC) $(CCFLAGS) $(CINCDIR) -c $? -o $@
 
 $(LIBDIR)/lib%.a : $(OBJDIR)/%.o
 	@$(AR) -cq $@ $?
 
-$(LIBDIR)/lib%.so : $(OBJDIR)/%.o
-	@$(CC) $(SOFLAGS) $? -o $@
+$(LIBDIR)/lib%.so : $(OBJDIR)/%.o $(CLIBDIR)/libcsieve.so
+	@$(CC) $(SOFLAGS) -L$(CLIBDIR) -lcsieve $? -o $@
 
-$(BINDIR)/appa : $(OBJDIR)/app.o $(LIBDIR)/libcsieve.a
+$(BINDIR)/appa : $(OBJDIR)/app.o $(LIBDIR)/libcsievex.a $(CLIBDIR)/libcsieve.a
 	@$(CC) $(LDFLAGS) $? -o $@
 
-$(BINDIR)/appso : $(OBJDIR)/app.o $(LIBDIR)/libcsieve.so
-	@$(CC) $(LDFLAGS) -L$(LIBDIR) -lcsieve $? -o $@
+$(BINDIR)/appso : $(OBJDIR)/app.o $(LIBDIR)/libcsievex.so $(CLIBDIR)/libcsieve.so
+	@$(CC) $(LDFLAGS) -L$(CLIBDIR) -lcsieve -L$(LIBDIR) -lcsievex $? -o $@
 
 targets:
 	-@mkdir -p $(OBJDIR)
@@ -57,9 +60,9 @@ test: $(BINDIR)/appa $(BINDIR)/appso
 	@$(BINDIR)/appa $(SIEVERANGE)
 	@$(BINDIR)/appso $(SIEVERANGE)
 
-install: targets $(LIBDIR)/libcsieve.a $(LIBDIR)/libcsieve.so $(SRCDIR)/csieve.h
-	@ln -sf $${PWD}/lib/libcsieve.a   /usr/local/lib 
-	@ln -sf $${PWD}/lib/libcsieve.so  /usr/local/lib
-	@ln -sf $${PWD}/csieve.h          /usr/local/include
+install: targets $(LIBDIR)/libcsievex.a $(LIBDIR)/libcsievex.so $(SRCDIR)/csievex.h
+	@ln -sf $${PWD}/lib/libcsievex.a   /usr/local/lib 
+	@ln -sf $${PWD}/lib/libcsievex.so  /usr/local/lib
+	@ln -sf $${PWD}/csievex.h          /usr/local/include
 
 .PHONY: targets clean test install

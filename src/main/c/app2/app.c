@@ -16,9 +16,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "sieve.h"
+#include "csieve.h"
 
-int read_range(int range) {
+static int read_range(int range) {
   if (range == 0) {
     char buf[100];
     printf("Enter highest integer to test for primeness: ");
@@ -32,19 +32,10 @@ int main(int argc, char* argv[]) {
   printf("Sieve of Eratosthenes: Find all prime numbers in a given range\n");
 
   int range = argc > 1 ? atoi(argv[1]) : 0;
-  sieve* sieve = sieve_create(read_range(range));
-  sieve_compute_primes(sieve);
-  sieve_print_primes(sieve);
-
-  // for valgrind
-  int *copy = sieve_get_primes(sieve);
-  for (int i = 0; i < sieve_get_count(sieve); ++i) {
-    int prime = copy[i];
-    (void) prime;
-  }
-  free(copy);
-
-  sieve_destroy(sieve);
+  csieve* sieve = csieve_create(read_range(range));
+  csieve_compute_primes(sieve);
+  csieve_print_primes(sieve);
+  csieve_destroy(sieve);
 
   return 0;
 }

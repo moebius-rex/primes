@@ -15,29 +15,37 @@
  */
 #pragma once
 
+#include "csieve.h"
+
 // allow C++ source to include C functions
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 /**
  * Computes prime numbers in a given range using an implementation of the
  * Sieve of Eratosthenes algorithm.
+ * 
+ * Extended version of csieve that adds function pointers. However,
+ * data encapsulation is now broken because the csieve pointer is exposed
+ * and can therefore be manipulated.
  */
-struct csieve_t;
-typedef struct csieve_t csieve;
+typedef struct csievex_t {
+  void    (*destroy)(struct csievex_t*);
 
-csieve *csieve_create(int);
-void csieve_destroy(csieve *);
+  void    (*compute_primes)(struct csievex_t*);
+  void    (*print_primes)(const struct csievex_t*);
 
-void csieve_compute_primes(csieve *);
-void csieve_print_primes(const csieve *);
+  int*    (*get_primes)(const struct csievex_t*);
+  int     (*get_range)(const struct csievex_t*);
+  int     (*get_count)(const struct csievex_t*);
+  float   (*get_elapsed)(const struct csievex_t*);
 
-int *csieve_get_primes(const csieve *);
-int csieve_get_range(const csieve *);
-int csieve_get_count(const csieve *);
-float csieve_get_elapsed(const csieve *);
+  csieve* sieve;
+} csievex;
+
+// constructor
+csievex* csievex_create(int);
 
 // allow C++ source to include C functions
 #ifdef __cplusplus
