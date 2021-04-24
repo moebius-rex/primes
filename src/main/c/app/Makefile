@@ -30,7 +30,6 @@ $(OBJDIR)/%.o : $(SRCDIR)/%.c
 $(BINDIR)/app : $(OBJDIR)/app.o
 	@$(CC) $(LDFLAGS) $? -o $@
 
-.PHONY: targets clean test
 targets:
 	-@mkdir -p $(OBJDIR)
 	-@mkdir -p $(BINDIR)
@@ -41,3 +40,5 @@ clean:
 
 test:
 	@$(BINDIR)/app $(SIEVERANGE)
+
+.PHONY: targets clean test

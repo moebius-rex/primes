@@ -12,8 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-JVM = java
-
 MVNDIR = ../../../target/classes
 SRCDIR = com/shaygordon/primes
 
@@ -21,13 +19,17 @@ SUBPROJS = $(patsubst $(SRCDIR)/%.java, %, $(wildcard $(SRCDIR)/App*))
 
 SIEVERANGE = 1000
 
-all: clean test
+all: test
+	@# nothing to build, just run the tests
 
 $(SUBPROJS):
-	$(JVM) -cp $(MVNDIR) $(SRCDIR)/$@ $(SIEVERANGE)
-
-clean:
-	@# suppress Nothing to be done for `clean' messages
+	@# run one app by entering e.g. 'make App2' on the command line
+	java -cp $(MVNDIR) $(SRCDIR)/$@ $(SIEVERANGE)
 
 test:
-	@for subproj in $(SUBPROJS); do echo java/$$subproj; $(JVM) -cp $(MVNDIR) $(SRCDIR)/$$subproj $(SIEVERANGE); done
+	@for subproj in $(SUBPROJS); do echo java/$$subproj; java -cp $(MVNDIR) $(SRCDIR)/$$subproj $(SIEVERANGE); done
+
+clean install:
+	@# suppress nothing to be done messages
+
+.PHONY: $(SUBPROJS) clean test install

@@ -15,10 +15,16 @@
 SUBDIRS := $(wildcard app*)
 
 all: $(SUBDIRS)
+	@# compile anything that needs to be compiled and then run
 
-.PHONY: $(SUBDIRS) clean test
 $(SUBDIRS):
-	$(MAKE) --directory $@
+	@# run make with no arguments for each subdirectory
+	$(MAKE) --no-print-directory --directory $@
 
 clean test:
-	@for subdir in $(SUBDIRS); do $(MAKE) --directory $$subdir $@; done
+	@for subdir in $(SUBDIRS); do $(MAKE) --no-print-directory --directory $$subdir $@; done
+
+install:
+	@# suppress nothing to be done messages
+
+.PHONY: $(SUBDIRS) clean test install
