@@ -1,16 +1,16 @@
-# Primes — The Sieve of Eratosthenes Project
+# The Primes project
 
-**Primes** is a project that implements the **Sieve of Eratosthenes** algorithm in several popular programming languages for educational purposes.
+**Primes** is a project that implements the **Sieve of Eratosthenes** algorithm to find all prime numbers up to a given range. The project implements the algorithm in several commonly used programming languages.
 
 ## Purpose
 
-The purpose of this project is to demonstrate differences and similarities between several popular programming languages by implementing the same algorithm in each language, and to demonstrate the comparative ease or difficulty in implementing the algorithm in each language. The project is *not* intended to provide a bullet-proof and thoroughly documented implementation of the algorithm in the selected languages. The project does *not* provide written documentation explaining the differences between the various language implementations — though it may do in the future — or extolling the virtues of one language over another; the hope instead is that downloaders will find their own uses for the project and its contents, that the set of languages will grow and that more language features will be explored as — or *if* — the project's momentum grows.
+The purpose of this project is to demonstrate differences and similarities between several popular programming languages by implementing the same algorithm in each language, and to demonstrate the comparative ease or difficulty in implementing the algorithm in each language. The project is *not* intended to provide a bullet-proof and thoroughly documented implementation of the algorithm in the selected languages. The project does *not* provide written documentation explaining the differences between the various language implementations — though it may do in the future — nor does it extol  the virtues of one language over another; the hope instead is that downloaders will find their own uses for the project and its contents, that the set of languages will grow, and that more language features will be explored as the project's momentum grows.
 
 ## Features
 
-Each language-specific implementation of the Sieve of Eratosthenes algorithm comes in two versions:
-- A naïve version that brute forces a solution. In other words, a hack — difficult to read and consequently, difficult to maintain.
-- One or more object-oriented versions that should be more maintainable and use the best practices of the language. In all languages except C, this means extracting a `Sieve` class as a separate component. In the C implementation, it means extracting a transparent structure containing algorithm data, and functions that use that data to implement the algorithm — basically, a rudimentary C++ with an *explicit* `this` pointer and data encapsulation, but no data hiding.
+Each language-specific implementation of the Sieve of Eratosthenes algorithm comes in a minimum of two versions:
+- A naïve version that brute forces the solution. In other words, a hack — difficult to read and to maintain.
+- One or more object-oriented versions that should be more maintainable and use the best practices of the language. In all languages except C, this means extracting a `Sieve` class as a separate component. In the C implementation, it means extracting a opaque structure containing algorithm state, and non-member functions to implement the algorithm and access its results — basically, a rudimentary C++ class with an *explicit* `this` pointer and some data encapsulation.
 
 Project features include:
 
@@ -20,8 +20,13 @@ Project features include:
   - Java
   - JavaScript
   - Python
-- One C++ and one Python implentation are derived by wrapping a C implementation. Similar Java and server-side JavaScript (node.js) implementations will follow.
-- The project uses **Maven** under the hood to build Java implementations and GNU **Makefile** to build C and C++ implementations and to run all implementations.
+- One **C++** and one **Python** implentation are derived by wrapping a **C** implementation. Similar **Java** and server-side **JavaScript** (**node.js**) implementations will follow.
+- The project uses GNU **make** to:
+  - compile and link C and C++ implementations,
+  - install reusable libraries, shared objects and header files,
+  - run all, or a subset of, implementations,
+  - remove generated files.
+- The project uses **Maven** behind the scenes to compile and package Java implementations.
 - All implementations are designed to be run from, and print to, a terminal window.
 - Where possible, all implementations produce the identical output for the identical input.
 - All C and C++ implementations produce zero `valgrind` errors or leaks when compiled with gcc/g++ on Debian-based Linux systems.
@@ -42,13 +47,13 @@ The project's Sieve of Eratosthenes implementations have been tested on Ubuntu 2
 
 ## Installation
 
-Follow [these instructions](./installer/README.md) to install the project.
+Follow [these instructions](./setup/README.md) to install the project.
 
 ## Running
 
 Once you've completed the installation, you can run the implementations. To run them all back-to-back (make sure you are in the project home directory):
 
-```
+```bash
 % make
 Sieve of Eratosthenes: Find all prime numbers in a given range
 Prime numbers in range 0-1000 inclusive:
@@ -59,7 +64,7 @@ Found 168 prime(s) in 1000 integers in 4 microseconds
 
 Alternatively, you can run only the implemnatations for a given language:
 
-```
+```bash
 % cd src/main
 % ls
 Makefile  c/        cpp/      java/     js/       python/
@@ -70,7 +75,7 @@ Sieve of Eratosthenes: Find all prime numbers in a given range
 
 And finally, for a given example of a given language:
 
-```
+```bash
 % cd c
 % ls
 Makefile  app/      app2/     app3/     sieve/
@@ -141,7 +146,7 @@ This section contains some notes about this installation.
 
 ### Maven errors
 
-On Ubuntu, the `mvn clean` command invoked by running `make clean` on the project top-level `Makefile` has been seen to cause the following messages to be written to the console. The messages do not appear to affect behavior in any way and can probably be ignored:
+On Ubuntu systems, the `mvn clean` command invoked by running `make clean` on the project top-level `Makefile` causes the following messages to be written to the console. The messages do not appear to affect behavior in any way and can probably be ignored:
 
 ``` 
 WARNING: An illegal reflective access operation has occurred
