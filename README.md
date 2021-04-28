@@ -47,7 +47,7 @@ The project's Sieve of Eratosthenes implementations have been tested on Ubuntu 2
 
 ## Installation
 
-Follow [these instructions](./setup/README.md) to install the project.
+Follow [these instructions](./setup/INSTALL.md) to install the project.
 
 ## Running
 
@@ -88,7 +88,7 @@ Found 168 prime(s) in 1000 integers in 11 microseconds
 
 ## Docker
 
-The project includes **Docker** configuration files that let you build images and launch containers that run the project's Sieve of Eratosthenes implementations in docker containers. If you would like to use Docker **containers** to run the implementations, refer to [this guide](./docker/README.md) for instructions.
+The project includes **Docker** configuration files that let you build images and launch containers that run the project's Sieve of Eratosthenes implementations in docker containers. If you would like to use Docker **containers** to run the implementations, refer to [this guide](./docker/DOCKER.md) for instructions.
 
 ------
 
