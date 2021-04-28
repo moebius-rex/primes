@@ -75,19 +75,6 @@ function getElapsed(start, end) {
   return Math.round(1e3 * (end - start));
 }
 
-/**
- * Read a line from standard input synchronously.
- */
-function readlineSync() {
-  return new Promise((resolve, reject) => {
-    process.stdin.resume();
-    process.stdin.on('data', function (data) {
-      process.stdin.pause();
-      resolve(data);
-    });
-  });
-}
-
 console.log("Sieve of Eratosthenes: Find all prime numbers in a given range");
 
 if (process.argv.length > 2) {

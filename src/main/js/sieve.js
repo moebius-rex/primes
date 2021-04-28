@@ -35,42 +35,48 @@ function createIntegers(range) {
  * Sieve of Eratosthenes algorithm.
  */
 class Sieve {
+  // private data members
+  #integers
+  #primes
+  #start
+  #end
+
   /**
    * Public methods
    */
   constructor(range) {
-    this._integers = createIntegers(range);
-    this._primes = new Array();
+    this.#integers = createIntegers(range);
+    this.#primes = new Array();
   }
   
   computePrimes() {
-    this._start = performance.now();
+    this.#start = performance.now();
 
     // step 1. sieve: tag non-prime inputs
-    this._integers.forEach((val, p) => {
+    this.#integers.forEach((val, p) => {
       if (val) {
         for (var i = p * p; i <= this.range; i += p) {
-          if (this._integers[i]) {
-            this._integers[i] = false;
+          if (this.#integers[i]) {
+            this.#integers[i] = false;
           }
         }
       }
     });
 
     // step 2. add primes to output
-    this._integers.forEach((val, p) => {
+    this.#integers.forEach((val, p) => {
       if (val) {
-        this._primes.push(p);
+        this.#primes.push(p);
       }
     });
   
-    this._end = performance.now();
+    this.#end = performance.now();
   }
 
   printPrimes() {
     console.log("Prime numbers in range 0-" + this.range + " inclusive:");
     const half = Math.floor(this.count / 2);
-    this._primes.forEach((p, n) => {
+    this.#primes.forEach((p, n) => {
       if (half > MAX_HALF) {
         if (n == MAX_HALF) {
           process.stdout.write(".. ");
@@ -86,19 +92,19 @@ class Sieve {
   }
 
   get primes() {
-    return Array.from(this._primes);
+    return Array.from(this.#primes);
   }
 
   get range() {
-    return this._integers.length - 1;
+    return this.#integers.length - 1;
   }
 
   get count() {
-    return this._primes.length;
+    return this.#primes.length;
   }
 
   get elapsed() {
-    return Math.round(1e3 * (this._end - this._start));
+    return Math.round(1e3 * (this.#end - this.#start));
   }
 }
 

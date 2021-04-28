@@ -32,4 +32,5 @@ RUN dnf install -y python3
 # copy project source files to image & remove generated files
 WORKDIR /prime
 COPY . .
-RUN ./setup/setup.sh
+RUN printf "\nexport PATH=\$PATH:/prime\n" >> ~/.bashrc
+RUN setup/setup.sh

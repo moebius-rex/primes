@@ -6,8 +6,6 @@
 
 To download, setup and run the software provided by this project, enter the following commands at a **Linux** or **macOS** (native **Windows** is not supported) shell command prompt:
 
-Installing the Primes project involves th f
-
 ```bash
 % git clone https://github.com/moebius-rex/primes.git
 % cd primes
@@ -15,15 +13,13 @@ Installing the Primes project involves th f
 % make
 ```
 
-If you do not intend to make contributions to the product and wish only to view its files, you can browse the files on [GitHub](https://github.com/moebius-rex/primes/), or download it as a [zip file](https://github.com/moebius-rex/primes/archive/refs/tags/v1.0.0.zip) instead; in either case, it isn't necessary to install the the **Git** version control system.
+The `git clone` command is necessary only if you're thinking about making contributions to the project. If all you want to do is browse or view its files, you can do so on [GitHub](https://github.com/moebius-rex/primes/), or you can download the project source as a [zip file](https://github.com/moebius-rex/primes/archive/refs/tags/v1.0.0.zip); in either case, it isn't necessary to install the the **Git** version control system.
 
-The following sections discuss these steps in more detail, starting with:
+The following sections discuss the above commands in detail, starting with:
 
 ## Prerequisites
 
-The project's software is designed to run on machines equipped with either **Linux** or **macOS**. Before downloading it, you should ensure that the systems on which you intend to run it have the required tools installed:
-
-In addition to the baseline OS installation, the project requires developer tools which may or may not already be installed:
+The project's software runs on **Linux** or **macOS** systems. Before downloading, you should ensure that the systems on which you intend to run it have the required tools installed:
 
 | Tool      | Description                        | Minimum version? |
 | --------- | ---------------------------------- | ---------------- |
