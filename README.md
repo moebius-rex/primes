@@ -62,7 +62,7 @@ Found 168 prime(s) in 1000 integers in 4 microseconds
 [snip]
 ```
 
-Alternatively, you can run only the implemtations for a given language:
+Alternatively, you can run only the implementations for a given language:
 
 ```bash
 % ls src/main
