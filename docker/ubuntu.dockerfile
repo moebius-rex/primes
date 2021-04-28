@@ -29,7 +29,16 @@ RUN apt-get install -y maven
 RUN apt-get install -y nodejs
 RUN apt-get install -y python3
 
+# upgrade nodejs to 14.16.1
+RUN \
+  apt-get install -y curl && \
+  cd ~ && \
+  curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh && \
+  bash nodesource_setup.sh && \
+  apt-get install -y nodejs
+
 # copy project source files to image & remove generated files
 WORKDIR /prime
 COPY . .
-RUN ./setup/setup.sh
+RUN printf "\nexport PATH=\$PATH:/prime\n" >> ~/.bashrc
+RUN setup/setup.sh
