@@ -26,9 +26,9 @@ do
 
   # make commands
   case ${cmd} in
-    make)   make       ;;
-    clean)  make clean ;;
-    all)    make all   ;;
+    make)  make       ;;
+    clean) make clean ;;
+    all)   make all   ;;
     
     c|cpp|java|js|python)
       cd ${home}/src/main/${cmd}; make $@ ;;
@@ -51,12 +51,16 @@ do
     nuke)
       docker compose down      &&
       docker system  prune -af &&
+      make   clean             &&
       docker compose build
       ;;
 
     alpine|fedora|ubuntu)
       if [ ! -z $@ ]; then
-        docker compose exec ${cmd} $@
+        case $@ in
+          clean|all) docker compose exec ${cmd} ./${self} $@ ;;
+          *)         docker compose exec ${cmd} $@           ;;
+        esac
       else
         docker compose exec ${cmd} make
       fi

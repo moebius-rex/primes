@@ -9,8 +9,8 @@ To download, setup and run the software provided by this project, enter the foll
 ```bash
 % git clone https://github.com/moebius-rex/primes.git
 % cd primes
-% sudo ./setup/setup.sh
-% make
+% sudo setup/setup.sh
+% prime
 ```
 
 The `git clone` command is necessary only if you're thinking about making contributions to the project. If all you want to do is browse or view its files, you can do so on [GitHub](https://github.com/moebius-rex/primes/), or you can download the project source as a [zip file](https://github.com/moebius-rex/primes/archive/refs/tags/v1.0.0.zip); in either case, it isn't necessary to install the the **Git** version control system.
@@ -55,9 +55,9 @@ Resolving deltas: 100% (447/447), done.
 You'll see the project home directory contains the following files:
 
 ```bash
-% ls primes
-LICENSE              README.md            docker-compose.yaml  pom.xml
-Makefile             docker/              setup/           src/
+% ls -F primes
+LICENSE              README.md            docker-compose.yaml  prime*               src/
+Makefile             docker/              pom.xml              setup/
 ```
 
 Here's a brief description of each file:
@@ -69,6 +69,7 @@ Here's a brief description of each file:
 | `Makefile`            | plain text         | A file used by the **make** command to orchestrate  compiling, running and managing  the project's implementations of the primes algorithm. |
 | `docker-compose.yaml` | YAML               | A **Docker** configuration file that may be used to create Docker images that contain reduced-size versions of this project on several Linux platforms, and to launch containers that can run all of the algorithms. |
 | `pom.xml`             | XML                | A **Maven** confuguration file that determines how to build the Jaca components of this project. |
+| prime | bash script | A simple shell script that simplifies building Docker images and launching Docker containers to run the project. |
 | `setup/`          | directory          | Contains a shell script, **setup.sh**, that sets up a few key components of this project.  See the section below this one for more. |
 | `docker/`             | directory          | Contains **Docker** configuration files that may be used to generate Docker images of this project on **Alpine**, **Fedora** and **Ubuntu** Linux systems. |
 | `src/`                | directory          | The project source tree. It contains all implementations of the Sieve of Eratosthenes algorithm in different programming languages. |
@@ -102,9 +103,11 @@ Now you are ready to run implementations of the primes algorithm. The project us
 % make
     OR
 % make all
+    OR
+% prime
 ```
 
-The `make` command, with no arguments, or with only the `all` argument, runs all implementations of the algorithm. You should see output like this:
+The `make` or `prime` command, with no arguments, or with only the `all` argument, runs all implementations of the algorithm. You should see output like this:
 
 ```bash
 % make
@@ -117,6 +120,8 @@ Prime numbers in range 0-1000 inclusive:
 Found 168 prime(s) in 1000 integers in 4 microseconds
 [snip]
 ```
+
+The `prime` command is a small `bash` script that includes basic `make` commands to run project algorithms and also to build, startup, shutdown and remove Docker images provided with the project.  
 
 Return to the [main document](../README.md) to learn more about the project, or continue reading here to see how to install missing tools packages in different environments.
 
