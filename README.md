@@ -145,15 +145,7 @@ This section contains some notes about this installation.
 
 ### Maven errors
 
-On Ubuntu systems, the `mvn clean` command invoked by running `make clean` on the project top-level `Makefile` causes the following messages to be written to the console. The messages do not appear to affect behavior in any way and can probably be ignored:
-
-``` 
-WARNING: An illegal reflective access operation has occurred
-WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/usr/share/maven/lib/guice.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
-WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
-WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
-WARNING: All illegal access operations will be denied in a future release
-```
+On Ubuntu systems, Maven commands issued by the project's top-level `Makefile` cause the error message `WARNING: An illegal reflective access operation has occurred` and others to be written to the console. The messages do not appear to affect behavior in any way and have been suppressed in Primes release 1.1.0.
 
 ### Java version
 
