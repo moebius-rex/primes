@@ -13,6 +13,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+####
+# See the help text below for a sense of what this script can do. There are
+# plenty of ways it can break, but when it works it's very handy.
+##
+
+# build and run everything if no subcommands given
 if [ $# == 0 ]; then
   make
   exit $?
@@ -24,23 +31,54 @@ for cmd in $@
 do
   shift
 
-  # make commands
+  # help subcommand
   case ${cmd} in
-    make)  make       ;;
-    clean) make clean ;;
-    all)   make all   ;;
-    
-    c|cpp|java|js|python)
-      cd ${home}/src/main/${cmd}; make $@ ;;
+    help)
+      echo
+      echo "Script to simplify building and running Primes project algorithms."
+      echo
+      echo "Basic command examples:"
+      echo "    % prime               # [build and] run all impls locally"
+      echo "    % prime java          # [build and] run java impls only"
+      echo
+      echo "Docker command examples:"
+      echo "    % prime build         # build all docker images"
+      echo "    % prime up            # start all docker containers"
+      echo "    % prime ubuntu        # [build and] run all impls in ubuntu container"
+      echo "    % prime fedora bash   # open bash shell in fedora container"
+      echo
+      echo "Docker commands can be chained together, for example, the following command"
+      echo "stops all docker containers, rebuilds docker images, restarts containers and"
+      echo "opens a bash shell in the alpine container:"
+      echo
+      echo "    % prime down build up alpine bash"
+      echo
+      continue
   esac
 
-  # skip docker commands if we're in a container
+  # make subcommands
+  case ${cmd} in
+    make)  make       ; continue ;;
+    clean) make clean ; continue ;;
+    all)   make all   ; continue ;;
+    
+    c|js)
+      cd ${home}/src/main/${cmd}; make $@ ; continue ;;
+    cpp|python)
+      make install
+      cd ${home}/src/main/${cmd}; make $@ ; continue ;;
+    java)
+      mvn -q compile 2> /dev/null
+      cd ${home}/src/main/${cmd}; make $@ ; continue ;;
+  esac
+
+  # skip docker commands if we're already running in a container
   if [ -f /.dockerenv ]; then                                     
     echo "${cmd}: already running in a docker container"
-    exit 1                                      
+    continue                                      
   fi                                            
 
-  # docker commands
+  # docker subcommands
   case ${cmd} in
     up)    docker compose up -d     ;;
     down)  docker compose down      ;;

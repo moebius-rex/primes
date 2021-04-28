@@ -53,6 +53,21 @@ csieve.csieve_print_primes.argtypes = [
 ]
 csieve.csieve_print_primes.restype = None
 
+csieve.csieve_get_primes.argtypes = [
+	POINTER(_CSieve)  # self
+]
+csieve.csieve_get_primes.restype = POINTER(c_int)
+
+csieve.csieve_get_range.argtypes = [
+	POINTER(_CSieve)  # self
+]
+csieve.csieve_get_range.restype = c_int
+
+csieve.csieve_get_count.argtypes = [
+	POINTER(_CSieve)  # self
+]
+csieve.csieve_get_count.restype = c_int
+
 csieve.csieve_get_elapsed.argtypes = [
 	POINTER(_CSieve)  # self
 ]
@@ -74,6 +89,15 @@ class CSieve:
 
 	def print_primes(self):
 		csieve.csieve_print_primes(self.impl)
+
+	def get_primes(self):
+		return csieve.csieve_get_primes(self.impl)
+
+	def get_range(self):
+		return csieve.csieve_get_range(self.impl)
+
+	def get_count(self):
+		return csieve.csieve_get_count(self.impl)
 
 	def get_elapsed(self):
 		return csieve.csieve_get_elapsed(self.impl)

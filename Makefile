@@ -19,14 +19,14 @@ all: maven $(SUBDIRS)
 
 maven:
 	@# compile java classes
-	@mvn -q compile
+	@mvn -q compile 2> /dev/null
 
 $(SUBDIRS):
 	@# run make with no arguments for each subdirectory
 	$(MAKE) --no-print-directory --directory $@
 
 clean:
-	@mvn -q $@
+	@mvn -q $@ 2> /dev/null
 	@for subdir in $(SUBDIRS); do $(MAKE) --no-print-directory --directory $$subdir $@; done
 
 test install:
