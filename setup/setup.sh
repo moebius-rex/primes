@@ -14,6 +14,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# do we have write access?
+if ! test -w /usr/local/lib; then
+  if [ ! -z $SUDO_USER ]; then
+    echo "This script needs write access to certain system directories."
+    echo "Rerun the script with superuser privileges as follows:"
+    echo
+    echo "    sudo $0"
+    echo
+    exit 1
+  fi
+fi
+
 # get the normalized path of this script's parent directory, i.e., the
 # project home directory
 projpath=$(pwd)/$(dirname $0)     # current directory
@@ -44,4 +56,10 @@ fi
 # run sieve shared library test apps
 cd ${projpath}/src/main/c/sieve;  make test  > /dev/null 2>&1
 cd ${projpath}/src/main/c/sievex; make test  > /dev/null 2>&1
-cd ${projpath};                   make clean > /dev/null 2>&1
+
+# if running in sudo, remove generated files and create as invoking user
+# if [ ! -z $SUDO_USER ]; then
+#   echo "Removing sudo user generated files and recreating with user ${SUDO_USER}"
+#   make clean
+#   su - ${SUDO_USER} -c "cd ${projpath}; make install > /dev/null 2>&1"
+# fi
