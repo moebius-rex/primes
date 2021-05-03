@@ -22,8 +22,9 @@ RUN dnf upgrade -y
 RUN dnf install -y file less tree vim
 
 # install project build & run toolchains
-RUN dnf install -y gcc 
-RUN dnf install -y gcc-c++ 
+RUN dnf install -y gcc
+RUN dnf install -y gcc-c++
+RUN dnf install -y go
 RUN dnf install -y make
 RUN dnf install -y maven
 RUN dnf install -y nodejs

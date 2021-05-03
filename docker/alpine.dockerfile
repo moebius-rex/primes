@@ -23,8 +23,9 @@ RUN apk add file less tree vim
 
 # install project build & run toolchains
 RUN apk add bash
-RUN apk add gcc 
-RUN apk add g++ 
+RUN apk add gcc
+RUN apk add go
+RUN apk add g++
 RUN apk add make
 RUN apk add maven
 RUN apk add nodejs
