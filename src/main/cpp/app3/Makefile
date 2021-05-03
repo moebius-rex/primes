@@ -22,8 +22,8 @@ OBJDIR = obj
 
 SIEVERANGE = 1000
 
-INCFLAGS = -I../../c/sievex -I../../c/sieve
-LIBDIR = ../../c/sievex/lib
+INCFLAGS = -I/usr/local/include
+LIBDIR = /usr/local/lib/
 
 all: targets $(BINDIR)/app test
 
