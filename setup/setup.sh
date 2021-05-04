@@ -6,7 +6,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#		 http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -42,24 +42,17 @@ make clean install > /dev/null 2>&1
 
 # add sieve shared library to loader config if required
 if [ ! -z $(command -v ldconfig) ]; then
-	confdir=/etc/ld.so.conf.d
-	if [ -d ${confdir} ]; then
-		cp ${projpath}/setup/libcsieve.so.conf ${confdir}
-	else
-		# some systems, like alpine, don't use a config directory, so just try to
+  confdir=/etc/ld.so.conf.d
+  if [ -d ${confdir} ]; then
+    cp ${projpath}/setup/libcsieve.so.conf ${confdir}
+  else
+    # some systems, like alpine, don't use a config directory, so just try to
     # make sure the loader knows to look in /usr/local/lib
-		ldconfig -n /usr/local/lib
-	fi
-	ldconfig
+    ldconfig -n /usr/local/lib
+  fi
+  ldconfig
 fi
 
 # run sieve shared library test apps
-cd ${projpath}/src/main/c/sieve;  make test  > /dev/null 2>&1
-cd ${projpath}/src/main/c/sievex; make test  > /dev/null 2>&1
-
-# if running in sudo, remove generated files and create as invoking user
-# if [ ! -z $SUDO_USER ]; then
-#   echo "Removing sudo user generated files and recreating with user ${SUDO_USER}"
-#   make clean
-#   su - ${SUDO_USER} -c "cd ${projpath}; make install > /dev/null 2>&1"
-# fi
+cd ${projpath}/src/main/c/sieve;  make test > /dev/null 2>&1
+cd ${projpath}/src/main/c/sievex; make test > /dev/null 2>&1
