@@ -62,7 +62,7 @@ do
     clean) make clean ; continue ;;
     all)   make all   ; continue ;;
     
-    c|js)
+    c|go|js)
       cd ${home}/src/main/${cmd}; make $@ ; continue ;;
     cpp|python)
       make install
@@ -73,10 +73,10 @@ do
   esac
 
   # skip docker commands if we're already running in a container
-  if [ -f /.dockerenv ]; then                                     
+  if [ -f /.dockerenv ]; then
     echo "${cmd}: already running in a docker container"
-    continue                                      
-  fi                                            
+    continue
+  fi
 
   # docker subcommands
   case ${cmd} in
