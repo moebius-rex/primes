@@ -21,7 +21,7 @@ Project features include:
   - Java
   - JavaScript
   - Python
-- One **C++**, one **Go** and one **Python** implentation are derived by wrapping a **C** implementation. Similar **Java** and server-side **JavaScript** (**node.js**) implementations may follow.
+- One **C++**, one **Go** and one **Python** implentation are derived by wrapping a **C** implementation. Similar Java and server-side JavaScript implementations may follow.
 - The project uses GNU **make** to:
   - compile and link C, C++ and Go implementations,
   - install reusable libraries, shared objects and header files,
@@ -36,16 +36,16 @@ Project features include:
 
 ## Environments
 
-The project's Sieve of Eratosthenes implementations have been tested on Ubuntu 20.04 LTS and Mac OS 11.2. Containerized versions of the implementations have been tested on Alpine Linux, Fedora and Ubuntu Focal. The following language and tool versions were used:
+The project's Sieve of Eratosthenes implementations have been tested on Ubuntu 18.04 LTS and Mac OS 11.2. Containerized versions of the implementations have been tested on Alpine Linux, Fedora and Ubuntu. The following language and tool versions were used:
 
-| Language       | Tool     | Version   |
-| :------------- | -------- | --------- |
-| C              | gcc      | C11       |
-| C++            | g++      | C++17     |
-| Go             | Go       | 1.16.3    |
-| Java           | javac    | SE 11 LTS |
-| JavaScript ES5 | node.js  | 14.16 LTS |
-| Python         | pyrthon3 | 3.8       |
+| Language       | Tool    | Version   |
+| :------------- | ------- | --------- |
+| C              | gcc     | C11       |
+| C++            | g++     | C++17     |
+| Go             | go      | 1.16.3    |
+| Java           | javac   | SE 11 LTS |
+| JavaScript ES5 | node.js | 14.16 LTS |
+| Python         | python3 | 3.8       |
 
 ## Installation
 
