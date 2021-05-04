@@ -27,18 +27,19 @@ import (
  * Sieve of Eratosthenes algorithm.
  */
 
-func get_range() (r int64, err error) {
+func read_range() (r int64, err error) {
+	// read range from command line
 	if len(os.Args) > 1 {
-		r, err = strconv.ParseInt(os.Args[1], 10, 0)
-		if err != nil {
+		if r, err = strconv.ParseInt(os.Args[1], 10, 0); err != nil {
 			return 0, fmt.Errorf("not an integer: %v", os.Args[1])
 		}
 		if r < 0 {
-			return 0, fmt.Errorf("invalid range: %d", r)
+			return 0, fmt.Errorf("negative range: %d", r)
 		}
 		return r, nil
 	}
 
+	// read range from user input
 	fmt.Print("Enter highest integer to test for primeness: ")
 	if _, err := fmt.Scanf("%d", &r); err != nil {
 		return 0, fmt.Errorf("not an integer")
@@ -91,7 +92,7 @@ func get_count(primes []bool) int {
 
 func main() {
 	fmt.Println("Sieve of Eratosthenes: Find all prime numbers in a given range")
-	r, e := get_range()
+	r, e := read_range()
 	if e != nil {
 		fmt.Printf("Error: %v\n", e)
 		os.Exit(1)
