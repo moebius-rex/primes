@@ -44,7 +44,7 @@ type Sieve struct {
 	elapsed  time.Duration // time taken to complete algo, in microseconds
 }
 
-func NewSieve(r int) (s *Sieve, err error) {
+func New(r int) (s *Sieve, err error) {
 	if r < 0 {
 		return nil, fmt.Errorf("range is negative: %d", r)
 	}
