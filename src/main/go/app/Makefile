@@ -34,7 +34,7 @@ clean:
 test:
 	@$(BINDIR)/app $(SIEVERANGE)
 
-tidy:
-	@$(GO) mod tidy
+install:
+	@$(GO) install
 
-.PHONY: targets clean test tidy
+.PHONY: targets clean test install
