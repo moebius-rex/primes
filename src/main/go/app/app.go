@@ -28,7 +28,6 @@ import (
  */
 
 func read_range() (r int64, err error) {
-	// read range from command line
 	if len(os.Args) > 1 {
 		if r, err = strconv.ParseInt(os.Args[1], 10, 0); err != nil {
 			return 0, fmt.Errorf("not an integer: %v", os.Args[1])
@@ -39,7 +38,6 @@ func read_range() (r int64, err error) {
 		return r, nil
 	}
 
-	// read range from user input
 	fmt.Print("Enter highest integer to test for primeness: ")
 	if _, err := fmt.Scanf("%d", &r); err != nil {
 		return 0, fmt.Errorf("not an integer")
@@ -100,8 +98,8 @@ func main() {
 	start_time := time.Now()
 	primes := compute_primes(int(r))
 	print_primes(primes)
-	count := get_count(primes)
 	end_time := time.Now()
+	count := get_count(primes)
 	elapsed := end_time.Sub(start_time) / 1000
 	fmt.Printf("Found %d prime(s) in %d integers in %d microseconds\n\n",
 		count, r, elapsed)
