@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-#
 # Copyright 2021 Shay Gordon
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,32 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-import sys
 
-from csieve import CSieve
+SUBDIRS := $(wildcard app*)
 
-def read_range(range):
-	if (range == 0):
-		range = int(input("Enter highest integer to test for primeness: "))
-	return range
+all: $(SUBDIRS)
+	@# compile anything that needs to be compiled and then run
 
-def main():
-	print("Sieve of Eratosthenes: Find all prime numbers in a given range")
+$(SUBDIRS):
+	@# run make with no arguments for each subdirectory
+	$(MAKE) --no-print-directory --directory $@
 
-	range = 0
-	if len(sys.argv) > 1:
-		try:
-			range = int(sys.argv[1])
-		except ValueError:
-			pass
+clean test install:
+	@for subdir in $(SUBDIRS); do $(MAKE) --no-print-directory --directory $$subdir $@; done
 
-	csieve = CSieve(read_range(range))
-	csieve.compute_primes()
-	csieve.print_primes()
-	csieve.destroy()
-
-	return 0
-
-if __name__ == "__main__":
-	sys.exit(main())
+.PHONY: $(SUBDIRS) clean test install

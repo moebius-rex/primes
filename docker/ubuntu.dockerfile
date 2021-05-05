@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ubuntu
+FROM ubuntu:bionic
 
 # update package list & upgrade
 RUN apt-get update  -y
@@ -22,8 +22,9 @@ RUN apt-get upgrade -y
 RUN apt-get install -y file less tree vim
 
 # install project build & run toolchains
-RUN apt-get install -y gcc 
-RUN apt-get install -y g++ 
+RUN apt-get install -y gcc
+RUN apt-get install -y golang-go
+RUN apt-get install -y g++
 RUN apt-get install -y make
 RUN apt-get install -y maven
 RUN apt-get install -y nodejs

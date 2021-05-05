@@ -6,13 +6,25 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#		 http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+# do we have write access?
+if ! test -w /usr/local/lib; then
+  if [ ! -z $SUDO_USER ]; then
+    echo "This script needs write access to certain system directories."
+    echo "Rerun the script with superuser privileges as follows:"
+    echo
+    echo "    sudo $0"
+    echo
+    exit 1
+  fi
+fi
 
 # get the normalized path of this script's parent directory, i.e., the
 # project home directory
@@ -30,18 +42,17 @@ make clean install > /dev/null 2>&1
 
 # add sieve shared library to loader config if required
 if [ ! -z $(command -v ldconfig) ]; then
-	confdir=/etc/ld.so.conf.d
-	if [ -d ${confdir} ]; then
-		cp ${projpath}/setup/libcsieve.so.conf ${confdir}
-	else
-		# some systems, like alpine, don't use a config directory, so just try to
+  confdir=/etc/ld.so.conf.d
+  if [ -d ${confdir} ]; then
+    cp ${projpath}/setup/libcsieve.so.conf ${confdir}
+  else
+    # some systems, like alpine, don't use a config directory, so just try to
     # make sure the loader knows to look in /usr/local/lib
-		ldconfig -n /usr/local/lib
-	fi
-	ldconfig
+    ldconfig -n /usr/local/lib
+  fi
+  ldconfig
 fi
 
 # run sieve shared library test apps
-cd ${projpath}/src/main/c/sieve;  make test  > /dev/null 2>&1
-cd ${projpath}/src/main/c/sievex; make test  > /dev/null 2>&1
-cd ${projpath};                   make clean > /dev/null 2>&1
+cd ${projpath}/src/main/c/sieve;  make test > /dev/null 2>&1
+cd ${projpath}/src/main/c/sievex; make test > /dev/null 2>&1

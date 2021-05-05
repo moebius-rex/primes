@@ -13,7 +13,7 @@ To download, setup and run the software provided by this project, enter the foll
 % prime
 ```
 
-The `git clone` command is necessary only if you're thinking about making contributions to the project. If all you want to do is browse or view its files, you can do so on [GitHub](https://github.com/moebius-rex/primes/), or you can download the project source as a [zip file](https://github.com/moebius-rex/primes/archive/refs/tags/v1.0.0.zip); in either case, it isn't necessary to install the the **Git** version control system.
+The `git clone` command is necessary only if you wish to contribute to the project. If all you want to do is browse or view its files, you can do so on [GitHub](https://github.com/moebius-rex/primes/), or you can download the project source as a [zip file](https://github.com/moebius-rex/primes/archive/refs/tags/v1.0.0.zip); in either case, it isn't necessary to install the the **Git** version control system.
 
 The following sections discuss the above commands in detail, starting with:
 
@@ -27,6 +27,7 @@ The project's software runs on **Linux** or **macOS** systems. Before downloadin
 | `gcc`     | GNU C compiler and linker          | C11              |
 | `g++`     | GNU C++ compiler and linker        | C++17            |
 | `git`     | Version control system             |                  |
+| `go`      | Go compiler and linker             | Go 1.16          |
 | `make`    | Build automation tool              |                  |
 | `maven`   | Java build automation tool         |                  |
 | `node.js` | Server-side JavaScript interpreter |                  |
@@ -69,7 +70,7 @@ Here's a brief description of each file:
 | `Makefile`            | plain text         | A file used by the **make** command to orchestrate  compiling, running and managing  the project's implementations of the primes algorithm. |
 | `docker-compose.yaml` | YAML               | A **Docker** configuration file that may be used to create Docker images that contain reduced-size versions of this project on several Linux platforms, and to launch containers that can run all of the algorithms. |
 | `pom.xml`             | XML                | A **Maven** confuguration file that determines how to build the Jaca components of this project. |
-| prime | bash script | A simple shell script that simplifies building Docker images and launching Docker containers to run the project. |
+| `prime` | bash script | A simple shell script that simplifies building Docker images and launching Docker containers to run the project. |
 | `setup/`          | directory          | Contains a shell script, **setup.sh**, that sets up a few key components of this project.  See the section below this one for more. |
 | `docker/`             | directory          | Contains **Docker** configuration files that may be used to generate Docker images of this project on **Alpine**, **Fedora** and **Ubuntu** Linux systems. |
 | `src/`                | directory          | The project source tree. It contains all implementations of the Sieve of Eratosthenes algorithm in different programming languages. |
@@ -89,7 +90,7 @@ The next step is to setup the project as follows:
 password: ••••••••
 ```
 
-[`sudo` access is required because the setup script copies files to areas of the file system that are protected by superuser-level access.]
+[`sudo` access is required because the setup script copies files to areas of the file system that are sometimes protected by superuser-level access.]
 
  Once you enter your password, setup proceeds silently until completion (in seconds).
 
@@ -158,6 +159,7 @@ Install any of these packages required by this project:
 % sudo apt install make
 % sudo apt install maven
 % sudo apt install gcc
+% sudo apt install golang-go
 % sudo apt install g++
 % sudo apt install nodejs
 % sudo apt install openjdk-11-jdk
@@ -196,6 +198,7 @@ Install any of the packages required by this project:
 % brew install make
 % brew install maven
 % brew install gcc
+% brew install go
 % brew install g++
 % brew install node
 % brew install openjdk-11-jdk
@@ -218,6 +221,7 @@ To install a package, open a **Windows PowerShell** window *as Administrator* (e
 
 ```
 % choco install git
+% choco install go
 % choco install make
 % choco install maven
 % choco install openjdk11

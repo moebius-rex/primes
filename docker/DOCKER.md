@@ -8,7 +8,7 @@ The Primes project includes **Docker** configuration files that let you build Do
 
 Throughout this guide, the `%` sign is used to indicate the command prompt; what follows the prompt is the command that you enter. All commands must be entered at a command prompt in a terminal window on `macOS` and `Linux` systems, or a `CMD` or `PowerShell` window on `Windows` systems. All commands should be run fron the top level of the Primes project installation, i.e., whatever location on disk you chose to clone the project's contents to.
 
-## Step-by-step Guide
+## Step-by-step guide
 
 ### Summary of steps
 
@@ -30,7 +30,7 @@ The project's `docker` subdirectory provides Docker files to build up to three D
 
 - Alpine 3.13, a container-only Linux distribution.
 - Fedora 3.3, the current version of Fedora.
-- Ubuntu Focal, a version of Ubuntu 20.04 LTS optimized for containers.
+- Ubuntu Bionic, a version of Ubuntu 18.04 LTS optimized for containers.
 
 Each image contains a copy of the project, omitting the `.git` repository, all docker files and project documents. The project files are installed in the `/prime` directory of the Docker image.
 
@@ -168,3 +168,21 @@ Deleted build cache objects:
 [snip]
 Total reclaimed space: 2.272GB
 ```
+
+### Using the `prime` shell script
+
+The project comes with a small shell script in the project's home directory, `prime`, that simplifies building, launching and managing Docker containers. Here are a few example commands:
+
+```bash
+% prime build           # build all docker images
+% prime up              # start all docker containers
+% prime ubuntu          # [build and] run all impls in ubuntu container
+% prime fedora bash     # open bash shell in fedora container
+```
+
+Docker commands can also be chained together, for example, the following command stops all docker containers, deletes and then rebuilds all docker images, restarts containers and opens a bash shell in the alpine container:
+
+```bash
+% prime down prune build up alpine bash 
+```
+

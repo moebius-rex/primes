@@ -17,12 +17,13 @@ Project features include:
 - The sieve algorithm is implemented in the top five most popular programming languages at the time of writing:
   - C
   - C++
+  - Go
   - Java
   - JavaScript
   - Python
-- One **C++** and one **Python** implentation are derived by wrapping a **C** implementation. Similar **Java** and server-side **JavaScript** (**node.js**) implementations will follow.
+- One **C++**, one **Go** and one **Python** implentation are derived by wrapping a **C** implementation. Similar Java and server-side JavaScript implementations may follow.
 - The project uses GNU **make** to:
-  - compile and link C and C++ implementations,
+  - compile and link C, C++ and Go implementations,
   - install reusable libraries, shared objects and header files,
   - run all, or a subset of, implementations,
   - remove generated files.
@@ -35,15 +36,16 @@ Project features include:
 
 ## Environments
 
-The project's Sieve of Eratosthenes implementations have been tested on Ubuntu 20.04 LTS and Mac OS 11.2. Containerized versions of the implementations have been tested on Alpine Linux, Fedora and Ubuntu Focal. The following language and tool versions were used:
+The project's Sieve of Eratosthenes implementations have been tested on Ubuntu 18.04 LTS and Mac OS 11.2. Containerized versions of the implementations have been tested on Alpine Linux, Fedora and Ubuntu. The following language and tool versions were used:
 
-| Language       | Tool     | Version   |
-| :------------- | -------- | --------- |
-| C              | gcc      | C11       |
-| C++            | g++      | C++17     |
-| Java           | javac    | SE 11 LTS |
-| JavaScript ES5 | node.js  | 14.16 LTS |
-| Python         | pyrthon3 | 3.8       |
+| Language       | Tool    | Version   |
+| :------------- | ------- | --------- |
+| C              | gcc     | C11       |
+| C++            | g++     | C++17     |
+| Go             | go      | 1.16.3    |
+| Java           | javac   | SE 11 LTS |
+| JavaScript ES5 | node.js | 14.16 LTS |
+| Python         | python3 | 3.8       |
 
 ## Installation
 
@@ -66,7 +68,7 @@ Alternatively, you can run only the implementations for a given language:
 
 ```bash
 % ls src/main
-Makefile  c/        cpp/      java/     js/       python/
+Makefile  c/        cpp/      go/       java/     js/       python/
 % prime java
 Sieve of Eratosthenes: Find all prime numbers in a given range
 [snip]
@@ -77,7 +79,7 @@ And finally, to run a given example of a given language:
 ```bash
 % cd src/main/c
 % ls
-Makefile  app/      app2/     app3/     sieve/
+Makefile  app/      app2/     sieve/    sievex/
 % make app2/
 Sieve of Eratosthenes: Find all prime numbers in a given range
 Prime numbers in range 0-1000 inclusive:
