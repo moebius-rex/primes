@@ -14,14 +14,19 @@
 
 SUBDIRS := $(wildcard app*)
 
-all: $(SUBDIRS)
+all: sieve $(SUBDIRS)
 	@# compile anything that needs to be compiled and then run
+
+sieve:
+	@# build seive utility package first
+	$(MAKE) --no-print-directory --directory $@
 
 $(SUBDIRS):
 	@# run make with no arguments for each subdirectory
 	$(MAKE) --no-print-directory --directory $@
 
 clean test install:
+	@$(MAKE) --no-print-directory --directory sieve $@
 	@for subdir in $(SUBDIRS); do $(MAKE) --no-print-directory --directory $$subdir $@; done
 
-.PHONY: $(SUBDIRS) clean test install
+.PHONY: sieve $(SUBDIRS) clean test install

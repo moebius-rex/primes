@@ -13,28 +13,19 @@
 # limitations under the License.
 
 GO = go
-GOFLAGS =
 
-SRCDIR = .
-BINDIR = bin
+all: build
 
-SIEVERANGE = 1000
-
-all: targets $(BINDIR)/app test
-
-$(BINDIR)/app : $(SRCDIR)/app.go $(SRCDIR)/sieve.go
-	@$(GO) build $(GOFLAGS) -o $@ $?
-
-targets:
-	-@mkdir -p $(BINDIR)
+build:
+	@$(GO) build .
 
 clean:
-	-@$(RM) -r $(BINDIR)
+	@$(GO) clean
 
 test:
-	@$(GO) run test -v
+	@$(GO) test -v
 
 install:
 	@$(GO) install
 
-.PHONY: targets clean test install
+.PHONY: clean test install

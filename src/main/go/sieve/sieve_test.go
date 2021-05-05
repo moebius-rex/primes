@@ -21,7 +21,7 @@ import (
 
 func TestSieveRange(t *testing.T) {
 	want := 42
-	ps, err := NewSieve(want)
+	ps, err := New(want)
 	if err != nil {
 		t.Errorf("NewSieve(want=%d) errt=%v", want, err)
 	} else {
@@ -34,7 +34,7 @@ func TestSieveRange(t *testing.T) {
 
 func TestSieveNegRange(t *testing.T) {
 	want := -13
-	_, err := NewSieve(want)
+	_, err := New(want)
 	if err == nil {
 		t.Errorf("NewSieve(want=%d) generated no error, err=%v\n", want, err)
 	}
@@ -43,7 +43,7 @@ func TestSieveNegRange(t *testing.T) {
 func TestSievePrimeMap(t *testing.T) {
 	want := 109
 	r := 120
-	ps, err := NewSieve(r)
+	ps, err := New(r)
 	if err != nil {
 		t.Errorf("NewSieve(range=%d) err=%v\n", r, err)
 		return
