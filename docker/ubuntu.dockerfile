@@ -12,11 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 # update package list & upgrade
 RUN apt-get update  -y
 RUN apt-get upgrade -y
+
+# disable all interactive package installation dialogs while building the image
+ARG DEBIAN_FRONTEND=noninteractive
 
 # install utilities
 RUN apt-get install -y file less tree vim
