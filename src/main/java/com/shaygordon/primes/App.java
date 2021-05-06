@@ -39,7 +39,8 @@ public class App {
   private static boolean[] findPrimes(int range) {
     boolean[] prime = new boolean[range + 1];
     Arrays.fill(prime, true);
-    for (int p = 2; p * p < range; p++) {
+    prime[0] = prime[1] = false;
+    for (int p = 0; p * p <= range; p++) {
       if (prime[p]) {
         for (int i = p * p; i <= range; i += p) {
           if (prime[i]) {
@@ -54,7 +55,7 @@ public class App {
   private static int getCount(boolean[] prime) {
     int range = prime.length - 1;
     int count = 0;
-    for (int p = 2; p <= range; p++) {
+    for (int p = 0; p <= range; p++) {
       if (prime[p]) {
         count++;
       }
@@ -65,7 +66,7 @@ public class App {
   private static void printPrimes(boolean[] prime) {
     int range = prime.length - 1;
     System.out.println(String.format("Prime numbers in range 0-%d:", range));
-    for (int p = 2; p <= range; p++) {
+    for (int p = 0; p <= range; p++) {
       if (prime[p]) {
         if (range <= 1000 || range - p <= 1000) {
           System.out.print(p + " ");

@@ -56,7 +56,7 @@ public class Sieve {
     this.startTime = System.nanoTime();
 
     // step 1. sieve: tag non-prime inputs
-    for (int p = 0; p * p < this.range; p++) {
+    for (int p = 0; p * p <= this.range; p++) {
       if (this.integers[p]) {
         for (int i = p * p; i <= this.range; i += p) {
           if (this.integers[i]) {
@@ -67,7 +67,7 @@ public class Sieve {
     }
     
     // step 2. add primes to output
-    for (int index = 0; index < this.range; index++) {
+    for (int index = 0; index <= this.range; index++) {
       if (this.integers[index]) {
         this.primes.add(index);
       }
