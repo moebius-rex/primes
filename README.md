@@ -36,7 +36,7 @@ Project features include:
 
 ## Environments
 
-The project's Sieve of Eratosthenes implementations have been tested on Ubuntu 18.04 LTS and Mac OS 11.2. Containerized versions of the implementations have been tested on Alpine Linux, Fedora and Ubuntu. The following language and tool versions were used:
+The project's Sieve of Eratosthenes implementations have been tested on Ubuntu 18.04 LTS, 20.04 LTS and Mac OS 11.2. Containerized versions of the implementations have been tested on Alpine Linux, Fedora and Ubuntu. The following language and tool versions were used:
 
 | Language       | Tool    | Version   |
 | :------------- | ------- | --------- |

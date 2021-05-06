@@ -28,9 +28,9 @@ The detailed steps below execute the following commands:
 
 The project's `docker` subdirectory provides Docker files to build up to three Docker images, each one based on a different Linux distribution:
 
-- Alpine 3.13, a container-only Linux distribution.
-- Fedora 3.3, the current version of Fedora.
-- Ubuntu Bionic, a version of Ubuntu 18.04 LTS optimized for containers.
+- Alpine 3.13, a container-only Linux distribution
+- Fedora 33
+- Ubuntu 20.04 LTS
 
 Each image contains a copy of the project, omitting the `.git` repository, all docker files and project documents. The project files are installed in the `/prime` directory of the Docker image.
 
