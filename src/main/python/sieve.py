@@ -48,7 +48,8 @@ class Sieve:
     self.start_time = time.time()
 
     # step 1. sieve: tag non-prime inputs
-    for p in range(0, math.ceil(math.sqrt(self.range))):
+    m = int(math.sqrt(self.range)) + 1
+    for p in range(m):
       if self.primes[p]:
         for i in range(p * p, self.range + 1, p):
           if self.primes[i]:

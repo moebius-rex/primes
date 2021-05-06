@@ -28,7 +28,9 @@ def get_range():
 
 def compute_primes(n):
   prime = [True] * (n + 1)
-  for p in range(2, math.ceil(math.sqrt(n))):
+  prime[0] = prime[1] = False
+  m = int(math.sqrt(n)) + 1
+  for p in range(m):
     if prime[p]:
       for i in range(p * p, n + 1, p):
         if prime[i]:
@@ -38,7 +40,7 @@ def compute_primes(n):
 def print_primes(prime):
   n = len(prime)
   print(f"Prime numbers in range 0-{n - 1:d} inclusive:")
-  for p in range(2, n):
+  for p in range(n):
     if prime[p]:
       if n <= 1000 or n - p <= 1000:
         print(p, end = " ")
@@ -57,7 +59,7 @@ def main():
   primes = compute_primes(range)
   elapsed = (time.time() - start_time) * 1_000_000.
   print_primes(primes)
-  count = sum(primes) - 2
+  count = sum(primes)
   print(f"\nFound {count:d} prime(s) in {range:d} integers in {elapsed:.0f} microseconds\n")
   return 0
 
