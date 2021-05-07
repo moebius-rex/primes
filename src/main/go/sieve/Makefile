@@ -13,11 +13,13 @@
 # limitations under the License.
 
 GO = go
+GOFLAGS = -compiler gccgo
+GOFLAGS =
 
 all: build
 
 build:
-	@$(GO) build .
+	@$(GO) build $(GOFLAGS) .
 
 clean:
 	@$(GO) clean
