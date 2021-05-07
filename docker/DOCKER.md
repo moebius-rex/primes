@@ -191,3 +191,6 @@ The actual shell that the `sh` command starts depends on which Linux distributio
 - Alpine Linux starts `ash`, the [Almquist](https://en.wikipedia.org/wiki/Almquist_shell) shell
 - Fedora Linux starts `bash`, the Bourne Again Shell
 - Ubuntu Linux starts `sh`, the Bourne Shell (Ubuntu also includes `bash`)
+
+#### Note
+This project does not support Docker-in-Docker. When we're ready to implement CI, e.g., using Jenkins, we'll create sibling, not child, Docker containers, as outlined in [this blog post](https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/). Therefore, Docker is not installed in project Docker images, and all Docker-related files are excluded from Docker images by the project's `.dockerignore` file.
