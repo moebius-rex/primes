@@ -13,6 +13,7 @@
 # limitations under the License.
 
 GO = go
+GOFLAGS = -compiler gccgo
 GOFLAGS =
 #CGO_LDFLAGS = -L/usr/local/lib -lcsieve
 

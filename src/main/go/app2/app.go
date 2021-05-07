@@ -33,18 +33,12 @@ func readRange() (r int64, err error) {
 		if r, err = strconv.ParseInt(os.Args[1], 10, 0); err != nil {
 			return 0, fmt.Errorf("not an integer: %v", os.Args[1])
 		}
-		if r < 0 {
-			return 0, fmt.Errorf("negative range: %d", r)
-		}
 		return r, nil
 	}
 
 	fmt.Print("Enter highest integer to test for primeness: ")
 	if _, err := fmt.Scanf("%d", &r); err != nil {
 		return 0, fmt.Errorf("not an integer")
-	}
-	if r < 0 {
-		return 0, fmt.Errorf("negative range: %d", r)
 	}
 	return r, nil
 }
@@ -61,6 +55,5 @@ func main() {
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
-	ps.ComputePrimes()
-	ps.PrintPrimes()
+	ps.ComputePrimes().PrintPrimes()
 }

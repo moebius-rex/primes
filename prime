@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Copyright 2021 Shay Gordon
 #
@@ -19,14 +19,17 @@
 # plenty of ways it can break, but when it works it's very handy.
 ##
 
+# go to script home directory
+self=$(basename $0)
+home=$(dirname $0)
+cd ${home}
+
 # build and run everything if no subcommands given
-if [ $# == 0 ]; then
+if [ $# -eq 0 ]; then
   make
   exit $?
 fi
 
-self=$(basename $0)
-home=$(dirname $0)
 for cmd in $@
 do
   shift
@@ -74,7 +77,7 @@ do
 
   # skip docker commands if we're already running in a container
   if [ -f /.dockerenv ]; then
-    echo "${cmd}: already running in a docker container"
+    echo "${cmd}: error: already running in a docker container"
     continue
   fi
 

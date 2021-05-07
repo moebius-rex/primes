@@ -24,6 +24,7 @@ RUN dnf install -y file less tree vim
 # install project build & run toolchains
 RUN dnf install -y gcc
 RUN dnf install -y gcc-c++
+RUN dnf install -y gccgo
 RUN dnf install -y go
 RUN dnf install -y make
 RUN dnf install -y maven
@@ -33,5 +34,13 @@ RUN dnf install -y python3
 # copy project source files to image & remove generated files
 WORKDIR /prime
 COPY . .
-RUN printf "\nexport PATH=\$PATH:/prime\n" >> ~/.bashrc
+
+# add prime directory to PATH for any shell
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/prime
+RUN printf "export PATH=\$PATH:/prime\n" > /etc/profile.d/prime.sh
+
+# some distros don't include /usr/local/include
+RUN if [ ! -e /usr/local/include ]; then mkdir /usr/local/include; fi
+
+# complete project setup
 RUN setup/setup.sh
