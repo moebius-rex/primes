@@ -15,31 +15,32 @@
 FROM ubuntu:focal
 
 # update package list & upgrade
-RUN apt-get update  -y
-RUN apt-get upgrade -y
+RUN apt update  -y
+RUN apt upgrade -y
 
 # disable all interactive package installation dialogs while building the image
 ARG DEBIAN_FRONTEND=noninteractive
 
 # install utilities
-RUN apt-get install -y file less tree vim
+RUN apt install -y file less tree vim
 
 # install project build & run toolchains
-RUN apt-get install -y gcc
-RUN apt-get install -y golang-go
-RUN apt-get install -y g++
-RUN apt-get install -y make
-RUN apt-get install -y maven
-RUN apt-get install -y nodejs
-RUN apt-get install -y python3
+RUN apt install -y gcc
+RUN apt install -y gccgo-go
+RUN apt install -y golang-go
+RUN apt install -y g++
+RUN apt install -y make
+RUN apt install -y maven
+RUN apt install -y nodejs
+RUN apt install -y python3
 
 # upgrade nodejs to 14.16.1
 RUN \
-  apt-get install -y curl && \
+  apt install -y curl && \
   cd ~ && \
   curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh && \
   bash nodesource_setup.sh && \
-  apt-get install -y nodejs
+  apt install -y nodejs
 
 # copy project source files to image & remove generated files
 WORKDIR /prime
