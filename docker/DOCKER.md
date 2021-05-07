@@ -28,7 +28,7 @@ The detailed steps below execute the following commands:
 
 The project's `docker` subdirectory provides Docker files to build up to three Docker images, each one based on a different Linux distribution:
 
-- Alpine 3.13, a container-only Linux distribution
+- Alpine 3.13
 - Fedora 33
 - Ubuntu 20.04 LTS
 
@@ -180,9 +180,14 @@ The project comes with a small shell script in the project's home directory, `pr
 % prime fedora bash     # open bash shell in fedora container
 ```
 
-Docker commands can also be chained together, for example, the following command stops all docker containers, deletes and then rebuilds all docker images, restarts containers and opens a bash shell in the alpine container:
+Docker commands can also be chained together, for example, the following command stops all docker containers, deletes and then rebuilds all docker images, restarts docker containers and opens Alpine's default [Almquist](https://en.wikipedia.org/wiki/Almquist_shell) shell in the alpine container:
 
 ```bash
-% prime down prune build up alpine bash 
+% prime down prune build up alpine sh
+/prime # 
 ```
-
+#### Note
+The actual shell that the `sh` command starts depends on which Linux distribution you're using:
+- Alpine Linux starts `ash`, the [Almquist](https://en.wikipedia.org/wiki/Almquist_shell) shell
+- Fedora Linux starts `bash`, the Bourne Again Shell
+- Ubuntu Linux starts `sh`, the Bourne Shell (Ubuntu also includes `bash`)

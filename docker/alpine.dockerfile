@@ -22,7 +22,6 @@ RUN apk upgrade
 RUN apk add file less tree vim
 
 # install project build & run toolchains
-RUN apk add bash
 RUN apk add gcc
 RUN apk add go
 RUN apk add g++
@@ -38,6 +37,13 @@ RUN apk del openjdk8
 # copy project source files to image & remove generated files
 WORKDIR /prime
 COPY . .
-RUN printf "\nexport PATH=\$PATH:/prime\n" >> ~/.bashrc
+
+# add prime directory to PATH for any shell
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/prime
+RUN printf "export PATH=\$PATH:/prime\n" > /etc/profile.d/prime.sh
+
+# some distros don't include /usr/local/include
 RUN if [ ! -e /usr/local/include ]; then mkdir /usr/local/include; fi
+
+# complete project setup
 RUN setup/setup.sh
