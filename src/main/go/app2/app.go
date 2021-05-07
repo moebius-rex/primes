@@ -61,6 +61,5 @@ func main() {
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
-	ps.ComputePrimes()
-	ps.PrintPrimes()
+	ps.ComputePrimes().PrintPrimes()
 }

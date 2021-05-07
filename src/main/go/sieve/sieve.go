@@ -46,7 +46,7 @@ type Sieve struct {
 
 func New(r int) (s *Sieve, err error) {
 	if r < 0 {
-		return nil, fmt.Errorf("range is negative: %d", r)
+		return nil, fmt.Errorf("negative range: %d", r)
 	}
 	s = new(Sieve)
 	s.inrange = r
@@ -57,7 +57,7 @@ func New(r int) (s *Sieve, err error) {
 	return s, nil
 }
 
-func (s *Sieve) ComputePrimes() {
+func (s *Sieve) ComputePrimes() *Sieve {
 	startTime := time.Now()
 
 	// step 1. sieve: tag non-prime inputs
@@ -89,6 +89,8 @@ func (s *Sieve) ComputePrimes() {
 		}
 	}
 	s.elapsed = time.Since(startTime)
+
+	return s
 }
 
 func (s *Sieve) PrintPrimes() {
