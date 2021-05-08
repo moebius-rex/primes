@@ -1,10 +1,15 @@
 # The Primes project
 
-**Primes** is a project that implements the **Sieve of Eratosthenes** algorithm to find all prime numbers up to a given range. The project implements the algorithm in several commonly used programming languages.
+**Primes** is a project that implements the **Sieve of Eratosthenes** algorithm to find all prime numbers in a given range. The project implements the algorithm in several widely used programming languages and runs natively on supported platforms, or virtually via Docker containers.
 
-## Purpose
+## Goals
 
-The purpose of this project is to demonstrate differences and similarities between several popular programming languages by implementing the same algorithm in each language, and to demonstrate the comparative ease or difficulty in implementing the algorithm in each language. The project is *not* intended to provide a bullet-proof and thoroughly documented implementation of the algorithm in the selected languages. The project does *not* provide written documentation explaining the differences between the various language implementations — though it may do in the future — nor does it extol  the virtues of one language over another; the hope instead is that downloaders will find their own uses for the project and its contents, that the set of languages will grow, and that more language features will be explored as the project's momentum grows.
+The primary goals of the project are to:
+
+- demonstrate the similarities and differences between different programming languages by implementing a simple, easy-to-understand algorithm in each of them
+- to provide example implementations of all elements of a DevOps toolchain that supports the delivery, development, and management of software applications throughout the systems development life cycle
+
+The project is young (weeks old) and akthough it does demonstrate *most* of the DevOps toolchain, it does not currently provide container orchestration (Kubernetes) or CI/CD (Jenkins) but will in the future.
 
 ## Features
 
