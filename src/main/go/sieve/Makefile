@@ -13,16 +13,28 @@
 # limitations under the License.
 
 GO = go
-GOFLAGS = -compiler gccgo
-GOFLAGS =
+GCCGO = gccgo
+GCCGOFLAGS = -compiler $(GCCGO)
+
+SRCDIR = .
+LOG = .build.log
 
 all: build
 
-build:
-	@$(GO) build $(GOFLAGS) .
+build: $(SRCDIR)/sieve.go
+	@path=$$(which $(GCCGO)); \
+	if [ ! -z $${path} ]; \
+	then \
+		echo "$$(date) | gccgo | $(GO) build $(GCCGOFLAGS) $?" >> $(LOG); \
+		$(GO) build $(GCCGOFLAGS) $?; \
+	else \
+		echo "$$(date) | gccgo | $(GO) build $?" >> $(LOG); \
+		$(GO) build $?; \
+	fi
 
 clean:
 	@$(GO) clean
+	@$(RM) $(LOG)
 
 test:
 	@$(GO) test -v
