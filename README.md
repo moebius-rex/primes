@@ -6,27 +6,29 @@
 
 The primary goals of the project are to:
 
-- demonstrate the similarities and differences between different programming languages by implementing a simple, easy-to-understand algorithm in each of them
-- to provide example implementations of all elements of a DevOps toolchain that supports the delivery, development, and management of software applications throughout the systems development life cycle
+- demonstrate the similarities and differences between several popular programming languages by implementing the same easy-to-understand algorithm in each language
+- provide basic implementations of all elements of a DevOps toolchain that supports the delivery, development, and management of software applications throughout the systems development life cycle
 
-The project is young (weeks old) and akthough it does demonstrate *most* of the DevOps toolchain, it does not currently provide container orchestration (Kubernetes) or CI/CD (Jenkins) but will in the future.
+The project is young (just weeks old) and although it implements *most* of the DevOps toolchain, it does not currently include CI/CD (Jenkins/automated unit testing) or container orchestration (Kubernetes), but will in the future.
 
 ## Features
 
 Each language-specific implementation of the Sieve of Eratosthenes algorithm comes in a minimum of two versions:
-- A naïve version that brute forces the solution. In other words, a hack — difficult to read and to maintain.
-- One or more object-oriented versions that should be more maintainable and use the best practices of the language. In all languages except C, this means extracting a `Sieve` class as a separate component. In the C implementation, it means extracting a opaque structure containing algorithm state, and non-member functions to implement the algorithm and access its results — basically, a rudimentary C++ class with an *explicit* `this` pointer and some data encapsulation.
+1. A *naïve* implementation that brute forces the solution. In other words, a hack job — difficult to read and to maintain.
+2. An *idiomatic* implementation that uses language-specific features to simplify development and maintenance. In this project, that typically means defining a `Sieve` entity as a separate, reusable *object-oriented* (O-O) component, for example, a class, in Python, Java, C++, et al. In C, which is a procedural language with no intrinsic support for encapsulation, it means defining a `struct` that contains state, coupled with non-member functions that access or modify the state and implement the algorithm.
+
+A third version is available for languages that provide a simple way to bind to C library functions. In these language implementations, a single O-O component encapsulates all interactions with the C library, and the C library implements the sieve algorithm. Python's `ctypes` and Go's `cgo` packages are two very good examples of simple but effective C library binding mechanisms.
 
 Project features include:
 
-- The sieve algorithm is implemented in the top five most popular programming languages at the time of writing:
+- The sieve algorithm is implemented in six of the most popular programming languages at the time of writing:
   - C
   - C++
   - Go
   - Java
   - JavaScript
   - Python
-- One **C++**, one **Go** and one **Python** implentation are derived by wrapping a **C** implementation. Similar Java and server-side JavaScript implementations may follow.
+- One **C++**, one **Go** and one **Python** implentation are derived by wrapping a **C** implementation. A Java JNI and nodeserver-side JavaScript (i.e. node.js) implementations may follow.
 - The project uses GNU **make** to:
   - compile and link C, C++ and Go implementations,
   - install reusable libraries, shared objects and header files,
@@ -43,14 +45,14 @@ Project features include:
 
 The project's Sieve of Eratosthenes implementations have been tested on Ubuntu 18.04 LTS, 20.04 LTS and Mac OS 11.2. Containerized versions of the implementations have been tested on Alpine Linux, Fedora and Ubuntu. The following language and tool versions were used:
 
-| Language       | Tool    | Version   |
-| :------------- | ------- | --------- |
-| C              | gcc     | C11       |
-| C++            | g++     | C++17     |
-| Go             | go      | 1.16.3    |
-| Java           | javac   | SE 11 LTS |
-| JavaScript ES5 | node.js | 14.16 LTS |
-| Python         | python3 | 3.8       |
+| Language       | Tool      | Version   |
+| :------------- | --------- | --------- |
+| C              | `gcc`     | C11       |
+| C++            | `g++`     | C++17     |
+| Go             | `go`      | 1.16.3    |
+| Java           | `javac`   | SE 11 LTS |
+| JavaScript ES5 | `node`    | 14.16 LTS |
+| Python         | `python3` | 3.8       |
 
 ## Installation
 
