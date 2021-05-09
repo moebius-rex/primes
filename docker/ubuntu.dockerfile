@@ -26,8 +26,7 @@ RUN apt install -y file less tree vim
 
 # install project build & run toolchains
 RUN apt install -y gcc
-RUN apt install -y gccgo-go
-RUN apt install -y golang-go
+RUN apt install -y gccgo
 RUN apt install -y g++
 RUN apt install -y make
 RUN apt install -y maven
@@ -41,6 +40,9 @@ RUN \
   curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh && \
   bash nodesource_setup.sh && \
   apt install -y nodejs
+
+# add go soft link missing from gccgo package
+RUN ln -s /usr/bin/go-10 /usr/bin/go
 
 # copy project source files to image & remove generated files
 WORKDIR /prime
