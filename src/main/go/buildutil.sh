@@ -15,7 +15,7 @@
 # limitations under the License.
 
 log() {
-  printf "$(date) | app  | %-5s | ${1}\n" ${PKG} >> ${LOG}
+  printf "$(date) | util | %-5s | ${1}\n" ${PKG} >> ${LOG}
 }
 
 GO=go
@@ -41,9 +41,7 @@ case ${cmd} in
     if [ ! -z ${path} ]; then
       args=${GCCGOFLAGS}
     fi
-    app=$1
-    shift
-    args="${args}-o ${app} $@"
+    args="${args}."
     ;;
   *)
     echo unknown command: ${cmd}
@@ -51,5 +49,6 @@ case ${cmd} in
     ;;
 esac
 log "${GO} ${cmd} ${args}"
+echo ${GO} ${cmd} ${args}
 ${GO} ${cmd} ${args}
 exit $?

@@ -12,23 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-GO = go
-
 SRCDIR = .
-BUILD  = ../build.sh
+BUILD  = ../buildutil.sh
 
 all: build
 
 build: $(SRCDIR)/sieve.go
-	@$(BUILD) $?
+	@$(BUILD) $@ $?
 
-clean:
+clean scrub test install:
 	@$(BUILD) $@
 
-test:
-	@$(BUILD) $@
-
-install:
-	-@$(BUILD) $@
-
-.PHONY: clean test install
+.PHONY: clean scrub test install

@@ -23,12 +23,12 @@ SIEVERANGE = 1000
 all: targets $(BINDIR)/app test
 
 $(BINDIR)/app : $(SRCDIR)/app.go
-	@$(BUILD) $@ $?
+	@$(BUILD) build $@ $?
 
 targets:
 	-@mkdir -p $(BINDIR)
 
-clean:
+clean scrub:
 	-@$(BUILD) $@
 	-@$(RM) -r $(BINDIR)
 
@@ -38,4 +38,4 @@ test:
 install:
 	-@$(BUILD) $@
 
-.PHONY: targets clean test install
+.PHONY: targets clean scrub test install
