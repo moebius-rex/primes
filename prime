@@ -104,9 +104,13 @@ do
 
     alpine|fedora|ubuntu)
       if [ ! -z $@ ]; then
-        # alpine: bash not installed, use ash instead
         arg=$@
-        if [ ${cmd} == "alpine" ] && [ ${arg} == "bash" ]; then arg=ash; fi
+        # if shell not installed, use default shell for distro
+        case ${cmd} in
+          alpine) if [ ${arg} == "bash" ]; then arg=ash;  fi ;;
+          fedora) if [ ${arg} == "ash"  ]; then arg=sh;   fi ;;
+          ubuntu) if [ ${arg} == "ash"  ]; then arg=bash; fi ;;
+        esac
         case ${arg} in
           clean|all) docker compose exec ${cmd} ./${self} ${arg} ;;
           *)         docker compose exec ${cmd} ${arg}           ;;
