@@ -35,4 +35,4 @@ test-classes/
 __pycache__/
 
 # Go makefile-generated files
-.build.log
+.golog
