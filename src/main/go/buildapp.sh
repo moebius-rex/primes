@@ -54,6 +54,7 @@ case ${cmd} in
     exit 1
     ;;
 esac
-log "${GO} ${cmd} ${args}"
-${GO} ${cmd} ${args}
+gocmd="${GO} ${cmd} ${args}"
+log "${gocmd}"
+eval "${gocmd}"
 exit $?
