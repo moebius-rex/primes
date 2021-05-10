@@ -12,22 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-GO = go
-GOFLAGS = -compiler gccgo
-GOFLAGS =
+SRCDIR = .
+BUILD  = ../buildutil.sh
 
 all: build
 
-build:
-	@$(GO) build $(GOFLAGS) .
+build: $(SRCDIR)/sieve.go
+	@$(BUILD) $@ $?
 
-clean:
-	@$(GO) clean
+clean scrub test install version:
+	@$(BUILD) $@
 
-test:
-	@$(GO) test -v
-
-install:
-	@$(GO) install
-
-.PHONY: clean test install
+.PHONY: clean scrub test install version

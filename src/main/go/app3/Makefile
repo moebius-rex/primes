@@ -13,30 +13,29 @@
 # limitations under the License.
 
 GO = go
-GOFLAGS = -compiler gccgo
-GOFLAGS =
-#CGO_LDFLAGS = -L/usr/local/lib -lcsieve
 
 SRCDIR = .
 BINDIR = bin
+BUILD  = ../buildapp.sh
 
 SIEVERANGE = 1000
 
 all: targets $(BINDIR)/app test
 
 $(BINDIR)/app : $(SRCDIR)/app.go $(SRCDIR)/sieve.go
-	@$(GO) build $(GOFLAGS) -o $@ $?
+	@$(BUILD) build $@ $?
 
 targets:
 	-@mkdir -p $(BINDIR)
 
-clean:
-	-@$(RM) -r $(BINDIR)
+clean scrub:
+	@$(BUILD) $@
+	@$(RM) -r $(BINDIR)
 
 test:
 	@$(BINDIR)/app $(SIEVERANGE)
 
-install:
-	@$(GO) install
+install version:
+	@$(BUILD) $@
 
-.PHONY: targets clean test install
+.PHONY: targets clean scrub test install version

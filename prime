@@ -83,24 +83,33 @@ do
 
   # docker subcommands
   case ${cmd} in
-    up)    docker compose up -d     ;;
-    down)  docker compose down      ;;
-    ps)    docker ps -a             ;;
-    top)   docker compose top       ;;
-    prune) docker system  prune -af ;;
-    build) docker compose build     ;;
+    up)     docker compose up -d     ;;
+    down)   docker compose down      ;;
+    ps)     docker ps -a             ;;
+    top)    docker compose top       ;;
+    prune)  docker system  prune -af ;;
+    build)  docker compose build     ;;
+    bounce)
+      docker compose down      &&
+      docker compose build     &&
+      docker compose up -d
+      ;;
     nuke)
       docker compose down      &&
       docker system  prune -af &&
       make   clean             &&
-      docker compose build
+      docker compose build     &&
+      docker compose up -d
       ;;
 
     alpine|fedora|ubuntu)
       if [ ! -z $@ ]; then
-        case $@ in
-          clean|all) docker compose exec ${cmd} ./${self} $@ ;;
-          *)         docker compose exec ${cmd} $@           ;;
+        # alpine: bash not installed, use ash instead
+        arg=$@
+        if [ ${cmd} == "alpine" ] && [ ${arg} == "bash" ]; then arg=ash; fi
+        case ${arg} in
+          clean|all) docker compose exec ${cmd} ./${self} ${arg} ;;
+          *)         docker compose exec ${cmd} ${arg}           ;;
         esac
       else
         docker compose exec ${cmd} make
@@ -109,7 +118,7 @@ do
       ;;
 
     *)
-      echo unknown command: \"$cmd\"
+      echo unknown command: \"${cmd}\"
       ;;
   esac
 done

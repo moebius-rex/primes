@@ -36,6 +36,9 @@ test-classes/
 # Python-generated files
 __pycache__/
 
+# Go makefile-generated files
+.build.log
+
 # END include .gitignore -----------------------------------------------------
 
 # Git files
