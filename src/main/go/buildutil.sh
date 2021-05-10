@@ -53,6 +53,5 @@ case ${cmd} in
     ;;
 esac
 log "${GO} ${cmd} ${args}"
-echo ${GO} ${cmd} ${args}
 ${GO} ${cmd} ${args}
 exit $?
