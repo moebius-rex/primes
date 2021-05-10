@@ -31,9 +31,13 @@ case ${cmd} in
   test)    args="-v ." ;;
   install) args=.      ;;
   clean)   args=.      ;;
+  version)
+    log "$(${GO} ${cmd})"
+    exit 0
+    ;;
   scrub)
     ${RM} ${LOG}
-    log ${cmd}
+    log "++ log scrubbed"
     exit 0
     ;;
   build)

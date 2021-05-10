@@ -25,8 +25,8 @@ $(SUBDIRS):
 	@# run make with no arguments for each subdirectory
 	$(MAKE) --no-print-directory --directory $@
 
-clean scrub test install:
+clean scrub test install version:
 	@$(MAKE) --no-print-directory --directory sieve $@
 	@for subdir in $(SUBDIRS); do $(MAKE) --no-print-directory --directory $$subdir $@; done
 
-.PHONY: sieve $(SUBDIRS) clean test install
+.PHONY: sieve $(SUBDIRS) clean scrub test install version

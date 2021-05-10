@@ -16,7 +16,7 @@ GO = go
 
 SRCDIR = .
 BINDIR = bin
-BUILD  = ../build.sh
+BUILD  = ../buildapp.sh
 
 SIEVERANGE = 1000
 
@@ -29,13 +29,13 @@ targets:
 	-@mkdir -p $(BINDIR)
 
 clean scrub:
-	-@$(BUILD) $@
-	-@$(RM) -r $(BINDIR)
+	@$(BUILD) $@
+	@$(RM) -r $(BINDIR)
 
 test:
 	@$(BINDIR)/app $(SIEVERANGE)
 
-install:
-	-@$(BUILD) $@
+install version:
+	@$(BUILD) $@
 
-.PHONY: targets clean scrub test install
+.PHONY: targets clean scrub test install version

@@ -20,7 +20,7 @@ all: build
 build: $(SRCDIR)/sieve.go
 	@$(BUILD) $@ $?
 
-clean scrub test install:
+clean scrub test install version:
 	@$(BUILD) $@
 
-.PHONY: clean scrub test install
+.PHONY: clean scrub test install version
