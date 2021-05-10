@@ -13,40 +13,29 @@
 # limitations under the License.
 
 GO = go
-GCCGO = gccgo
-GCCGOFLAGS = -compiler $(GCCGO)
 
 SRCDIR = .
 BINDIR = bin
-
-LOG = .build.log
+BUILD  = ../build.sh
 
 SIEVERANGE = 1000
 
 all: targets $(BINDIR)/app test
 
 $(BINDIR)/app : $(SRCDIR)/app.go
-	@path=$$(which $(GCCGO)); \
-	if [ ! -z $${path} ]; \
-	then \
-		echo "$$(date) | gccgo | $(GO) build $(GCCGOFLAGS) -o $@ $?" >> $(LOG); \
-		$(GO) build $(GCCGOFLAGS) -o $@ $?; \
-	else \
-		echo "$$(date) | gccgo | $(GO) build -o $@ $?" >> $(LOG); \
-		$(GO) build -o $@ $?; \
-	fi
+	@$(BUILD) $@ $?
 
 targets:
 	-@mkdir -p $(BINDIR)
 
 clean:
+	-@$(BUILD) $@
 	-@$(RM) -r $(BINDIR)
-	-@$(RM) $(LOG)
 
 test:
 	@$(BINDIR)/app $(SIEVERANGE)
 
 install:
-	@$(GO) install
+	-@$(BUILD) $@
 
 .PHONY: targets clean test install
