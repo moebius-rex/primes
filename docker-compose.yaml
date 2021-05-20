@@ -24,6 +24,28 @@ services:
       - -f
       - /dev/null
 
+  alpinec:
+    build:
+      context: .
+      dockerfile: docker/alpinec.dockerfile
+    image: sieve:alpinec
+    container_name: alpinec
+    entrypoint:
+      - tail
+      - -f
+      - /dev/null
+
+  alpinego:
+    build:
+      context: .
+      dockerfile: docker/alpinego.dockerfile
+    image: sieve:alpinego
+    container_name: alpinego
+    entrypoint:
+      - tail
+      - -f
+      - /dev/null
+
   fedora:
     build:
       context: .
