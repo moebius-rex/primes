@@ -130,51 +130,106 @@ Return to the [main document](../README.md) to learn more about the project, or 
 
 ## Example project package downloads
 
-This section describes how to install tools packages required by the project in a couple of common operating systems. But first:
+This section describes how to install tools packages required by the project in a couple of common operating systems. But first you may wish to install **Git**.
 
 ### Installing Git
 
-If you would like to make contributions to the Primes project, you will need to install Git, the version control software, to clone a copy of the project's repository on **Github** using the `git clone` command. You can learn how to install the `git` command [here](https://git-scm.com/download/linux).
+If you would like to make contributions to the Primes project, you will need to install **Git**, the version control software, to clone a copy of the project's repository on **Github** using the `git clone` command. You can learn how to install the `git` command [here](https://git-scm.com/download/linux).
+
+### Notes for users of any Windows, Linux or Unix systems
+
+If necessary, installing Maven causes the package manager to install an appropriate version of **OpenJDK**. For example, firing up a Fedora Docker container with only Maven installed results in the following:
+
+```bash
+% mvn --version
+Apache Maven 3.6.3 (Red Hat 3.6.3-8)
+Maven home: /usr/share/maven
+Java version: 11.0.11, vendor: Red Hat, Inc., runtime: /usr/lib/jvm/java-11-openjdk-11.0.11.0.9-2.fc34.x86_64
+Default locale: en, platform encoding: UTF-8
+OS name: "linux", version: "5.10.25-linuxkit", arch: "amd64", family: "unix"
+
+% java -version
+openjdk version "11.0.11" 2021-04-20
+OpenJDK Runtime Environment 18.9 (build 11.0.11+9)
+OpenJDK 64-Bit Server VM 18.9 (build 11.0.11+9, mixed mode, sharing)
+```
+
+If you plan on working with a Java JDK, this is something to keep in mind, and it's why none of the installation instructions below include a JDK installation.
 
 ### Debian-based Linux
 
-If you are installing this project on a **Debian**, **Ubuntu**, **MX Linux**, **Linux Mint** or [other](https://www.tecmint.com/debian-based-linux-distributions/) **Debian-based Linux** system, you can use the Debian package manager's `apt` or `apt-get` commands to download and install packages that are not part of the standard distribution. The package manager is pre-installed on Debian-based Linux systems.
+If you are installing this project on a [**Debian-based Linux**](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based) system, you can use the Debian package manager's `apt` or `apt-get` commands to download and install packages that are not part of the standard distribution. The package manager is pre-installed on Debian-based Linux systems.
 
 First, update the local package list and then upgrade any existing packages:
 
 ```bash
-% sudo apt update
-% sudo apt upgrade
+% sudo apt update -y
+% sudo apt upgrade -y
 ```
 
-If necessary, install the Git package:
+If required, install the Git command line package:
 
 ```bash
-% sudo apt install git
+% sudo apt install -y git
 ```
 
-Install any of these packages required by this project:
+Install these packages required by this project:
 
 ```bash
-% sudo apt install make
-% sudo apt install maven
-% sudo apt install gcc
-% sudo apt install golang-go
-% sudo apt install g++
-% sudo apt install nodejs
-% sudo apt install openjdk-11-jdk
-% sudo apt install python3
+% sudo apt install -y gcc
+% sudo apt install -y gccgo
+% sudo apt install -y g++
+% sudo apt install -y make
+% sudo apt install -y maven
+% sudo apt install -y nodejs
+% sudo apt install -y python3
 ```
 
-### macOS
+### Fedora-based Linux
 
-You can use the **Homebrew** package manager's `brew` command to download and install macOS packages.
+If you are installing this project on a [**Fedora-based Linux**](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Fedora-based) system you can use the Fedora package manager's `dnf install` command to download and install packages that are not part of the standard distribution. The package manager is pre-installed on Fedora-based Linux systems.
+
+First, update the local package list and then upgrade any existing packages:
+
+```bash
+% sudo dnf update -y
+% sudo dnf upgrade -y
+```
+
+If required, install the Git command line package:
+
+```bash
+% sudo dnf install -y git
+```
+
+Install these packages required by this project:
+
+```bash
+% sudo dnf install -y gcc
+% sudo dnf install -y gcc-c++
+% sudo dnf install -y gccgo
+% sudo dnf install -y go
+% sudo dnf install -y make
+% sudo dnf install -y maven
+% sudo dnf install -y g++
+% sudo dnf install -y nodejs
+% sudo dnf install -y python3
+```
+
+### Other Linux- and Unix-based systems
+
+It's beyond the scope and goals of this document to provide details on how to setup the project on every possible variant of Linux- and Unix-based systems, but the project does come with [Docker files](../docker/DOCKER.md) designed to build containers for Alpine, Fedora and Ubuntu Linux systems that may be useful guides for building your own. ***If you would like to contribute Docker files for other systems to this project, we'll be very happy to work with you.***
+
+### Apple macOS systems
+
+Apple macOS systems come pre-installed with `gcc` and `g++`. You can use the **Homebrew** package manager's `brew` command to download and install other packages for macOS.
 
 To install Homebrew, enter the following commands at a command prompt:
 
 ```bash
 % xcode-select --install
-% curl -fsSL -o install.sh https://raw.githubusercontent.com/Homebrew/install/master/install.sh
+% curl -fsSL -o install.sh \ 
+		https://raw.githubusercontent.com/Homebrew/install/master/install.sh
 % ./install.sh
 ```
 
@@ -184,9 +239,10 @@ Before adding missing project tools, update the local Homebrew package list and 
 
 ```bash
 % brew update
+% brew upgrade
 ```
 
-If necessary, install the Git package:
+If required, install the Git command line package:
 
 ```bash
 % brew install git
@@ -197,11 +253,9 @@ Install any of the packages required by this project:
 ```bash
 % brew install make
 % brew install maven
-% brew install gcc
 % brew install go
-% brew install g++
 % brew install node
-% brew install openjdk-11-jdk
+% brew install java11
 % brew install python3
 ```
 
@@ -211,7 +265,7 @@ The commands described in the **Windows** section below correctly install the re
 
 1. Enable **Windows Subsystem for Linux** (WSL)  and follow the instructions in this document to install the Primes project in WSL's **Ubuntu** virtual machine.
 2. Build and run a Linux virtual machine using **[VMware Player](https://www.vmware.com/products/workstation-player.html)** or **[Oracle VirtualBox](https://www.virtualbox.org/)** and install the project in the virtual machine.
-3. Build and run a Linux virtual machine using [**Docker**](https://www.docker.com/products/docker-desktop) with the project pre-installed in the virtual machine. This is probably the easiest and fastest way to setup the Primes project on Windows and the project even provides several [docker file examples](../docker/DOCKER.md) you can use to get started.
+3. Build and run a Linux virtual machine using [**Docker**](https://www.docker.com/products/docker-desktop) with the project pre-installed in the virtual machine. This is probably the easiest and fastest way to setup the Primes project on Windows and the project even provides several [Docker files](../docker/DOCKER.md) you can use to get started.
 
 ### Windows
 
