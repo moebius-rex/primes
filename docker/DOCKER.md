@@ -17,22 +17,24 @@ The detailed steps below execute the following commands:
 ```bash
 % docker compose build
 % docker compose up -d
-% docker compose exec alpine make
-% docker compose exec fedora make
-% docker compose exec ubuntu make
+% docker compose exec alpine   make
+% docker compose exec alpinec  make
+% docker compose exec alpinego make
+% docker compose exec fedora   make
+% docker compose exec ubuntu   make
 % docker compose down
 % docker system prune -a
 ```
 
 ### Step 1: Build Docker images
 
-The project's `docker` subdirectory provides Docker files to build up to three Docker images, each one based on a different Linux distribution:
+The project's `docker` subdirectory provides Docker files to build up to five Docker images, each one based on a different combination of Linux distribution and project installation:
 
 - Alpine 3.13
 - Fedora 33
 - Ubuntu 20.04 LTS
 
-Each image contains a copy of the project, omitting the `.git` repository, all docker files and project documents. The project files are installed in the `/prime` directory of the Docker image.
+Each image contains a copy of the project, omitting the `.git` repository, all docker files and project documents. The project files are installed in the `/prime` directory of the Docker image. Two additional containers are Alpine-based but contain C-only, and C- and Go-only projects installations. This makes these containers significantly smaller than the others and more suit ble for installation on embedded systems.
 
 To build all images, enter the following command from the project's home directory:
 
@@ -45,15 +47,17 @@ It takes in the order of a minute to build each image. Use `docker images` to vi
 ```bash
 % docker images
 REPOSITORY   TAG       IMAGE ID       CREATED              SIZE
-sieve        ubuntu    18e8f59a6c31   5 seconds ago        644MB
-sieve        fedora    0abdd04df7f4   About a minute ago   1.21GB
-sieve        alpine    5d00d4db8dd7   4 minutes ago        668MB
+sieve        alpine     4bd9a664d878   14 minutes ago      996MB
+sieve        alpinec    7e8690301fd4   14 minutes ago      163MB
+sieve        alpinego   d33cbba884a0   14 minutes ago      483MB
+sieve        fedora     e55b25c53a90   14 minutes ago      1.91GB
+sieve        ubuntu     3e68256eab57   14 minutes ago      1.07GB
 ```
 
-If you wished to build a subset of these images, say, the Alpine and Ubuntu images but not the Fedora image, you would enter the following command instead:
+If you wished to build a subset of these images, say, the Alpine images only, you would enter the following command instead:
 
 ```bash
-% docker compose build alpine fedora
+% docker compose build alpine alpinec alpinego
 ```
 
 ### Step 2: Start Docker containers
@@ -80,16 +84,18 @@ Use `docker ps` to view running containers:
 ```bash
 % docker ps
 CONTAINER ID   IMAGE          COMMAND               CREATED          STATUS          PORTS     NAMES
-0a0689fe1cf4   sieve:ubuntu   "tail -f /dev/null"   17 seconds ago   Up 15 seconds             ubuntu
-16e78a1ee98e   sieve:alpine   "tail -f /dev/null"   17 seconds ago   Up 15 seconds             alpine
-6f5b92d53669   sieve:fedora   "tail -f /dev/null"   17 seconds ago   Up 15 seconds             fedora
+82301cebc7e9   4bd9a664d878   "tail -f /dev/null"   16 minutes ago   Up 16 minutes             alpine
+54622d651efe   e55b25c53a90   "tail -f /dev/null"   16 minutes ago   Up 16 minutes             fedora
+5f049fa47dce   7e8690301fd4   "tail -f /dev/null"   16 minutes ago   Up 15 minutes             alpinec
+ea3f5d67af1f   3e68256eab57   "tail -f /dev/null"   16 minutes ago   Up 15 minutes             ubuntu
+ff7491759615   d33cbba884a0   "tail -f /dev/null"   16 minutes ago   Up 16 minutes             alpinego
 ```
 
 The `COMMAND` column shows the shell command that was called in the container once it was started. The Linux `tail -f /dev/null` command is a standard trick that keeps a container running until you decide to stop it with `docker compose down` command; if we were to give it a command that returned immediately, the container would stop as soon as the command completed. The `NAMES` column provides the container names to use in container-ralted Docker commands. 
 
 ### Step 3: Run sieve implementations in a Docker container
 
-The `docker conpose exec` command runs a command in a named container. For example, to run all sieve implementations in, say, the Alpine container, you would enter the following:
+The `docker compose exec` command runs a command in a named container. For example, to run all sieve implementations in, say, the Alpine container, you would enter the following:
 
 ```bash
 % docker compose exec alpine make
@@ -139,10 +145,13 @@ As already mentioned, the containers are configured to run until a command is is
 ```bash
 % docker compose down  
 [+] Running 4/4
- ⠿ Container alpine          Removed                                                             10.3s
- ⠿ Container ubuntu          Removed                                                             10.3s
- ⠿ Container fedora          Removed                                                             10.2s
- ⠿ Network "primes_default"  Removed                                                              2.8s
+[+] Running 6/6
+ ⠿ Container alpinec       Removed                                                             10.3s
+ ⠿ Container fedora        Removed                                                             10.3s
+ ⠿ Container alpinego      Removed                                                             10.5s
+ ⠿ Container ubuntu        Removed                                                             10.5s
+ ⠿ Container alpine        Removed                                                             10.4s
+ ⠿ Network primes_default  Removed                                                              2.8s
 ```
 
 ### Step 5: Clean up
@@ -159,10 +168,21 @@ WARNING! This will remove:
 
 Are you sure you want to continue? [y/N] y
 Deleted Images:
-deleted: sha256:c4b986c02bb51ee0a12ec704223350d908620c960f7f5be4e818ba21e46c7284
-deleted: sha256:60df02f061f652d44f3bbe9d4fe93b9b7aefd00966cb54ded7bad9eb9a340f68
-deleted: sha256:e728234f4ed0c033a420a6429bca05e2de29bba53b999f5c1dc45024459a0723
-deleted: sha256:17683f22293e9cf90e02bcc103ef011778e4217b100a121bf3f45da07ceabf09
+untagged: sieve:ubuntu
+deleted: sha256:3e68256eab57554048382d457cea4afad34801790533d2697dd203bfc072bf20
+untagged: sieve:alpine
+deleted: sha256:4bd9a664d878ab28c5bef64bb1c64969e6124359497ab28a9f1779142574d164
+deleted: sha256:3b521395e68b1c3dc4ab10962864276143c1fe1c185b44250e2eb26a87488e94
+untagged: sieve:fedora
+deleted: sha256:e55b25c53a9006b5d6257d53d3ef31ad310156ce253979bc40d5f2ffba288973
+deleted: sha256:77c08722778aa4c93d95c9d040e1828b7079970a26876457102f2f019e8391e7
+deleted: sha256:866f9715f8b51708d550773e009e614233dda575626dfd17d2809745c43bcb02
+deleted: sha256:02c8cf9848ba78d0996157ea4dcb02fa405fc42886135d30cce4fbf9a9a3b072
+untagged: sieve:alpinec
+deleted: sha256:7e8690301fd498f296fbfd451772355735ee0b288470ea13eca09e1b05074913
+deleted: sha256:313b104e643f13f15b7348b43573fc5abc16eb788ce1380cc5a94fe7a7b35675
+untagged: sieve:alpinego
+deleted: sha256:d33cbba884a0d68eb4ca1fd87c9ae81d431fc3bc0f58c05dc270119d93e7d545
 
 Deleted build cache objects:
 [snip]
