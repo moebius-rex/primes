@@ -17,9 +17,11 @@
 #include "csievex.h"
 #include "sieve.h"
 
+#define pp pimpl->pcsieve
+
 struct sieve::impl {
-  csievex* ps;
-  impl(csievex* ps = csievex_create(0)) : ps(ps) {}
+  csievex* pcsieve;
+  impl(csievex* pcsieve = csievex_create(0)) : pcsieve(pcsieve) {}
 };
 
 sieve::sieve(int range) {
@@ -27,30 +29,30 @@ sieve::sieve(int range) {
 }
 
 sieve::~sieve() {
-  pimpl->ps->destroy(pimpl->ps);
+  pp->destroy(pp);
   pimpl.release();
 }
 
 void sieve::compute_primes() {
-  pimpl->ps->compute_primes(pimpl->ps);
+  pp->compute_primes(pp);
 }
 
 void sieve::print_primes() const {
-  pimpl->ps->print_primes(pimpl->ps);
+  pp->print_primes(pp);
 }
 
 int* sieve::get_primes() const {
-  return pimpl->ps->get_primes(pimpl->ps);
+  return pp->get_primes(pp);
 }
 
 int sieve::get_range() const {
-  return pimpl->ps->get_range(pimpl->ps);
+  return pp->get_range(pp);
 }
 
 int sieve::get_count() const {
-  return pimpl->ps->get_count(pimpl->ps);
+  return pp->get_count(pp);
 }
 
 time_t sieve::get_elapsed() const {
-  return pimpl->ps->get_elapsed(pimpl->ps);
+  return pp->get_elapsed(pp);
 }
