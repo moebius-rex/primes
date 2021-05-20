@@ -50,7 +50,7 @@ func main() {
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
-	ps, err := sieve.New(int(r))
+	ps, err := sieve.NewSieve(int(r))
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
