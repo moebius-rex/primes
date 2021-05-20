@@ -18,15 +18,15 @@ all: maven $(SUBDIRS)
 	@# compile anything that needs to be compiled and then run
 
 maven:
-	@# compile java classes
-	@mvn -q compile 2> /dev/null
+	@# compile java classes if maven installed
+	@if [ -f "$$(which mvn)" ]; then mvn -q compile 2> /dev/null; fi
 
 $(SUBDIRS):
 	@# run make with no arguments for each subdirectory
 	$(MAKE) --no-print-directory --directory $@
 
 clean:
-	@mvn -q $@ 2> /dev/null
+	@if [ -f "$$(which mvn)" ]; then mvn -q $@ 2> /dev/null; fi
 	@for subdir in $(SUBDIRS); do $(MAKE) --no-print-directory --directory $$subdir $@; done
 
 test install:
