@@ -14,27 +14,27 @@ The project is young (just weeks old) and although it implements *most* of the D
 ## Features
 
 Each language-specific implementation of the Sieve of Eratosthenes algorithm comes in a minimum of two versions:
-1. A *naïve* implementation that brute forces the solution. In other words, a hack job — difficult to read and to maintain.
-2. An *idiomatic* implementation that uses language-specific features to simplify development and maintenance. In this project, that typically means defining a `Sieve` entity as a separate, reusable *object-oriented* (O-O) component, for example, a class, in Python, Java, C++, et al. In C, which is a procedural language with no intrinsic support for encapsulation, it means defining a `struct` that contains state, coupled with non-member functions that access or modify the state and implement the algorithm.
+1. A *naïve* implementation that brute forces the solution. In other words, a hack — difficult to read and to maintain.
+2. An *idiomatic* implementation that leverages features of the language to simplify development and maintenance. In this project, that typically means defining a separate, reusable `Sieve` component, for example, a class in Python, Java, C++, et al. In C, a procedural language with no intrinsic support for encapsulation, it means defining a `struct` that contains state, coupled with non-member functions that access or modify the state and implement the algorithm.
 
-A third version is available for languages that provide a simple way to bind to C library functions. In these language implementations, a single O-O component encapsulates all interactions with the C library, and the C library implements the sieve algorithm. Python's `ctypes` and Go's `cgo` packages are two very good examples of simple but effective C library binding mechanisms.
+A third version is available for languages that provide a way to bind to C library functions. In these versions, a single O-O component encapsulates all interactions with the C library while the C library implements the sieve algorithm. Python's `ctypes` and Go's `cgo` packages are examples of simple but effective C library binding mechanisms.
 
 Project features include:
 
-- The sieve algorithm is implemented in six of the most popular programming languages at the time of writing:
+- The sieve algorithm is implemented in six of the most widely used programming languages:
   - C
   - C++
   - Go
   - Java
   - JavaScript
   - Python
-- One **C++**, one **Go** and one **Python** implentation are derived by wrapping a **C** implementation. A Java JNI and nodeserver-side JavaScript (i.e. node.js) implementations may follow.
+- One C++, one Go and one Python version are derived by binding to a C version exported as a shared lbrary. Java and server-side JavaScript (i.e., Node.js) versions may follow.
 - The project uses GNU **make** to:
   - compile and link C, C++ and Go implementations,
   - install reusable libraries, shared objects and header files,
   - run all, or a subset of, implementations,
   - remove generated files.
-- The project uses **Maven** behind the scenes to compile and package Java implementations.
+- The project uses **Maven** behind it needs to compile and package Java implementations.
 - All implementations are designed to be run from, and print to, a terminal window.
 - Where possible, all implementations produce the identical output for the identical input.
 - All C and C++ implementations produce zero `valgrind` errors or leaks when compiled with gcc/g++ on Debian-based Linux systems.
