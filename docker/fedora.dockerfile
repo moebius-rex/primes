@@ -29,7 +29,7 @@ RUN dnf install -y go
 RUN dnf install -y make
 RUN dnf install -y maven
 RUN dnf install -y nodejs
-RUN dnf install -y python3
+RUN dnf install -y python3    # pre-installed but no harm keeping it here
 
 # copy project source files to image & remove generated files
 WORKDIR /prime
