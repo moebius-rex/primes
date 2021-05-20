@@ -102,14 +102,15 @@ do
       docker compose up -d
       ;;
 
-    alpine|fedora|ubuntu)
+    alpine|alpinec|alpinego|fedora|ubuntu)
       if [ ! -z $@ ]; then
         arg=$@
         # if shell not installed, use default shell for distro
         case ${cmd} in
-          alpine) if [ ${arg} == "bash" ]; then arg=ash;  fi ;;
-          fedora) if [ ${arg} == "ash"  ]; then arg=sh;   fi ;;
-          ubuntu) if [ ${arg} == "ash"  ]; then arg=bash; fi ;;
+          alpine|alpinec|alpinego)
+                    if [ ${arg} == "bash" ]; then arg=ash;  fi ;;
+          fedora)   if [ ${arg} == "ash"  ]; then arg=bash; fi ;;
+          ubuntu)   if [ ${arg} == "ash"  ]; then arg=bash; fi ;;
         esac
         case ${arg} in
           clean|all) docker compose exec ${cmd} ./${self} ${arg} ;;
