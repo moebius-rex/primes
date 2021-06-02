@@ -15,6 +15,7 @@
  */
 #include <chrono>
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 #include "sieve.h"
@@ -82,12 +83,7 @@ void sieve::impl::compute() {
   }
 
   // step 2. add up number of primes found
-  int count = 0;
-  for (int i = 0; i <= m_range; ++i) {
-    if (m_integers[i]) {
-      count++;
-    }
-  }
+  int count = accumulate(m_integers.begin(), m_integers.end(), 0);
  
   // step 3. add primes to output
   m_primes.reserve(count);
