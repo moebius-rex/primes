@@ -130,15 +130,12 @@ Return to the [main document](../README.md) to learn more about the project, or 
 
 ## Example project package downloads
 
-This section describes how to install tools packages required by the project in a couple of common operating systems. But first you may wish to install **Git**.
+This section describes how to install tools packages required by the project on a few commonly used operating systems. 
 
-### Installing Git
+### A note about Maven
+[**Maven**](https://maven.apache.org/) is a Java build management tool. Its primary advantage over using **GNU Make** in combination with **javac**, the Java bytecode compiler, is that it implements [package/dependency management](https://guides.sonatype.com/foundations/devops/out-of-wild-pkg-dep-mgmt/). Although this project doesn't depend on any third party Java packages, Maven is used here because it's a typicial component of projects that include Java source code. Alternatives to Maven include [**Apache Ant**](https://ant.apache.org/) and [**Gradle**](https://gradle.org/).
 
-If you would like to make contributions to the Primes project, you will need to install **Git**, the version control software, to clone a copy of the project's repository on **Github** using the `git clone` command. You can learn how to install the `git` command [here](https://git-scm.com/download/linux).
-
-### Notes for users of any Windows, Linux or Unix systems
-
-If necessary, installing Maven causes the package manager to install an appropriate version of **OpenJDK**. For example, firing up a Fedora Docker container with only Maven installed results in the following:
+Installing Maven causes the package manager to install or upgrade to an appropriate version of [**OpenJDK**](https://openjdk.java.net/). For example, firing up a Fedora Docker container with *only* Maven installed results in the following:
 
 ```bash
 % mvn --version
