@@ -13,10 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <algorithm>
 #include <chrono>
 #include <iostream>
-#include <memory>
 #include <vector>
 
 #include "sieve.h"
