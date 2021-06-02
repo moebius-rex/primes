@@ -30,7 +30,6 @@ sieve::sieve(int range) {
 
 sieve::~sieve() {
   pp->destroy(pp);
-  pimpl.release();
 }
 
 void sieve::compute_primes() {
