@@ -106,7 +106,7 @@ void sieve::impl::print() const {
   cout << "Prime numbers in range 0-" << m_range << " inclusive:" << endl;
   int half = m_primes.size() / 2;
   for (size_t n = 0; n < m_primes.size(); ++n) {
-    int p = m_primes.at(n);
+    int p = m_primes[n];
     if (half > MAX_HALF) {
       if (n == MAX_HALF) {
         cout << ".. ";
