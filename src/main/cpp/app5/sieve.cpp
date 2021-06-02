@@ -40,43 +40,33 @@ namespace {
  */
 struct sieve::impl {
   private:
-    int         m_range;    // range of integers in which to find primes
-    bool*       m_integers; // integer inputs, true => prime number
-    vector<int> m_primes;   // outputs, list of primes in inputs
+    int          m_range;    // range of integers in which to find primes
+    vector<bool> m_integers; // integer inputs, true => prime number
+    vector<int>  m_primes;   // outputs, list of primes in inputs
 
     steady_clock::time_point m_start; // time taken to execute the algo
     steady_clock::time_point m_end;
 
   public:
     impl(int range = 0);
-    ~impl();
 
-    void        compute();
-    void        print()    const;
+    void         compute();
+    void         print()    const;
 
-    vector<int> primes()   const;
-    int         range()    const;
-    int         count()    const;
-    time_t      elapsed()  const;
+    vector<int>  primes()   const;
+    int          range()    const;
+    int          count()    const;
+    time_t       elapsed()  const;
 };
 
 /**
  * Private implementation
  */
-sieve::impl::impl(int range): m_range(range) {
+sieve::impl::impl(int range): m_range(range), m_integers(range + 1, true) {
   if (range < 0) {
     throw invalid_argument("negative range: " + to_string(range));
   }
-  m_integers = new bool[range + 1];
-  fill_n(m_integers, range + 1, true);
   m_integers[0] = m_integers[1] = false; // by convention, 0 and 1 are not primes
-}
-
-sieve::impl::~impl() {
-  if (m_integers) {
-    delete[] m_integers;
-  }
-  m_primes.clear();
 }
 
 void sieve::impl::compute() {
