@@ -39,9 +39,8 @@ int main(int argc, const char *argv[]) {
   sieve.print();
 
   // for valgrind
-  vector<int> copy = sieve.primes();
-  for (int i = 0; i < sieve.count(); ++i) {
-    cout << setw(3) << copy[i] << ' ';
+  for (int i : sieve.primes()) {
+    cout << setw(3) << i << ' ';
   }
   cout << endl;
 
