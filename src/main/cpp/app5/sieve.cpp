@@ -27,12 +27,12 @@ using namespace std;
 using namespace shay::gordon;
 
 /**
- * Pivate constants
+ * Private constants
  */
 namespace {
   // defines the number of primes to display around an ellipsis that is used
   // when large numbers of primes are requested
-  const int MAX_HALF = 10;
+  constexpr int MAX_HALF = 10;
 }
 
 /**
@@ -42,7 +42,7 @@ struct sieve::impl {
   private:
     int          m_range;    // range of integers in which to find primes
     vector<bool> m_integers; // integer inputs, true => prime number
-    vector<int>  m_primes;   // outputs, list of primes in inputs
+    vector<int>  m_primes;   // outputs, list of primes in input range
 
     steady_clock::time_point m_start; // time taken to execute the algo
     steady_clock::time_point m_end;
