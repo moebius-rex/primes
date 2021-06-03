@@ -36,7 +36,7 @@ func readRange() (r int64, err error) {
 		return r, nil
 	}
 
-	fmt.Print("Enter highest integer to test for primeness: ")
+	fmt.Print("Enter highest integer to test for primality: ")
 	if _, err := fmt.Scanf("%d", &r); err != nil {
 		return 0, fmt.Errorf("not an integer")
 	}

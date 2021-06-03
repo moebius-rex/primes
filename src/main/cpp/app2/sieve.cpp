@@ -79,7 +79,8 @@ void Sieve::compute_primes() {
 }
 
 void Sieve::print_primes() const {
-  std::cout << "Prime numbers in range 0-" << this->range << " inclusive:" << std::endl;
+  std::cout << "Prime numbers in the range 0-" << this->range
+            << " inclusive:" << std::endl;
   int half = this->primes.size() / 2;
   for (size_t n = 0; n < this->primes.size(); n++) {
     int p = this->primes.at(n);

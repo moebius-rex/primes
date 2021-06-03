@@ -50,7 +50,7 @@ function computePrimes(integers) {
 }
 
 function printPrimes(integers) {
-  console.log("Prime numbers in range 0-" + (integers.length - 1)
+  console.log("Prime numbers in the range 0-" + (integers.length - 1)
       + " inclusive:");
   integers.forEach((val, p) => {
     if (val) {
@@ -81,7 +81,7 @@ if (process.argv.length > 2) {
   main(parseInt(process.argv[2]));
 } else {
   let rl = readline.createInterface(process.stdin, process.stdout);
-  rl.question("Enter highest integer to test for primeness: ", range => {
+  rl.question("Enter highest integer to test for primality: ", range => {
     main(parseInt(range));
     rl.close();
   });

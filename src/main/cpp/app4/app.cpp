@@ -21,7 +21,7 @@ using namespace std;
 
 static int read_range(int range) {
   if (range == 0) {
-    std::cout << "Enter highest integer to test for primeness: ";
+    std::cout << "Enter highest integer to test for primality: ";
     std::cin >> range;
   }
   return range;

@@ -27,7 +27,7 @@ import java.util.Scanner;
 public class App {
   private static int getRange() {
     int range = 0;
-    System.out.print("Enter highest integer to test for primeness: ");
+    System.out.print("Enter highest integer to test for primality: ");
     try (Scanner scanner = new Scanner(new InputStreamReader(System.in))) {
       range = scanner.nextInt();
     } catch (InputMismatchException ime) {
@@ -65,7 +65,7 @@ public class App {
 
   private static void printPrimes(boolean[] prime) {
     int range = prime.length - 1;
-    System.out.println(String.format("Prime numbers in range 0-%d:", range));
+    System.out.println(String.format("Prime numbers in the range 0-%d:", range));
     for (int p = 0; p <= range; p++) {
       if (prime[p]) {
         if (range <= 1000 || range - p <= 1000) {

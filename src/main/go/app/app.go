@@ -38,7 +38,7 @@ func read_range() (r int64, err error) {
 		return r, nil
 	}
 
-	fmt.Print("Enter highest integer to test for primeness: ")
+	fmt.Print("Enter highest integer to test for primality: ")
 	if _, err := fmt.Scanf("%d", &r); err != nil {
 		return 0, fmt.Errorf("not an integer")
 	}
@@ -67,7 +67,7 @@ func compute_primes(r int) []bool {
 
 func print_primes(primes []bool) {
 	n := len(primes)
-	fmt.Printf("Prime numbers in range 0-%d inclusive:\n", n-1)
+	fmt.Printf("Prime numbers in the range 0-%d inclusive:\n", n-1)
 	for p := 2; p < n; p++ {
 		if primes[p] {
 			if n <= 1000 || n-p <= 1000 {

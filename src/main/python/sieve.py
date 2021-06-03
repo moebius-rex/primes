@@ -62,7 +62,7 @@ class Sieve:
     return self
 
   def print_primes(self):
-    print(f"Prime numbers in range 0-{self.range:d} inclusive:")
+    print(f"Prime numbers in the range 0-{self.range:d} inclusive:")
     half = int(self.get_count() / 2)
     for n, p in enumerate(self.primes):
       if half > Sieve.MAX_HALF:

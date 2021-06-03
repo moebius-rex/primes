@@ -21,7 +21,7 @@
 int read_range(int range) {
   if (range == 0) {
     char buf[100];
-    printf("Enter highest integer to test for primeness: ");
+    printf("Enter highest integer to test for primality: ");
     fgets(buf, sizeof(buf), stdin);
     range = strtol(buf, (char**) NULL, 10);
   }

@@ -24,7 +24,7 @@ Sieve of Eratosthenes algorithm.
 """
 
 def get_range():
-  return int(input("Enter highest integer to test for primeness: "))
+  return int(input("Enter highest integer to test for primality: "))
 
 def compute_primes(n):
   prime = [True] * (n + 1)
@@ -39,7 +39,7 @@ def compute_primes(n):
 
 def print_primes(prime):
   n = len(prime)
-  print(f"Prime numbers in range 0-{n - 1:d} inclusive:")
+  print(f"Prime numbers in the range 0-{n - 1:d} inclusive:")
   for p in range(n):
     if prime[p]:
       if n <= 1000 or n - p <= 1000:

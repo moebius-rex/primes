@@ -32,7 +32,7 @@ console.log("Sieve of Eratosthenes: Find all prime numbers in a given range");
 if (process.argv.length > 2) {
   main(process.argv[2]);
 } else {
-  process.stdout.write("Enter highest integer to test for primeness: ");
+  process.stdout.write("Enter highest integer to test for primality: ");
   process.stdin.on('data', data => {
     process.stdin.pause();
     main(data);

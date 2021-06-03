@@ -20,7 +20,7 @@ from csieve import CSieve
 
 def read_range(range):
 	if (range == 0):
-		range = int(input("Enter highest integer to test for primeness: "))
+		range = int(input("Enter highest integer to test for primality: "))
 	return range
 
 def main():

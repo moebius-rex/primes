@@ -121,7 +121,7 @@ void csieve_compute_primes(csieve* self) {
 }
 
 void csieve_print_primes(const csieve* self) {
-  printf("Prime numbers in range 0-%d inclusive:\n", self->range);
+  printf("Prime numbers in the range 0-%d inclusive:\n", self->range);
   int half = self->count / 2;
   for (int n = 0; n < self->count; ++n) {
     int p = self->primes[n];

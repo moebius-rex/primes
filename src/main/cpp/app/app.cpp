@@ -59,7 +59,7 @@ void App::compute_primes() {
 }
 
 void App::print_primes() {
-  std::cout << "Prime numbers in range 0-" << this->range << " inclusive:" << std::endl;
+  std::cout << "Prime numbers in the range 0-" << this->range << " inclusive:" << std::endl;
   for (int p = 0; p <= this->range; ++p) {
     if (this->primes[p]) {
       if (this->range <= 1000 || this->range - p <= 1000) {

@@ -25,7 +25,7 @@
  */
 static int read_range() {
   char buf[100];
-  printf("Enter highest integer to test for primeness: ");
+  printf("Enter highest integer to test for primality: ");
   fgets(buf, sizeof(buf), stdin);
   return strtol(buf, (char**) NULL, 10);
 }
@@ -43,7 +43,7 @@ static void compute_primes(bool* integers, int range) {
 }
 
 static void print_primes(bool* integers, int range) {
-  printf("Prime numbers in range 0-%d inclusive:\n", range);
+  printf("Prime numbers in the range 0-%d inclusive:\n", range);
   for (int p = 2; p <= range; ++p) {
     if (integers[p]) {
       if (range <= 1000 || range - p <= 1000) {

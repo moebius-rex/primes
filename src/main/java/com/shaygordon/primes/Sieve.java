@@ -77,7 +77,8 @@ public class Sieve {
   }
 
   public void printPrimes() {
-    System.out.println(String.format("Prime numbers in range 0-%d:", range));
+    System.out.println(
+          String.format("Prime numbers in the range 0-%d:", range));
     StringBuilder sb = new StringBuilder();
     int half = this.primes.size() / 2;
     for (int n = 0; n < this.primes.size(); n++) {

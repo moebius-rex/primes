@@ -24,7 +24,7 @@ using namespace shay::gordon;
 
 static int read_range(int range) {
   if (range == 0) {
-    cout << "Enter highest integer to test for primeness: "; cin >> range;
+    cout << "Enter highest integer to test for primality: "; cin >> range;
   }
   return range;
 }

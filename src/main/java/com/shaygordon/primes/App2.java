@@ -22,7 +22,7 @@ import java.util.Scanner;
 public class App2 {
   private static int readRange(int range) {
     if (range == 0) {
-      System.out.print("Enter highest integer to test for primeness: ");
+      System.out.print("Enter highest integer to test for primality: ");
       try (Scanner scanner = new Scanner(new InputStreamReader(System.in))) {
         range = scanner.nextInt();
       } catch (InputMismatchException ime) {

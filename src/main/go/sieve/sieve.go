@@ -36,7 +36,7 @@ type ISieve interface {
 	Integers() []bool       // [0 < n < range] == true => prime number
 	Primes() []int          // [0 < m < count] => a prime number
 	PrimeMap() map[int]bool // map[m] == true => a prime number
-	Range() int             // range of integers tested for primeness
+	Range() int             // range of integers tested for primality
 	Count() int             // count of primes in range tested
 	Elapsed() time.Duration // time taken to compute primes in range
 }
@@ -109,7 +109,7 @@ func (s *Sieve) ComputePrimes() *Sieve {
 
 // Prints any previously calculated prime numbers.
 func (s *Sieve) PrintPrimes() {
-	fmt.Printf("Prime numbers in range 0-%d inclusive:\n", s.inrange)
+	fmt.Printf("Prime numbers in the range 0-%d inclusive:\n", s.inrange)
 	half := int(s.count / 2)
 	for i := 0; i < s.count; i++ {
 		j := s.primes[i]
@@ -154,7 +154,7 @@ func (s *Sieve) PrimeMap() (pm map[int]bool) {
 }
 
 // Returns the range of integers that will be or have been checked for
-// primeness. This is the integer value provided to the NewSieve() method
+// primality. This is the integer value provided to the NewSieve() method
 // and it is the size of the boolean array returned by Integers() less one,
 // i.e., sieve.Range() = len(sieve.Integers()) - 1.
 func (s *Sieve) Range() int {

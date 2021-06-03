@@ -74,7 +74,7 @@ class Sieve {
   }
 
   printPrimes() {
-    console.log("Prime numbers in range 0-" + this.range + " inclusive:");
+    console.log("Prime numbers in the range 0-" + this.range + " inclusive:");
     const half = Math.floor(this.count / 2);
     this.#primes.forEach((p, n) => {
       if (half > MAX_HALF) {
