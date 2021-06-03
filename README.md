@@ -1,6 +1,6 @@
 # The Primes project
 
-**Primes** is a project that implements the **Sieve of Eratosthenes** algorithm to find all prime numbers in a given range. The project implements the algorithm in several widely used programming languages and runs natively on supported platforms, or virtually via Docker containers.
+**Primes** is a project that implements the [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) algorithm to find all prime numbers in a given range. The project implements the algorithm in several widely used programming languages and runs natively on supported platforms, or virtually via Docker containers.
 
 ## Goals
 
@@ -140,7 +140,7 @@ algorithm Sieve of Eratosthenes is
 
 ### History of the Sieve of Eratosthenes
 
-Much is known of [Eratothenes](https://en.wikipedia.org/wiki/Eratosthenes), a polymath whose principal occupation was chief librarian at the [Library of Alexandria](https://en.wikipedia.org/wiki/Library_of_Alexandria), but little is known of the circumstances surrounding the derivation of his method for determining prime numbers. From [Wikipedia](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)'s main entry on the topic:
+Much is known of [Eratosthenes](https://en.wikipedia.org/wiki/Eratosthenes), a polymath whose principal occupation was chief librarian at the [Library of Alexandria](https://en.wikipedia.org/wiki/Library_of_Alexandria), but little is known of the circumstances surrounding the derivation of his method for determining prime numbers. From [Wikipedia's](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) main entry on the topic:
 
 > The earliest known reference to the sieve (Ancient Greek: κόσκινον Ἐρατοσθένους, *kóskinon Eratosthénous*) is in [Nicomachus of Gerasa](https://en.wikipedia.org/wiki/Nicomachus)'s *[Introduction to Arithmetic](https://en.wikipedia.org/wiki/Introduction_to_Arithmetic)*, an early 2nd cent. CE book, which describes it and attributes it to [Eratosthenes of Cyrene](https://en.wikipedia.org/wiki/Eratosthenes), a 3rd cent. BCE Greek mathematician.
 
