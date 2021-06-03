@@ -29,12 +29,12 @@ Project features include:
   - JavaScript
   - Python
 - One C++, one Go and one Python version are derived by binding to a C version exported as a shared lbrary. Java and server-side JavaScript (i.e., Node.js) versions may follow.
-- The project uses GNU **make** to:
+- The project uses **GNU Make** to:
   - compile and link C, C++ and Go implementations,
   - install reusable libraries, shared objects and header files,
   - run all, or a subset of, implementations,
   - remove generated files.
-- The project uses **Maven** behind it needs to compile and package Java implementations.
+- The project uses **Maven** behind the scenes to compile and package Java implementations.
 - All implementations are designed to be run from, and print to, a terminal window.
 - Where possible, all implementations produce the identical output for the identical input.
 - All C and C++ implementations produce zero `valgrind` errors or leaks when compiled with gcc/g++ on Debian-based Linux systems.
