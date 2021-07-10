@@ -19,7 +19,7 @@ Each language-specific implementation of the Sieve of Eratosthenes algorithm com
 
 A third version is available for languages that provide a way to bind to C library functions. In these versions, a single O-O component encapsulates all interactions with the C library while the C library implements the sieve algorithm. Python's `ctypes` and Go's `cgo` packages are examples of simple but effective C library binding mechanisms.
 
-Project features include:
+Here are some of the things the project provides:
 
 - The sieve algorithm is implemented in six of the most widely used programming languages:
   - C
