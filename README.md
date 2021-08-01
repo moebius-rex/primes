@@ -9,7 +9,7 @@ The primary goals of the project are to:
 - demonstrate the similarities and differences between several popular programming languages by implementing the same easy-to-understand algorithm in each language
 - provide basic implementations of all elements of a DevOps toolchain that supports the delivery, development, and management of software applications throughout the systems development life cycle
 
-The project is young (just weeks old) and although it implements *most* of the DevOps toolchain, it does not currently include CI/CD (Jenkins/automated unit testing) or container orchestration (Kubernetes), but will in the future.
+The project is young and although it implements *most* of the DevOps toolchain, it does not currently include CI/CD (Jenkins/automated unit testing) or container orchestration (Kubernetes), but will in the future.
 
 ## Features
 
