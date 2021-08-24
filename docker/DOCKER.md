@@ -34,7 +34,7 @@ The project's `docker` subdirectory provides Docker files to build up to five Do
 - Fedora 33
 - Ubuntu 20.04 LTS
 
-Each image contains a copy of the project, omitting the `.git` repository, all docker files and project documents. The project files are installed in the `/prime` directory of the Docker image. Two additional containers are Alpine-based but contain C-only, and C- and Go-only projects installations. This makes these containers significantly smaller than the others and more suit ble for installation on embedded systems.
+Each image contains a copy of the project, omitting the `.git` repository, all docker files and project documents. The project files are installed in the `/prime` directory of the Docker image. Two additional containers are Alpine-based but contain C-only, and C- and Go-only projects installations. This makes these containers significantly smaller than the others and more suitable for installation on embedded systems.
 
 To build all images, enter the following command from the project's home directory:
 
