@@ -1,4 +1,5 @@
-# Primes, a teaching project
+# Primes
+## A programming language and DevOps learning project
 
 **Primes** is a project that implements the [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) algorithm to find all prime numbers in a given range. The project implements the algorithm in several widely used programming languages and runs natively on supported platforms, or virtually via Docker containers.
 
