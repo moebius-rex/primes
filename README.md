@@ -1,15 +1,15 @@
-# The Primes project
+# Primes, a teaching project
 
 **Primes** is a project that implements the [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) algorithm to find all prime numbers in a given range. The project implements the algorithm in several widely used programming languages and runs natively on supported platforms, or virtually via Docker containers.
 
 ## Goals
 
-The primary goals of the project are to:
+The primary goals of the project are eductional. It:
 
-- demonstrate the similarities and differences between several popular programming languages by implementing the same easy-to-understand algorithm in each language
-- provide basic implementations of all elements of a DevOps toolchain that supports the delivery, development, and management of software applications throughout the systems development life cycle
+- demonstrates the similarities and differences between several popular programming languages by implementing the same easy-to-understand algorithm in each language
+- provides basic implementations of all elements of a DevOps toolchain that supports the delivery, development, and management of software applications throughout the systems development life cycle
 
-The project is young and although it implements *most* of the DevOps toolchain, it does not currently include CI/CD (Jenkins/automated unit testing) or container orchestration (Kubernetes), but will in the future.
+The project is young and although it implements *most* of the DevOps toolchain, it does not currently include CI/CD (Jenkins/automated unit testing) or container orchestration (Kubernetes/Terraform), but will in the future.
 
 ## Features
 
